@@ -1,0 +1,111 @@
+<MTIfCommentsActive>
+<div id="comments" class="section">
+    <h2><__trans phrase="Comments">:<span class="count"><$mt:EntryCommentCount$></span></h2>
+	<MTComments lastn="$comments_per_page" sort_order="ascend">
+		<MTCommentsHeader>
+    <dl class="log">
+			<MTIf tag="EntryCommentCount" gt="$comments_per_page">
+        <dd>
+            <ul id="top-comment-nav">
+                <li id="top-prev-comments">
+                    <a href="javascript://" id="top-prev-comments-link" title="<__trans phrase="Previous">"><__trans phrase="Previous"></a>
+                </li>
+                <li id="top-num-comments"><span id="top-current-comments"></span></li>
+                <li id="top-next-comments">
+                    <a href="javascript://" id="top-next-comments-link" title="<__trans phrase="Next">"><__trans phrase="Next"></a>
+                </li>
+            </ul>
+        </dd>
+			</MTIf>
+        <dd>
+            <dl id="comments-content" class="comments-content" style="clear: left;">
+		</MTCommentsHeader>
+            <$MTInclude module="<__trans phrase="Comment Detail">"$>
+		<MTCommentsFooter>
+            </dl>
+        </dd>
+    </dl>
+		</MTCommentsFooter>
+	</MTComments>
+	<MTIf tag="EntryCommentCount" gt="$comments_per_page">
+		<mt:Ignore><__trans phrase="The data is modified by the paginate script"></mt:Ignore>
+    <ul id="comment-nav">
+        <li id="prev-comments">
+            <a href="javascript://" id="prev-comments-link" title="<__trans phrase="Previous">"><__trans phrase="Previous"></a>
+        </li>
+        <li id="num-comments"><span id="current-comments"></span></li>
+        <li id="next-comments">
+            <a href="javascript://" id="next-comments-link" title="<__trans phrase="Next">"><__trans phrase="Next"></a>
+        </li>
+    </ul>
+	</MTIf>
+	<mt:IfCommentsAccepted>
+    <div class="comments-open" id="comments-open">
+        <div class="comments-open-content">
+            <p id="comment-greeting"></p>
+            <form class="post" method="post" action="<$MTCGIPath$><$MTCommentScript$>" id="commentsForm" onsubmit="return mtCommentOnSubmit(this)">
+                <fieldset>
+                <legend>Comment Form</legend>
+                <div>
+                    <input type="hidden" name="static" value="1" />
+                    <input type="hidden" name="armor" value="1" />
+                    <input type="hidden" name="preview" value="" />
+                    <input type="hidden" name="sid" value="" />
+                    <input type="hidden" name="entry_id" value="<$MTEntryID$>" />
+                    <input type="hidden" name="__lang" value="<$MTBlogLanguage$>" />
+                    <input type="hidden" name="parent_id" value="<$MTCommentParentID escape="html"$>" id="comment-parent-id" />
+                </div>
+                <div id="comments-open-data">
+                    <dl id="commentForm-name">
+                        <dt><label for="comment-author"><__trans phrase="Name"></label></dt>
+                        <dd><input id="comment-author" name="author" size="30" value="" onfocus="mtCommentFormOnFocus()" /></dd>
+                    </dl>
+                    <dl id="commentForm-email">
+                        <dt><label for="comment-email"><__trans phrase="Email Address"></label></dt>
+                        <dd><input id="comment-email" name="email" size="30" value="" onfocus="mtCommentFormOnFocus()" /></dd>
+                    </dl>
+                    <dl id="commentForm-url">
+                        <dt><label for="comment-url"><abbr title="Uniform Resource Identifer">URI</abbr></label></dt>
+                        <dd><input id="comment-url" name="url" size="30" value="" onfocus="mtCommentFormOnFocus()" /></dd>
+                    </dl>
+                    <dl id="commentForm-remember-me">
+                        <dt><label for="comment-bake-cookie">Remember personal info?</label> <input type="checkbox" id="comment-bake-cookie" name="bakecookie" onclick="mtRememberMeOnClick(this)" value="1" accesskey="r" /></dt>
+                    </dl>
+                </div>
+                <dl id="commentForm-reply" style="display:none">
+                    <dt><label for="comment-reply" id="comment-reply-label"></label></dt>
+                    <dd><input type="checkbox" id="comment-reply" name="comment_reply" value="" onclick="mtSetCommentParentID()" /></dd>
+                </dl>
+                <dl id="comments-open-text">
+                    <dt>
+                        <label for="comment-text">Comment
+		<MTIfAllowCommentHTML>
+                            <span>(<__trans_section component="mtVicunaSimple"><__trans phrase="You can use some <abbr title="Hyper Text Markup Language">HTML</abbr> tags for decorating."></__trans_section>)</span>
+		<MTElse>
+                            <span>(<__trans_section component="mtVicunaSimple"><__trans phrase="You cannot use <abbr title="Hyper Text Markup Language">HTML</abbr> tags."></__trans_section>)</span>
+		</MTIfAllowCommentHTML>
+                        </label>
+                    </dt>
+                    <dd>
+                        <textarea id="comment-text" class="inputField" name="text" rows="8" cols="50" onfocus="mtCommentFormOnFocus()"></textarea>
+                    </dd>
+                </dl>
+                <p id="comments-open-captcha"></p>
+                <div class="action" id="comments-open-footer">
+                    <input type="submit" class="submit preview" accesskey="v" name="preview_button" id="comment-preview" value="Preview" onclick="this.form.preview.value='1';" />
+                    <input type="submit" class="submit post" accesskey="s" name="post" id="comment-submit" value="Submit" />
+                </div>
+                </fieldset>
+            </form>
+
+        </div>
+    </div>
+    <script type="text/javascript">
+      <!--
+        mtAttachEvent("load", mtEntryOnLoad);
+        mtAttachEvent("unload", mtEntryOnUnload);
+      //-->
+    </script>
+	</MTIfCommentsAccepted>
+</div>
+</MTIfCommentsActive>

@@ -1,0 +1,115 @@
+<MTSetVars>
+  tempName=individual_entry
+  page_title=<$MTEntryTitle remove_html="1"$>
+  comments_per_page=10
+	<MTEntryPrevious>  prev_entry=1</MTEntryPrevious>
+	<MTEntryNext>  next_entry=1</MTEntryNext>
+  entry_style=<$MTVicunaEntryStyle$>
+  eyecatch=<$MTVicunaEyecatch$>
+  navi_ontop=<MTIfVicunaNavionTop>1<MTElse>0</MTIfVicunaNavionTop>
+  left_align=<MTIfVicunaLeftAlign>1<MTElse>0</MTIfVicunaLeftAlign>
+  fixid_width=<$MTVicunaFixedWidth$>
+  jquery=1
+</MTSetVars>
+<MTIf name="page_layout" like="bazooka|future|warship"><MTSetVar name="legacy_style" value="1" /><MTSetVar name="design_layout" value="1" /></MTIf>
+<MTIf name="entry_style" eq="default">
+	<MTUnless name="page_layout"><MTSetvar name="page_layout" value="single" /></MTUnless>
+	<MTIf name="page_layout" like="layout-wt|bazooka|future|warship"><MTSetvar name="page_layout" value="single" /></MTIf>
+<MTElse>
+	<MTSetvarBlock name="page_layout"><$MTVar name="entry_style"$></MTSetVarBlock>
+	<MTIf name="design_layout">
+		<MTIf name="entry_style" like="double|multi"><MTSetvar name="page_layout" value="double" /><MTElse><MTSetvar name="page_layout" value="single" /></MTIf>
+	</MTIf>
+</MTIf>
+<MTIf name="legacy_style">
+	<MTIf name="eyecatch" like="eye-h">
+		<MTSetvar name="eyecatch" value="eye-t" />
+	<MTElseIf eq="eye-c">
+		<MTSetvar name="eyecatch" value="eye-d" />
+	<MTElseIf eq="eye-m">
+		<MTSetvar name="eyecatch" value="eye-s" />
+	<MTElseIf eq="none">
+		<MTSetvar name="eyecatch" value="" />
+	</MTIf>
+</MTIf>
+<?xml version="1.0" encoding="<$MTPublishCharset$>" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="<$MTDefaultLanguage$>" xml:lang="<$MTDefaultLanguage$>">
+<head profile="http://purl.org/net/ns/metaprof">
+    <$MTInclude module="<__trans phrase="HTML Head">"$>
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="<$MTLink template="rsd"$>" />
+<MTUnless name="prev_entry">
+    <link rel="prev bookmark" href="<$MTEntryPermalink$>" title="<$MTEntryTitle encode_html="1"$>" />
+</MTUnless>
+<MTUnless name="next_entry">
+    <link rel="next bookmark" href="<$MTEntryPermalink$>" title="<$MTEntryTitle encode_html="1"$>" />
+</MTUnless>
+<MTEntryExcerpt no_generate="1" remove_html="1" ltrim="1" setvar="entry_description" />
+<MTUnless name="entry_description"><MTEntryExcerpt remove_html="1" ltrim="1" setvar="entry_description" /></MTUnless>
+<MTIf name="entry_description">
+    <meta name="description" content="<$MTVar name="entry_description"$>" />
+<MTElse>
+    <meta name="description" content="<__trans_section component="mtVicunaSimple"><__trans phrase="This page contains a single entry by [_1] published on [_2]." params="<$MTEntryAuthorDisplayName$>%%<$mt:EntryDate format="%x %X"$>"></__trans_section>" />
+</MTIf>
+<MTEntryKeywords remove_html="1" setvar="entry_keywords" />
+<MTSetVarBlock name="entry_keywords" append="1"><MTIf name="entry_keywords">,</MTIf><MTEntryTags glue=","><$MTTagName encode_html="1"$></MTEntryTags></MTSetVarBlock>
+<MTIf name="entry_keywords">
+    <meta name="keywords" content="<$MTVar name="entry_keywords"$>" />
+</MTIf>
+<MTIfPingsAccepted>
+<$MTEntryTrackbackData$>
+</MTIfPingsAccepted>
+<MTIf tag="EntryCommentCount" gt="$comments_per_page">
+    <script type="text/javascript">
+        MT.entryID = <$MTEntryID$>;
+        MT.commentsPerPage = <$MTVar name="comments_per_page"$>;
+        MT.entryCommentCount = <$MTEntryCommentCount$>;
+        MT.commentIds = [<MTComments sort_order="ascend" glue=","><MTCommentID></MTComments>];
+    </script>
+</MTIf>
+    <title><$MTGetVar name="page_title"$> - <MTBlogName encode_html="1"$></title>
+</head>
+<body class="individual <$MTVar name="page_layout"$><MTUnless name="legacy_style"><MTIf name="eyecatch"> <$MTVar name="eyecatch"$></MTIf><MTIf name="navi_ontop"> gt</MTIf><MTIf name="left_align"> al</MTIf><MTIf name="fixid_width"> <$MTVar name="fixid_width"$></MTIf><MTElse><MTIf name="eyecatch"> <$MTVar name="eyecatch"$></MTIf></MTUnless>" id="entry<$MTEntryID pad="1"$>">
+    <$MTInclude module="<__trans phrase="Banner Header">"$>
+    <div id="content">
+        <div id="main">
+            <$MTInclude module="<__trans_section component="mtVicunaSimple"><__trans phrase="Topic Path"></__trans_section>"$>
+            <$MTInclude module="<__trans_section component="mtVicunaSimple"><__trans phrase="Next Entry Link Simple"></__trans_section>"$>
+            <h1 class="autopagerize_page_element"><$MTGetVar name="page_title"$></h1>
+            <div class="entry autopagerize_page_element">
+                <ul class="info">
+<MTIf tag="EntryAuthorDisplayName">
+                    <li class="name byline">Posted by: <span class="vcard author"><$MTEntryAuthorDisplayName show_hcard="1"$></span></li>
+</MTIf>
+                    <li class="date"><abbr class="published" title="<$MTEntryDate format_name="iso8601"$>"><$MTEntryDate format="%x %X"$></abbr></li>
+<MTIf tag="MTEntryCategory">
+                    <li class="category"><MTEntryCategories glue=" | "><a href="<$MTCategoryArchiveLink$>" title="<$MTCategoryLabel encode_html="1"$> Index"><$MTCategoryLabel$></a></MTEntryCategories></li>
+</MTIf>
+<MTEntryIfTagged>
+                    <li class="tags"><MTEntryTags glue=", "><a href="javascript:void(0)" onclick="location.href='<$MTTagSearchLink encode_js="1"$>';return false;" rel="tag" title="<$MTTagName encode_html="1"$> tag Search"><$MTTagName encode_html="1"$></a></MTEntryTags></li>
+</MTEntryIfTagged>
+                </ul>
+<MTIf tag="EntryBody">
+                <div class="textBody">
+<$MTEntryBody$>
+                </div>
+</MTIf>
+<MTIf tag="EntryMore" convert_breaks="0">
+                <div class="textBody" id="extended">
+<$MTEntryMore$>
+                </div>
+</MTIf>
+                <$MTInclude module="<__trans_section component="mtVicunaSimple"><__trans phrase="Related Entries"></__trans_section>"$>
+                <$MTInclude module="<__trans_section component="mtVicunaSimple"><__trans phrase="Next Entry Link Detailed"></__trans_section>"$>
+                <$MTInclude module="<__trans phrase="Trackbacks">"$>
+                <$MTInclude module="<__trans phrase="Comments">"$>
+            </div>
+            <p class="archives autopagerize_insert_before"><a href="<$MTLink template="archive_index"$>">Index of all entries</a></p>
+            <$MTInclude module="<__trans_section component="mtVicunaSimple"><__trans phrase="Topic Path"></__trans_section>"$>
+        </div>
+        <$MTInclude module="<__trans phrase="Sidebar">"$>
+        <p class="return"><a href="#header">Return to page top</a></p>
+    </div>
+    <$MTInclude module="<__trans phrase="Banner Footer">"$>
+</body>
+</html>

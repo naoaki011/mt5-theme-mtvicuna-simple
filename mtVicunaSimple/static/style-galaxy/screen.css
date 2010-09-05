@@ -1,0 +1,93 @@
+@charset "UTF-8";
+/*
+
+name: Style-Galaxy
+designer: wu
+designer_url: http://3ping.org/
+developer: naoaki onozaki
+developer_url: http://code.zelazny.mydns.jp/trac/themes/
+layouts: single, double, double-l, multi, multi2, multi2-l
+
+*/
+
+@import url(core.css);
+@import url(layouts.css);
+p.mtlogo {
+	background-color:#F8F8F8;
+	border:1px solid #DDDDDD;
+	margin:15px;
+	padding:10px;
+	text-align:center;
+}
+p.mtlogo img {
+	border:none;
+}
+dd.openID {
+}
+dd.openID p {
+	background-color: #fff !important;
+	border:1px solid #ddd;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+	color: #333;
+}
+dd.openID p em {
+	color: #000;
+}
+dd.openID p strong {
+	color: #FF3200;
+}
+dd.openID p a:link {
+	color: #417698;
+}
+
+dd.openID p a:visited {
+	color: #5b8098;
+}
+
+dd.openID p a:hover {
+	color: #2091da;
+}
+li#top-prev-comments,
+li#top-num-comments,
+li#top-next-comments,
+li#prev-comments,
+li#num-comments,
+li#next-comments {
+	display:inline;
+}
+ul.content-nav {
+	list-style:none;
+	margin:1em 10px;
+}
+ul.content-nav li {
+	display:inline;
+}
+/* for normalPager
+ul.content-nav li a {
+	background-color:#eee;
+	border:1px solid #aaa;
+	text-decoration:none;
+	padding:0.1em 0.7em;
+}
+ul.content-nav li.previousPager a {
+	padding-left:1.5em;
+}
+ul.content-nav li.nextPager a {
+	padding-right:1.5em;
+}
+ul.content-nav li.currentPager {
+	border:1px solid #aaa;
+	background-color:#fff;
+	padding:0.1em 0.7em;
+} */
+ul#top-comment-nav {
+	margin:0;
+}
+p.autopagerize_page_info {
+	margin-left:30px;
+}
+body.system p.autopagerize_page_info {
+	margin-left:0;
+}

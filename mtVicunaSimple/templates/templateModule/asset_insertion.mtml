@@ -1,0 +1,26 @@
+<MTIgnore>配置のクラスを「item_class」変数にセット</MTIgnore>
+<mt:if name="align" eq="left">
+<mt:SetVarBlock name="item_class"> class="img_L"</mt:SetVarBlock>
+<mt:elseif name="align" eq="right">
+<mt:SetVarBlock name="item_class"> class="img_R"</mt:SetVarBlock>
+<mt:else>
+<mt:SetVar name="item_class" value="">
+</mt:if>
+<MTIgnore>alt属性を「alternate」変数にセット・「caption」（ConfigAssistantで拡張）が入力されている時はその値。設定されていない場合は「MTAssetLabel」</MTIgnore>
+<mt:if name="caption">
+<$mt:Var name="caption" setvar="alternate"$>
+<mt:else>
+<$mt:AssetLabel setvar="alternate"$>
+</mt:if>
+<MTIf tag="AssetType" eq="画像">
+<mt:unless name="align" eq="none"><p<$mt:var name="item_class"$>></mt:unless>
+<mt:if name="thumb">
+<$mt:Var name="a_tag"$>
+<img src="<$mt:Var name="img_src"$>" width="<$mt:Var name="img_width"$>" height="<$mt:Var name="img_height"$>" alt="<$mt:Var name="alternate"$>" />
+</a>
+<mt:else>
+<img src="<$mt:Var name="img_src"$>" width="<$mt:Var name="img_width"$>" height="<$mt:Var name="img_height"$>" alt="<$mt:Var name="alternate"$>" />
+</mt:If>
+<mt:unless name="align" eq="none"></p></mt:unless>
+<MTElse><$MTVar name="upload_html"$>
+</MTIf>

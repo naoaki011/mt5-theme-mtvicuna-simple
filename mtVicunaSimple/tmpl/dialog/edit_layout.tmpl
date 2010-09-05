@@ -1,0 +1,277 @@
+<mt:setvarblock name="page_title"><__trans phrase="Edit Vicuna Layout"></mt:setvarblock>
+<mt:setvarblock name="html_head" append="1">
+<script type="text/javascript" src="<mt:var name="static_uri">jquery/jquery.js"></script>
+<script type="text/javascript" src="<mt:var name="static_uri">jquery/jquery.mt.js"></script>
+<script type="text/javascript" src="<mt:var name="static_uri">jqueryui/ui.datepicker.js"></script>
+</mt:setvarblock>
+<mt:include name="cms/include/header.tmpl">
+
+<style type="text/css">
+div.class div {
+	width:12em;
+	float: left;
+	margin-left:1em;
+}
+div.debug-tool {
+	left:3px;
+	text-align:left;
+	top:3px;
+	background-color: #222;
+	padding: 1em: 0;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;	
+}
+div.debug-tool ul {
+	margin: 7px 5px 10px 30px;
+	padding: 0;
+	font-size: 12px;
+	color: #066;
+}
+div.debug-tool ul li {
+	list-style-type:circle;
+}
+div.debug-tool ul li a {
+	padding: 0.1em 0.5em;
+	display: block;
+	color: #111;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+div.debug-tool ul li:hover {
+	color: #0FF;
+}
+div.debug-tool ul li a:hover {
+	color: #fff;
+	background-color: #111;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;	
+}
+div.debug-tool li a.on {
+	color: #06abeb;
+	text-align: center;
+	cursor: text;
+	font-weight: bold;
+	background-color: #00424c;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;	
+}
+
+div.debug-tool h2 {
+	margin: 5px 0 0 13px;
+	font-size: 10px;
+	color: #ced924;
+	text-transform: uppercase;
+	padding: 0.5em;
+	border: none;
+	outline: none;
+	background: none;
+}
+
+div.debug-tool h3 {
+	margin: 5px 0 0 13px;
+	padding: 0;
+	color: #8cb2c9;
+	font-size: 10px;
+	text-transform: uppercase;
+	border: none;
+	outline: none;
+	background: none;
+}
+
+form {
+	clear:both;
+}
+
+p.view {
+	margin: 0;
+	padding: 5px;
+	right: 0;
+	top: 0;
+	clear: both;
+	color: #fff;
+	text-align: center;
+	font-size: 10px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+p.view a {
+	color: #fff;
+	background-color: #9C0;
+	display: block;
+	width: 11px;
+	height: 11px;
+	cursor: pointer;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+
+p.view a:hover {
+	background-color: #9F0;
+}
+.actions-bar {
+	margin:0 0 1em 0;
+	float: right;
+}
+</style>
+
+<script type="text/javascript">
+//<![CDATA[
+
+	$("#menu").css("display","none");
+
+	var layoutClass ="single double double-l multi multi2 multi2-l set1 set2 set3";
+	var eyeCatchClass ="eye-h eye-hb eye-m eye-c set1 set2 set3";	
+	var widthClass ="f800 f850 f900 f950 f1000";
+	var otherClass ="al gt gh";
+
+	$(document).ready(function(){
+<mt:if name="index_style" ne="double">
+		$('iframe:first').contents().find('body').removeClass('double').addClass('<mt:var name="index_style">');
+</mt:if>
+		$('iframe:first').contents().find('body').addClass('<mt:var name="eyecatch_style">');
+		$('iframe:first').contents().find('body').addClass('<mt:var name="eyecatch_style">');
+		$('iframe:first').contents().find('body').addClass('<mt:var name="fixed_width">');
+<mt:if name="navi_on_top">
+		$('iframe:first').contents().find('body').addClass('gt');
+</mt:if>
+<mt:if name="hide_navi">
+		$('iframe:first').contents().find('body').addClass('gh');
+</mt:if>
+	});
+
+	function setLayout(type) {
+		$('iframe:first').contents().find('body').removeClass(eyeCatchClass).removeClass(layoutClass).addClass(type);
+		$("div.layout a").removeClass("on");
+		$("div.layout a."+type).addClass("on");
+		$("#index_style").val(type);
+	};
+
+// Eye Catch
+	
+	function setEye(type) {
+		$('iframe:first').contents().find('body').removeClass(eyeCatchClass).addClass(type);
+		$("div.eye-catch a").removeClass("on");
+		$("div.eye-catch a."+type).addClass("on");
+		$("#eyecatch_style").val(type);
+	};
+	
+// Width
+	
+	function setWidth(type) {
+		$('iframe:first').contents().find('body').removeClass(widthClass).addClass(type);
+		$("div.width a").removeClass("on");
+		$("div.width a."+type).addClass("on");
+		$("#fixed_width").val(type);
+	};
+
+// Set
+
+	function setSet(type) {
+//		$("body").removeClass(layoutClass).removeClass(eyeCatchClass);
+//		$("body").addClass(type);
+	};
+	
+// Others
+
+	function setOthers(type) {
+		$('iframe:first').contents().find('body').removeClass(otherClass).addClass(type);
+		$("div.others a").removeClass("on");
+		$("div.others a."+type).addClass("on");
+//		$("#index_style").val(type);
+	};
+// Menu On/Off
+	$("p a.view").click(function () {
+		$("#menu").toggle();
+	});
+//]]>
+</script>
+<div class="debug-tool">
+  <div class="class">
+   <h2>Debug mode</h2>
+   <div class="layout">
+    <h3>Layout</h3>
+    <ul>
+     <li><a class="single<mt:if name="index_style" eq="single"> on</mt:if>" onclick="setLayout('single');">single</a></li>
+     <li><a class="double<mt:if name="index_style" eq="double"> on</mt:if>" onclick="setLayout('double');">double</a></li>
+     <li><a class="double-l<mt:if name="index_style" eq="double-l"> on</mt:if>" onclick="setLayout('double-l');">double-l</a></li>
+     <li><a class="multi<mt:if name="index_style" eq="multi"> on</mt:if>" onclick="setLayout('multi');">multi</a></li>
+     <li><a class="multi2<mt:if name="index_style" eq="multi2"> on</mt:if>" onclick="setLayout('multi2');">multi2</a></li>
+     <li><a class="multi2-l<mt:if name="index_style" eq="multi2-l"> on</mt:if>" onclick="setLayout('multi2-l');">multi2-l</a></li>
+    </ul>
+   </div>
+   <div class="eye-catch">
+    <h3>Eye Catch</h3>
+    <ul>
+     <li><a class="eye-h<mt:if name="eyecatch_style" eq="eye-h"> on</mt:if>" onclick="setEye('eye-h');">eye-h</a></li>
+     <li><a class="eye-hb<mt:if name="eyecatch_style" eq="eye-hb"> on</mt:if>" onclick="setEye('eye-hb');">eye-hb</a></li>
+     <li><a class="eye-m<mt:if name="eyecatch_style" eq="eye-m"> on</mt:if>" onclick="setEye('eye-m');">eye-m</a></li>
+     <li><a class="eye-c<mt:if name="eyecatch_style" eq="eye-c"> on</mt:if>" onclick="setEye('eye-c');">eye-c</a></li>
+     <li><a class="e-clear<mt:if name="eyecatch_style" eq="none"> on</mt:if>" onclick="setEye('e-clear');">none</a></li>
+    </ul>
+   </div>
+   <div class="width">
+    <h3>Width</h3>
+    <ul>
+     <li><a class="f800<mt:if name="fixed_width" eq="f800"> on</mt:if>" onclick="setWidth('f800');">f800</a></li>
+     <li><a class="f850<mt:if name="fixed_width" eq="f850"> on</mt:if>" onclick="setWidth('f850');">f850</a></li>
+     <li><a class="f900<mt:if name="fixed_width" eq="f900"> on</mt:if>" onclick="setWidth('f900');">f900</a></li>
+     <li><a class="f950<mt:if name="fixed_width" eq="f950"> on</mt:if>" onclick="setWidth('f950');">f950</a></li>
+     <li><a class="f1000<mt:if name="fixed_width" eq="f1000"> on</mt:if>" onclick="setWidth('f1000');">f1000</a></li>
+     <li><a class="w-clear<mt:if name="fixed_width" eq="none"> on</mt:if>" onclick="setWidth('w-clear');">none</a></li>
+    </ul>
+   </div>
+   <div class="set">
+    <h3>Set</h3>
+    <ul>
+     <li><a class="set1" onclick="setSet('multi eye-c set1');">set1</a></li>
+     <li><a class="set2" onclick="setSet('multi2 eye-c set2');">set2</a></li>
+    </ul>
+   </div>
+   <div class="others">
+    <h3>Others</h3>
+    <ul>
+     <li><a class="gt<mt:if name="navi_on_top"> on</mt:if>" onclick="setOthers('gt');">gt</a></li>
+     <li><a class="gh" onclick="setOthers('gh');">hidden Navi</a></li>
+     <li><a class="o-clear" onclick="setOthers('o-clear');">none</a></li>
+    </ul>
+   </div>
+  </div>
+</div>
+<p class="view"><a class="view"> - </a></p>
+
+<form enctype="multipart/form-data" method="post" action="<mt:var name="script_url">"">
+  <input type="hidden" name="__mode" value="save_plugin_config" />
+  <input type="hidden" name="blog_id" value="<mt:var name="blog_id">" />
+  <input type="hidden" name="return_args" value="__mode=edit_themeparams&amp;blog_id=<mt:var name="blog_id">" />
+  <input type="hidden" name="plugin_sig" value="mtVicunaSimple" />
+  <input type="hidden" name="magic_token" value="<mt:var name="magic_token">" />
+
+    <input type="hidden" name="index_style" id="index_style" value="<mt:var name="index_style">" />
+    <input type="hidden" name="entry_style" id="entry_style" value="default" />
+    <input type="hidden" name="monthly_style" id="monthly_style" value="default" />
+    <input type="hidden" name="category_style" id="category_style" value="default" />
+    <input type="hidden" name="eyecatch_style" id="eyecatch_style" value="<mt:var name="eyecatch_style">" />
+    <input type="hidden" name="navi_on_top" id="navi_on_top" value="<mt:var name="navi_on_top">" />
+    <input type="hidden" name="left_align" id="left_align" value="<mt:var name="left_align">" />
+    <input type="hidden" name="fixed_width" id="fixed_width" value="<mt:var name="fixed_width">" />
+    <input type="hidden" name="use_slimbox" id="use_slimbox" value="1" />
+    <div class="actions-bar">
+        <div class="actions-bar-inner pkg actions">
+            <button
+                type="submit"
+                title="<__trans phrase="Save">"
+                class="primary-button action"
+                ><__trans phrase="Save"></button>
+        </div>
+    </div>
+</form>
+
+<iframe src="/mtvicuna_project/themes/style-vega/preview/index.html" height=1200 width=1100></iframe>
+
+<mt:include name="cms/include/footer.tmpl">

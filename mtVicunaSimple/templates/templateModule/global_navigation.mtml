@@ -1,0 +1,12 @@
+<MTIgnore>
+  @globalNavi タグの付いたウェブページを自動的に項目に追加します。
+</MTIgnore>
+        <ul id="globalNavi">
+            <li<MTIf name="tempName" eq="index_main"> class="current"</MTIf>><a href="<$MTBlogURL$>" rel="nofollow">Home</a></li>
+            <li<MTIf name="tempName" like="index_archive|individual_entry"> class="current"</MTIf>><a href="<$MTLink template="<__trans phrase="Archive Index">"$>"><__trans phrase="Archives"></a></li>
+<MTPages tag="@globalNavi" sort_by="created_on">
+	<MTSetVarBlock name="page_id"><$MTPageID$></MTSetVarBlock>
+            <li<MTIf name="current_page" eq="$page_id"> class="current"</MTIf>><a href="<$MTPagePermalink$>" title="<$MTPageTitle encode_html="1"$>"><$MTPageTitle encode_html="1"$></a></li>
+</MTPages>
+            <li><a href="<$MTLink template="feed_recent"$>"><__trans phrase="Syndication"></a></li>
+        </ul>

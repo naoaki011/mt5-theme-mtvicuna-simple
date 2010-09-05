@@ -1,0 +1,21 @@
+<MTEntryIfTagged>
+<div class="relatedEntries">
+	<MTSetVarBlock name="etag"><MTEntryTags glue=" OR "><$MTTagName$></MTEntryTags></MTSetVarBlock>
+    <h2><__trans_section component="mtVicunaSimple"><__trans phrase="Related Entries"></__trans_section></h2>
+    <ul>
+	<MTEntries lastn="5" tags="$etag">
+        <li<MTIf name="__odd__"> class="odd"</MTIf>><a href="<$MTEntryPermalink$>"><$MTEntryTitle$></a></li>
+	</MTEntries>
+    </ul>
+</div>
+<MTElse>
+<div class="relatedEntries">
+    <h2><__trans_section component="mtVicunaSimple"><__trans phrase="Related Entries"></__trans_section></h2>
+	<MTSetVarBlock name="ecat"><MTEntryCategories glue=" OR "><$MTCategoryLabel$></MTEntryCategories></MTSetVarBlock>
+    <ul>
+	<MTEntries lastn="5" category="$ecat">
+        <li<MTIf name="__odd__"> class="odd"</MTIf>><a href="<$MTEntryPermalink$>"><$MTEntryTitle$></a></li>
+	</MTEntries>
+    </ul>
+</div>
+</MTEntryIfTagged>

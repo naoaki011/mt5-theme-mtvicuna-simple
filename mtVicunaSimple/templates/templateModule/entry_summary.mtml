@@ -1,0 +1,44 @@
+            <div class="section entry hentry" id="entry<$MTEntryID pad="1"$>">
+                <h2 class="asset-name entry-title"><a href="<$mt:EntryPermalink$>" rel="bookmark"><$mt:EntryTitle$></a></h2>
+                <ul class="info">
+<MTIf tag="EntryAuthorDisplayName">
+                    <li class="name byline">Posted by: <span class="vcard author"><$MTEntryAuthorDisplayName show_hcard="1"$></span></li>
+</MTIf>
+                    <li class="date"><abbr class="published" title="<$MTEntryDate format_name="iso8601"$>"><$MTEntryDate format="%x %X"$></abbr></li>
+<MTIf tag="MTEntryCategory">
+                    <li class="category"><MTEntryCategories glue=" | "><a href="<$MTCategoryArchiveLink$>" title="<$MTCategoryLabel encode_html="1"$> Index"><$MTCategoryLabel$></a></MTEntryCategories></li>
+</MTIf>
+<MTEntryIfTagged>
+                    <li class="tags"><MTEntryTags glue=", "><a href="javascript:void(0)" onclick="location.href='<$MTTagSearchLink encode_js="1"$>';return false;" rel="tag" title="<$MTTagName encode_html="1"$> tag Search"><$MTTagName encode_html="1"$></a></MTEntryTags></li>
+</MTEntryIfTagged>
+                </ul>
+<MTSetVarBlock name="entry_contents">
+                <div class="textBody">
+					<$MTEntryBody$>
+	<MTIf tag="EntryMore" convert_breaks="0">
+		<MTIf tag="EntryBody">
+<p class="continue"><a href="<$MTEntryPermalink$>#extended" title="<__trans phrase="Extended"> - <$MTEntryTitle encode_html="1"$>" rel="nofollow">Continue reading</a></p>
+		<MTElse>
+					<$MTEntryMore$>
+		</MTIf>
+	</MTIf>
+                </div>
+</MTSetVarBlock>
+<MTIf tag="EntryBody">
+	<$MTVar name="entry_contents"$>
+<MTElseIf tag="EntryMore" convert_breaks="0">
+	<$MTVar name="entry_contents"$>
+</MTIf>
+                <ul class="reaction">
+<MTEntryIfAllowComments>
+                    <li class="comment"><a href="<$MTEntryPermalink$>#comments" title="<__trans_section component="mtVicunaSimple"><__trans phrase="Comments on <$MTEntryTitle encode_html="1"$>"></__trans_section>" rel="nofollow">Comments</a>: <span class="count"><$MTEntryCommentCount$></span></li>
+<MTElse>
+                    <li>Comments (Close): <span class="count"><$MTEntryCommentCount$></span></li>
+</MTEntryIfAllowComments>
+<MTEntryIfAllowPings>
+                    <li class="trackback"><a href="<$MTEntryPermalink$>#trackback" title="<__trans_section component="mtVicunaSimple"><__trans phrase="Trackbacks to <$MTEntryTitle encode_html="1"$>"></__trans_section>" rel="nofollow">TrackBacks</a>: <span class="count"><$MTEntryTrackbackCount$></span></li>
+<MTElse>
+                    <li>TrackBack (Close): <span class="count"><$MTEntryTrackbackCount$></span></li>
+</MTEntryIfAllowPings>
+                </ul>
+            </div>

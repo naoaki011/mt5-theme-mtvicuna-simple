@@ -1,0 +1,52 @@
+/**
+ * @author GeekTantra
+ * @date 24 September 2009
+ */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    padding: 20px;
+}
+
+h1 {
+    margin: 0px 0px 10px;
+    font-size: 22px;
+}
+
+.Tabs {
+    margin-bottom: -1px;
+    padding: 3px 10px 0px 10px;
+}
+
+.Tabs a {
+    border: 1px solid #AAA;
+    display: inline-block;
+    padding: 3px 15px;
+    text-decoration: none;
+    color: #333;
+    background: #F5F5F5;
+    border-radius: 8px 8px 0px 0px;
+    -moz-border-radius: 8px 8px 0px 0px;
+}
+
+.Tabs a:hover {
+    background: #F7F7F7;
+    color: #555;
+}
+
+.Tabs a.Active {
+    border: 1px solid #888;
+    background: #FFF;
+    border-bottom: 1px solid #FFF;
+}
+
+.TabBody {
+    border: 1px solid #888;
+    padding: 20px;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+}
+
+.ValidXHTML {
+    text-align: right;
+}

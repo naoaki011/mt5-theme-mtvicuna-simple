@@ -1,0 +1,13 @@
+                    <dt><__trans_section component="mtVicunaSimple"><__trans phrase="Blog Listing"></__trans_section></dt>
+                    <dd class="blogs">
+                        <ul class="blog">
+<MTBlogID setvar="cur_blogid" />
+<MTBlogs include_blogs="siblings">
+	<MTIf tag=BlogID eq="$cur_blogid">
+                            <li><$mt:BlogName encode_html="1"$></li>
+	<MTElse>
+                            <li><a href="<$mt:BlogURL$>" title="<$mt:BlogName encode_html="1"$>"><$mt:BlogName encode_html="1"$></a><MTIf tag="BlogDescription">:<$MTBlogDescription encode_html="1"$></MTIf></li>
+	</MTIf>
+</MTBlogs>
+                        </ul>
+                    </dd>

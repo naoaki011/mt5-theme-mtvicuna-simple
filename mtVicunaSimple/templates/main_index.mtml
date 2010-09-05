@@ -1,0 +1,64 @@
+<MTSetVars>
+  tempName=index_main
+  page_title=<$MTBlogName encode_html="1"$>
+  index_style=<$MTVicunaIndexStyle$>
+  eyecatch=<$MTVicunaEyecatch$>
+  navi_ontop=<MTIfVicunaNavionTop>1<MTElse>0</MTIfVicunaNavionTop>
+  left_align=<MTIfVicunaLeftAlign>1<MTElse>0</MTIfVicunaLeftAlign>
+  fixid_width=<$MTVicunaFixedWidth$>
+  jquery=1
+</MTSetVars>
+<MTIf name="page_layout" like="bazooka|future|warship"><MTSetVar name="legacy_style" value="1" /><MTSetVar name="design_layout" value="1" /></MTIf>
+<MTIf name="index_style" eq="default">
+	<MTUnless name="page_layout"><MTSetvar name="page_layout" value="double" /></MTUnless>
+	<MTIf name="page_layout" like="layout-wt|bazooka|future|warship"><MTSetvar name="page_layout" value="double" /></MTIf>
+<MTElse>
+	<MTSetvarBlock name="page_layout"><$MTVar name="index_style"$></MTSetVarBlock>
+	<MTIf name="design_layout">
+		<MTIf name="index_style" like="double|multi"><MTSetvar name="page_layout" value="double" /><MTElse><MTSetvar name="page_layout" value="single" /></MTIf>
+	</MTIf>
+</MTIf>
+<MTIf name="legacy_style">
+	<MTIf name="eyecatch" like="eye-h">
+		<MTSetvar name="eyecatch" value="eye-t" />
+	<MTElseIf eq="eye-c">
+		<MTSetvar name="eyecatch" value="eye-d" />
+	<MTElseIf eq="eye-m">
+		<MTSetvar name="eyecatch" value="eye-s" />
+	<MTElseIf eq="none">
+		<MTSetvar name="eyecatch" value="" />
+	</MTIf>
+</MTIf>
+<?xml version="1.0" encoding="<$MTPublishCharset$>" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="<$MTDefaultLanguage$>" xml:lang="<$MTDefaultLanguage$>">
+<head profile="http://purl.org/net/ns/metaprof">
+    <$MTInclude module="<__trans phrase="HTML Head">"$>
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="<$MTLink template="rsd"$>" />
+<MTIf tag="BlogDescription">
+    <meta name="description" content="<$MTBlogDescription encode_html="1"$>" />
+</MTIf>
+<MTSetVarBlock name="main_keywords"><MTTags top="10" glue=","><$MTTagName encode_html="1"$></MTTags></MTSetVarBlock>
+<MTIf name="main_keywords">
+    <meta name="keywords" content="<MTAuthors><MTIf tag="AuthorEntryCount"><$MTAuthorDisplayName$>,</MTIf></MTAuthors><$MTVar name="main_keywords"$>" />
+</MTIf>
+    <title><$MTGetVar name="page_title"$></title>
+</head>
+<body class="mainIndex <$MTVar name="page_layout"$><MTUnless name="legacy_style"><MTIf name="eyecatch"> <$MTVar name="eyecatch"$></MTIf><MTIf name="navi_ontop"> gt</MTIf><MTIf name="left_align"> al</MTIf><MTIf name="fixid_width"> <$MTVar name="fixid_width"$></MTIf><MTElse><MTIf name="eyecatch"> <$MTVar name="eyecatch"$></MTIf></MTUnless>">
+    <$MTInclude module="<__trans phrase="Banner Header">"$>
+    <div id="content">
+        <div id="main">
+            <$MTInclude module="<__trans_section component="mtVicunaSimple"><__trans phrase="Topic Path"></__trans_section>"$>
+            <h1><$MTGetVar name="page_title"$></h1>
+<MTEntries>
+            <$MTInclude module="<__trans phrase="Entry Summary">"$>
+</MTEntries>
+            <p class="archives"><a href="<$MTLink template="archive_index"$>">Index of all entries</a></p>
+            <$MTInclude module="<__trans_section component="mtVicunaSimple"><__trans phrase="Topic Path"></__trans_section>"$>
+        </div>
+        <$MTInclude module="<__trans phrase="Sidebar">"$>
+        <p class="return"><a href="#header">Return to page top</a></p>
+    </div>
+    <$MTInclude module="<__trans phrase="Banner Footer">"$>
+</body>
+</html>

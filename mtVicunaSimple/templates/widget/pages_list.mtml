@@ -1,0 +1,35 @@
+<MTIf tag="BlogPageCount">
+	<MTIfArchiveTypeEnabled archive_type="Page">
+        <dt><__trans phrase="Pages"></dt>
+        <dd class="widget-content">
+            <ul>
+		<MTPages no_folder="1" sort_by="title" sort_order="ascend">
+                <li class="page page-<$MTPageID$>">
+                    <a href="<$MTPagePermalink$>">
+                        <$MTPageTitle$>
+                    </a>
+                </li>
+		</MTPages>
+		<MTTopLevelFolders>
+                <li class="folder folder-<$MTFolderID$>">
+                    <em><$MTFolderLabel$></em>
+			<MTPages sort_by="title" sort_order="ascend">
+				<MTPagesHeader>
+            <ul>
+				</MTPagesHeader>
+                <li class="page page-<$MTPageID$>">
+                    <a href="<$MTPagePermalink$>">
+                        <$MTPageTitle$>
+                    </a>
+                </li>
+				<MTPagesFooter>
+            </ul>
+				</MTPagesFooter>
+			</MTPages>
+                </li>
+			<$MTSubFolderRecurse$>
+		</MTTopLevelFolders>
+            </ul>
+        </dd>
+	</MTIfArchiveTypeEnabled>
+</MTIf>

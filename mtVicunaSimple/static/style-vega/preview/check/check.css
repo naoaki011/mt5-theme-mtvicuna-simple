@@ -1,0 +1,67 @@
+@charset "utf-8";
+
+/*
+
+	このファイルは編集する必要はありません
+	
+				なぜなら
+	
+	このCSSファイルはStyle Testページの移動を
+	簡単にするために挿入されたHTML(ページ上部のリンク)用のCSSです。
+	StyleTestページにしか有効にならない確認用のものであるからです。
+*/
+
+ul#check-link {
+	margin: 0;
+	padding: 5px 0;
+	border: none;
+	border-left: 3px solid #01b0f0;
+	border-bottom: 3px solid #01b0f0;
+	background-color: #000;
+	position: fixed;
+	_position: absolute;
+	z-index: 1;
+	top: 0;
+	right: 0;
+	color: #fff;
+	font-size: 8px;
+	text-transform: uppercase;
+	text-align: left;
+	font-weight: bold;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+}
+
+ul#check-link li {
+ margin: 0;
+ padding: 0;
+	border: none;
+ display: inline;
+ line-height: 1;
+ list-style-type: none;
+ list-style-position: outside;
+}
+
+ul#check-link li a {
+	border: none;
+ padding: 0.1em 10px;
+ display: block;
+ position: relative;
+ color: #fff;
+ text-decoration: none;
+ background-color: #000;
+}
+
+ul#check-link li a:hover {
+ color: #fff;
+ background-color: #017aad;
+}
+
+ul#check-link li a:active {
+ color: #fff;
+ background-color: #cc0063;
+}
+
+ul#check-link li.current a {
+	color: #000;
+	background-color: #fff;
+}

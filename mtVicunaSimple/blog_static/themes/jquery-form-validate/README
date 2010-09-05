@@ -1,0 +1,32 @@
+jQuery Live Form Validation
+Created By: GeekTantra
+Create live form validation in an instant
+
+Features:
+	Supports custom validations
+	Options to toggle between live and on submit validations
+	Completely customizable CSS
+	
+Usage:
+	Include jquery.validate.js along with jquery.1.3.2.js
+	Add the following code:
+	    <script type="text/javascript">
+	        jQuery(function(){
+	            jQuery("#<id of the field to be validated>").validate({
+	                expression: "if (<expression for validation>) return true; else return false;",
+	                message: "<validation error message>",
+	                error_class: "<optional>",
+	                error_field_class: "<optional>",
+	                live: <optional>
+	            });
+	        });
+	    </script>
+    In your form create fields with unique ids.
+					
+Options:
+	expression: The javascript code which should have two outputs <true> or <false>. The value of the field is given by <val>. As this is
+	a string escape characters for backslash and other non standard characters must be used. (Default: return true;)
+	message: The validation message for the field. (Default: "")
+	error_class: The CSS class of the error message container. (Default: "ValidationErrors")
+	error_field_class: The CSS class added to the field when found invalid. (Default: "ErrorField")
+	live: Sets whether the validation of the field should be live or on form submit. (Default: true)

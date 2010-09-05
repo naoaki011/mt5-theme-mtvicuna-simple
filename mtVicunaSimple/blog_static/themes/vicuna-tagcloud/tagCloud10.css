@@ -1,0 +1,74 @@
+@charset "utf-8";
+
+/*--------------------------------------
+	Tag Cloud
+---------------------------------------*/
+
+ul.tagCloud {
+	margin: 0;
+/*	padding: 0.5em 10px;*/
+	line-height: 1;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+}
+
+ul.tagCloud li {
+	margin: 0;
+	padding: 0;
+	display: inline;
+	font-size: 100%; /* ここで相対的に文字サイズを変更 */
+}
+
+ul.tagCloud li a {
+	padding: 0 5px;
+	position: relative;
+	text-decoration: none;
+	background-color: #fff;
+	border: 1px solid #eee;
+}
+
+ul.tagCloud li.level1 a {
+	z-index: 6;
+	font-size: 167%;
+	color: #424242;
+}
+
+ul.tagCloud li.level2 a {
+	top: 5px;
+	z-index: 5;
+	font-size: 136%;
+	color: #5e5e5e;
+}
+
+ul.tagCloud li.level3 a {
+	font-size: 114%;
+	color: #7a7a7a;
+	z-index: 4;
+}
+
+ul.tagCloud li.level4 a {
+	top: 5px;
+	z-index: 3;
+	font-size: 100%;
+	color: #979797;
+}
+
+ul.tagCloud li.level5 a {
+	font-size: 85%;
+	color: #b3b3b3;
+	z-index: 2;
+}
+
+ul.tagCloud li.level6 a {
+	z-index: 1;
+	font-size: 70%;
+	color: #cfcfcf;
+}
+
+/* オンマウス */
+ul.tagCloud li a:hover {
+	border-color: #666;
+	z-index: 10;
+	color: #000;
+	background-color: #eee;
+}

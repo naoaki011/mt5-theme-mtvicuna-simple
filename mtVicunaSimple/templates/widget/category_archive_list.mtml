@@ -1,0 +1,34 @@
+<MTIfArchiveTypeEnabled archive_type="Category">
+        <dt><__trans phrase="Categories"></dt>
+        <dd class="categoryArchives">
+	<MTIfArchiveType archive_type="Category"><MTCategoryID setvar="catid" /></MTIfArchiveType>
+	<MTTopLevelCategories>
+		<MTSubCatIsFirst>
+            <ul class="category">
+		</MTSubCatIsFirst>
+		<MTIf tag="CategoryCount">
+                <li<MTIf tag="CategoryID" eq="$catid"> class="current"</MTIf>><a href="<$MTCategoryArchiveLink$>"<MTIf tag="CategoryDescription"> title="<$MTCategoryDescription remove_html="1" encode_html="1"$>"</MTIf>><__trans phrase="[_1] ([_2])" params="<$MTCategoryLabel$>%%<$MTCategoryCount$>"></a>
+		<MTElse>
+                <li<MTIf tag="CategoryID" eq="$catid"> class="current"</MTIf>><span class="topLevel"><MTCategoryLabel></span>
+		</MTIf>
+		<MTIf tag="CategoryID" eq="$catid"> 
+		<MTIfArchiveTypeEnabled archive_type="Category-Monthly">
+			<MTArchiveList archive_type="Category-Monthly">
+				<MTArchiveListHeader>
+                    <ul>
+				</MTArchiveListHeader>
+                        <li><a href="<$MTArchiveLink$>"><__trans phrase="[_1]" params="<$MTArchiveTitle$>"></a></li>
+				<MTArchiveListFooter>
+                    </ul>
+				</MTArchiveListFooter>
+			</MTArchiveList>
+		</MTIfArchiveTypeEnabled>
+		</MTIf>
+		<$MTSubCatsRecurse$>
+                </li>
+		<MTSubCatIsLast>
+            </ul>
+		</MTSubCatIsLast>
+	</MTTopLevelCategories>
+        </dd>
+</MTIfArchiveTypeEnabled>

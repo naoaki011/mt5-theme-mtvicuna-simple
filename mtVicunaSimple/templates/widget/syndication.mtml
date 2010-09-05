@@ -1,0 +1,11 @@
+        <dt><__trans phrase="Syndication"></dt>
+        <dd class="feeds">
+            <ul class="feed">
+                <li class="atom"><a href="<$MTLink template="feed_recent"$>"><__trans phrase="Subscribe to this blog's feed"></a></li>
+<MTIf name="search_results">
+	<MTIf tag="SearchString">
+                <li class="atom"><a href="<$mt:CGIPath$><$mt:SearchScript$>?<mt:IfTagSearch>tag<mt:else>search</mt:IfTagSearch>=<$mt:SearchString encode_url="1"$>&amp;Template=feed&amp;IncludeBlogs=<$mt:SearchIncludeBlogs$>&amp;limit=<$mt:SearchMaxResults$>" title="<mt:IfTagSearch><__trans phrase="Subscribe to a feed of all future entries tagged &ldquo;[_1]&ldquo;" params="<$mt:SearchString$>"><mt:Else><__trans phrase="Subscribe to a feed of all future entries matching &ldquo;[_1]&ldquo;" params="<$mt:SearchString$>"></mt:IfTagSearch>"><mt:IfTagSearch><__trans phrase="Feed of results tagged &ldquo;[_1]&ldquo;" params="<$mt:SearchString$>"><mt:Else><__trans phrase="Feed of results matching &ldquo;[_1]&ldquo;" params="<$mt:SearchString$>"></mt:IfTagSearch></a></li>
+	</MTIf>
+</MTIf>
+            </ul>
+        </dd>
