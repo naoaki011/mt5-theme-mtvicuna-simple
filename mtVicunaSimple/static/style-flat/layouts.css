@@ -1,13 +1,15 @@
 @charset "UTF-8";
 
-/*---------------------------
-- Title: Layout Module
-- Author: http://vicuna.jp/
+/*
+Skin Name: Flat Skin - Layout Module
+Author: vicuna.jp
 
-- Modified by: YOUR NAME
-- Last modify: 2009.0308
-- Licence: MIT Licence
----------------------------*/
+Layout Class: single, double, double-l, multi, multi2, multi2-l
+Eye Cach Class: eye-h, eye-hb, eye-m, eye-c
+Set Class: multi eye-c set1, multi2 eye-c set2
+Fixed Width Class: f800, f850, f900, f950, f1000
+Other Class: gt
+*/
 
 body {
 	margin: 0 20px;
@@ -205,7 +207,7 @@ body.double-l div#utilities {
 	Multi Column Layout - Wing
 	! Negative Margin Layout
 
-	<body class="multi-n">
+	<body class="multi">
 
 	┏┓┏━━┓┏┓
 	┃┃┃━━┃┃┃
@@ -596,23 +598,19 @@ body.set2 div#utilities dl.others dd {
 
 body.gt div#header {
 	padding-top: 30px;
+	background-position: left bottom;
 }
 
 body.gt ul#globalNavi {
-	margin-bottom: 0;
 	width: 100%;
 	position: absolute;
 	top: 0;
 	left: 0;
+	bottom: auto;
 }
 
 /* No Centering - <body class="al">
 ---------------*/
-
-body.al {
-	margin: 0;
-	text-align: left;
-}
 
 body.al div#header,
 body.al div#content,

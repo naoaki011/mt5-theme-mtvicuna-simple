@@ -1,15 +1,10 @@
 @charset "UTF-8";
 
-/*---------------------------
-- Title: Core style
-- Base: Flat
-- Author: http://vicuna.jp/
-
-- Theme name: 
-- Modified by: YOUR NAME
-- Last modify: 2009.0307
-- Licence: MIT Licence
----------------------------*/
+/*
+Skin Name: Flat Skin - Core Style
+Author: vicuna.jp
+Licence: MIT Licence
+*/
 
 /* Yahoo fonts.css 2.7.0
 http://developer.yahoo.net/yui/license.txt
@@ -82,17 +77,33 @@ p {
 
 blockquote {
 	margin: 1em 0 1em 20px;
-	padding: 1px 20px;
+	padding: 8px 10px 5px 40px;
 	border: 1px solid #eee;
 	color: #444;
+	background-image: url(images/icon/quote.gif);
+	background-repeat: no-repeat;
+	background-position: 5px 5px;
+
+	border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+}
+
+blockquote  p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
 }
 
 pre {
-	padding: 10px 20px;
+	padding: 15px 20px;
 	background-color: #f5f5f5;
 	overflow: auto;
 	width: 90%;
 	_width: 95%; /* for IE6 */
+
+	border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
 }
 
 em {
@@ -155,7 +166,7 @@ textarea {
 }
 
 input.submit {
-	padding: 2px 5px;
+	padding: 5px 10px;
 	border: none;
 	font-size: 85%;
 	font-weight: bold;
@@ -401,7 +412,7 @@ body.archives div.entry ul.info li{
 /* Text Style
 ---------------*/
 
-div.textBody {
+div.textBody p {
 	line-height: 1.7;
 }
 
@@ -525,7 +536,8 @@ div#trackback {
 
 div#comments h2,
 div#trackback h2 {
-	padding: 0.3em 15px;
+	padding: 0.5em 15px;
+	border: none;
 	font-size: 116%;
 	color: #333;
 	background-color: #eee;
@@ -934,6 +946,15 @@ table.calendar td a:visited {
 table.calendar td a:hover {
 	color: #000;
 	background-color: #eee;
+}
+
+/* Option
+---------------*/
+
+.option {
+	margin: 1em 30px;
+	padding: 1px 10px;
+	border: 1px solid #eee;
 }
 
 /* Clearfix

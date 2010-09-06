@@ -1,15 +1,11 @@
 @charset "UTF-8";
 
-/*---------------------------
-- Title: Core style
-- Base: Galaxy
-- Author: http://vicuna.jp/
+/*
+Skin Name: Galaxy Skin - Core Style
+Author: vicuna.jp
+Licence: MIT Licence
+*/
 
-- Theme name: 
-- Modified by: YOUR NAME
-- Last modify: 2009.0307
-- Licence: MIT Licence
----------------------------*/
 
 /* Yahoo fonts.css 2.7.0
 http://developer.yahoo.net/yui/license.txt
@@ -32,11 +28,11 @@ body {
 ---------------*/
 
 a:link {
-	color: #ddd;
+	color: #ccc;
 }
 
 a:visited {
-	color: #999;
+	color: #666;
 }
 
 a:hover {
@@ -70,6 +66,7 @@ body.mainIndex h1 {
 h2 {
 	margin: 1em 0;
 	font-size: 131%;
+	color: #fff;
 }
 
 h3 {
@@ -88,24 +85,35 @@ blockquote {
 	padding: 1px 20px;
 	border: 1px solid #222;
 	color: #999;
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
 }
 
 pre {
 	padding: 10px 20px;
-	background-color: #222;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #232323 #4e4e4e #4e4e4e #232323;
+	background-color: #3d3d3d;
 	overflow: auto;
 	width: 90%;
 	_width: 95%; /* for IE6 */
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
 }
 
 em {
+	padding: 2px 3px;
 	font-weight: bold;
 	color: #fff;
+	background-color: #111;
 	font-style: normal;
 }
 
 strong {
-	color: #fff;
+	color: deeppink;
 }
 
 /* List
@@ -154,7 +162,7 @@ textarea {
 
 input:hover,
 textarea:hover {
-	border-color: #999;
+	border-color: #000;
 }
 
 textarea {
@@ -162,7 +170,7 @@ textarea {
 }
 
 input.submit {
-	padding: 2px 5px;
+	padding: 5px 10px;
 	border: none;
 	font-size: 85%;
 	font-weight: bold;
@@ -244,7 +252,7 @@ div#header p.siteName {
 
 div#header p.siteName a {
 	text-decoration: none;
-	color: #b1c722;
+	color: #fff;
 }
 
 div#header p.siteName a:hover {
@@ -348,7 +356,7 @@ body.archives div.entry {
 
 div.entry h2 {
 	margin-bottom: 0;
-	padding: 0.3em 10px;
+	padding: 0.3em 13px;
 	border-left: 5px solid #161616;
 	border-bottom: 1px dotted #111;
 }
@@ -414,7 +422,7 @@ body.archives div.entry ul.info li{
 /* Text Style
 ---------------*/
 
-div.textBody {
+div.textBody p {
 	line-height: 1.7;
 }
 
@@ -424,7 +432,10 @@ div.textBody h2 {
 
 div.textBody dl {
 	padding: 0.5em 20px;
-	border: 1px dotted #222;
+	border: 1px solid #222;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
 }
 
 div.textBody dt {
@@ -521,7 +532,7 @@ div#trackback {
 
 div#comments h2,
 div#trackback h2 {
-	padding: 0.3em 15px;
+	padding: 0.5em 15px;
 	font-size: 116%;
 	color: #fff;
 	background-color: #222;
@@ -822,6 +833,12 @@ ul.tagCloud {
 
 div#utilities dl dd ul.tagCloud {
 	margin: 0.2em 10px;
+	padding: 6px 10px;
+	background: #111;
+
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
 }
 
 ul.tagCloud li {
@@ -840,34 +857,34 @@ ul.tagCloud li a {
 ul.tagCloud li.level1 a {
 	font-size: 167%;
 	font-weight: bold;
-	color: #b6bd55;
+	color: #10c8f3;
 }
 
 ul.tagCloud li.level2 a {
 	font-size: 136%;
 	font-weight: bold;
-	color: #8d8a2b;
+	color: #1d6dee;
 }
 
 ul.tagCloud li.level3 a {
 	font-size: 122%;
 	font-weight: bold;
-	color: #78882e;
+	color: #2851eb;
 }
 
 ul.tagCloud li.level4 a {
 	font-size: 114%;
-	color: #5a652a;
+	color: #3431e6;
 }
 
 ul.tagCloud li.level5 a {
 	font-size: 92%;
-	color: #37461e;
+	color: #703ce0;
 }
 
 ul.tagCloud li.level6 a {
 	font-size: 77%;
-	color: #555751;
+	color: #b648f2;
 }
 
 /* On Mouse */
@@ -931,6 +948,15 @@ table.calendar td a:hover {
 	border-color: #84dafe;
 	color: #fff;
 	background-color: #b1c722;
+}
+
+/* Option
+---------------*/
+
+.option {
+	margin: 1em 30px;
+	padding: 1px 10px;
+	border: 1px solid #333;
 }
 
 /* Clearfix

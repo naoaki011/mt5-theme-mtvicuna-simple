@@ -1,13 +1,15 @@
 @charset "UTF-8";
 
-/*---------------------------
-- Title: Layout Module
-- Author: http://vicuna.jp/
+/*
+Skin Name: Vega Skin - Layout Module
+Author: vicuna.jp
 
-- Modified by: YOUR NAME
-- Last modify: 2009.0308
-- Licence: MIT Licence
----------------------------*/
+Layout Class: single, double, double-l, multi, multi2, multi2-l
+Eye Cach Class: eye-h, eye-hb, eye-m, eye-c
+SP Class: multi eye-c set1, multi2 eye-c set2
+Fixed Width Class: f800, f850, f900, f950, f1000
+Other Class: gt, al
+*/
 
 body {
 	margin: 0 8px;
@@ -160,7 +162,7 @@ body.double-l div#utilities {
 	Multi Column Layout - Wing
 	! Negative Margin Layout
 
-	<body class="multi-n">
+	<body class="multi">
 
 	┏┓┏━━┓┏┓
 	┃┃┃━━┃┃┃
@@ -336,15 +338,20 @@ body.eye-h div#header {
 body.eye-h div#header p.siteName {
 	margin: 0;
 	position: absolute;
-	top: 55px;
-	left: 30px;
+	top: 50px;
+	left: 40px;
+}
+
+body.eye-h div#header p.siteName a {
+	color: #fff;
 }
 
 body.eye-h div#header p.description {
 	margin: 0;
 	position: absolute;
-	top: 80px;
-	left: 30px;
+	top: 75px;
+	left: 40px;
+	color: #fff;
 }
 
 body.eye-h ul#globalNavi {
@@ -463,6 +470,7 @@ body.set2 div#utilities dl.others dd {
 
 body.gt div#header {
 	padding-top: 30px;
+	background-position: left bottom;
 }
 
 body.gt ul#globalNavi {
@@ -470,6 +478,7 @@ body.gt ul#globalNavi {
 	position: absolute;
 	top: 0;
 	left: 0;
+	bottom: auto;
 }
 
 /* No Centering - <body class="al">

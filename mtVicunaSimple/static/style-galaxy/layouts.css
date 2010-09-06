@@ -1,13 +1,15 @@
 @charset "UTF-8";
 
-/*---------------------------
-- Title: Layout Module
-- Author: http://vicuna.jp/
+/*
+Skin Name: Galaxy Skin - Layout Module
+Author: vicuna.jp
 
-- Modified by: YOUR NAME
-- Last modify: 2009.0308
-- Licence: MIT Licence
----------------------------*/
+Layout Class: single, double, double-l, multi, multi2, multi2-l
+Eye Cach Class: eye-h, eye-hb, eye-m, eye-c
+SP Class: multi eye-c set1, multi2 eye-c set2
+Fixed Width Class: f800, f850, f900, f950, f1000
+Other Class: gt, al
+*/
 
 body {
 	margin: 0 8px;
@@ -160,7 +162,7 @@ body.double-l div#utilities {
 	Multi Column Layout - Wing
 	! Negative Margin Layout
 
-	<body class="multi-n">
+	<body class="multi">
 
 	┏┓┏━━┓┏┓
 	┃┃┃━━┃┃┃
@@ -329,21 +331,25 @@ body.multi2-l div#utilities dl.others {
 
 body.eye-h div#header {
 	height: 180px;
-	background-image: url(./images/eyecatch/image1.png);
+	background-image: url(images/eyecatch/image1.png);
 	background-repeat: no-repeat;
 }
 
 body.eye-h div#header p.siteName {
 	margin: 0;
 	position: absolute;
-	top: 55px;
+	top: 50px;
 	left: 30px;
+}
+
+body.eye-h div#header p.siteName {
+
 }
 
 body.eye-h div#header p.description {
 	margin: 0;
 	position: absolute;
-	top: 80px;
+	top: 75px;
 	left: 30px;
 }
 
@@ -369,7 +375,7 @@ body.eye-hb div#header p.siteName a {
 	height: 180px;
 	display: block;
 	text-indent: -9999px;
-	background-image: url(./images/eyecatch/image1.png);
+	background-image: url(images/eyecatch/image1.png);
 	background-repeat: no-repeat;
 	overflow: auto;
 }
@@ -384,7 +390,7 @@ body.eye-hb div#header p.description {
 body.eye-c div#content {
 	padding-top: 180px;
 	border-top: none;
-	background-image: url(./images/eyecatch/image1.png);
+	background-image: url(images/eyecatch/image1.png);
 	background-repeat: no-repeat;
 }
 
@@ -401,7 +407,7 @@ body.eye-m div#content {
 
 body.eye-m div#main {
 	padding-top: 180px;
-	background-image: url(./images/eyecatch/image1.png);
+	background-image: url(images/eyecatch/image1.png);
 	background-repeat: no-repeat;
 }
 
@@ -433,7 +439,7 @@ body.set2 div#utilities {
 
 body.set2 div#utilities dl.navi {
 	float: right;
-	background-color: #fff;
+	background-color: #303030;
 }
 
 body.set2 div#utilities dl.navi dt,
@@ -463,6 +469,7 @@ body.set2 div#utilities dl.others dd {
 
 body.gt div#header {
 	padding-top: 30px;
+	background-position: left bottom;
 }
 
 body.gt ul#globalNavi {
@@ -470,8 +477,8 @@ body.gt ul#globalNavi {
 	position: absolute;
 	top: 0;
 	left: 0;
+	bottom: auto;
 }
-
 /* No Centering - <body class="al">
 ---------------*/
 
