@@ -5,33 +5,50 @@
 <script type="text/javascript" src="<mt:var name="static_uri">jqueryui/ui.datepicker.js"></script>
 </mt:setvarblock>
 <mt:include name="cms/include/header.tmpl">
+<p class="view"><a class="view" onclick="showmenu();" title="Show/Hide Menu"> - </a></p>
 
 <style type="text/css">
+#content-header {
+	margin-bottom:0;
+}
+.main-screen #container {
+max-width:1400px;
+}
+.main-screen #content {
+width: 100%;
+}
 div.class div {
 	width:12em;
 	float: left;
 	margin-left:1em;
 }
-div.debug-tool {
+div.debug-tool,
+div.pages {
 	left:3px;
 	text-align:left;
 	top:3px;
-	background-color: #222;
-	padding: 1em: 0;
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;	
+	clear: both;
 }
-div.debug-tool ul {
+div.debug-tool ul,
+div.pages ul {
 	margin: 7px 5px 10px 30px;
 	padding: 0;
 	font-size: 12px;
 	color: #066;
 }
+div.pages ul {
+	float: left;
+}
 div.debug-tool ul li {
 	list-style-type:circle;
 }
-div.debug-tool ul li a {
+div.pages ul li {
+	float: left;
+	width:8em;
+	margin-right: 1em;
+}
+div.debug-tool ul li a,
+div.pages ul li a {
 	padding: 0.1em 0.5em;
 	display: block;
 	color: #111;
@@ -39,17 +56,20 @@ div.debug-tool ul li a {
 	cursor: pointer;
 }
 
-div.debug-tool ul li:hover {
+div.debug-tool ul li:hover,
+div.pages ul li:hover {
 	color: #0FF;
 }
-div.debug-tool ul li a:hover {
+div.debug-tool ul li a:hover,
+div.pages ul li a:hover {
 	color: #fff;
 	background-color: #111;
 	border-radius: 3px;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;	
 }
-div.debug-tool li a.on {
+div.debug-tool li a.on,
+div.pages li a.on {
 	color: #06abeb;
 	text-align: center;
 	cursor: text;
@@ -60,15 +80,18 @@ div.debug-tool li a.on {
 	-moz-border-radius: 3px;	
 }
 
-div.debug-tool h2 {
-	margin: 5px 0 0 13px;
+div.debug-tool h2,
+div.pages h2 {
+	margin: 5px 0 0 5px;
 	font-size: 10px;
 	color: #ced924;
 	text-transform: uppercase;
-	padding: 0.5em;
-	border: none;
+	padding: 0.5em 0 0.5em 2em;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
 	outline: none;
-	background: none;
+	background-color: #222;
 }
 
 div.debug-tool h3 {
@@ -80,10 +103,6 @@ div.debug-tool h3 {
 	border: none;
 	outline: none;
 	background: none;
-}
-
-form {
-	clear:both;
 }
 
 p.view {
@@ -115,9 +134,10 @@ p.view a:hover {
 	background-color: #9F0;
 }
 .actions-bar {
-	margin:0 0 1em 0;
+	margin: 0.5em 0 1em 0;
 	float: right;
 }
+
 </style>
 
 <script type="text/javascript">
@@ -130,23 +150,8 @@ p.view a:hover {
 	var widthClass ="f800 f850 f900 f950 f1000";
 	var otherClass ="al gt gh";
 
-	$(document).ready(function(){
-<mt:if name="index_style" ne="double">
-		$('iframe:first').contents().find('body').removeClass('double').addClass('<mt:var name="index_style">');
-</mt:if>
-		$('iframe:first').contents().find('body').addClass('<mt:var name="eyecatch_style">');
-		$('iframe:first').contents().find('body').addClass('<mt:var name="eyecatch_style">');
-		$('iframe:first').contents().find('body').addClass('<mt:var name="fixed_width">');
-<mt:if name="navi_on_top">
-		$('iframe:first').contents().find('body').addClass('gt');
-</mt:if>
-<mt:if name="hide_navi">
-		$('iframe:first').contents().find('body').addClass('gh');
-</mt:if>
-	});
-
 	function setLayout(type) {
-		$('iframe:first').contents().find('body').removeClass(eyeCatchClass).removeClass(layoutClass).addClass(type);
+		$('#iframe').contents().find('body').removeClass(layoutClass).addClass(type);
 		$("div.layout a").removeClass("on");
 		$("div.layout a."+type).addClass("on");
 		$("#index_style").val(type);
@@ -155,7 +160,7 @@ p.view a:hover {
 // Eye Catch
 	
 	function setEye(type) {
-		$('iframe:first').contents().find('body').removeClass(eyeCatchClass).addClass(type);
+		$('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(type);
 		$("div.eye-catch a").removeClass("on");
 		$("div.eye-catch a."+type).addClass("on");
 		$("#eyecatch_style").val(type);
@@ -164,7 +169,7 @@ p.view a:hover {
 // Width
 	
 	function setWidth(type) {
-		$('iframe:first').contents().find('body').removeClass(widthClass).addClass(type);
+		$('#iframe').contents().find('body').removeClass(widthClass).addClass(type);
 		$("div.width a").removeClass("on");
 		$("div.width a."+type).addClass("on");
 		$("#fixed_width").val(type);
@@ -177,20 +182,31 @@ p.view a:hover {
 //		$("body").addClass(type);
 	};
 	
+// Navi
+
+	function setNavi(type) {
+		$('#iframe').contents().find('body').removeClass(otherClass).addClass(type);
+		$("div.others a."+type).addClass("on");
+//		$("#index_style").val(type);
+	};
 // Others
 
 	function setOthers(type) {
-		$('iframe:first').contents().find('body').removeClass(otherClass).addClass(type);
+		$('#iframe').contents().find('body').removeClass(otherClass).addClass(type);
 		$("div.others a").removeClass("on");
 		$("div.others a."+type).addClass("on");
 //		$("#index_style").val(type);
 	};
+
 // Menu On/Off
-	$("p a.view").click(function () {
-		$("#menu").toggle();
-	});
+    function showmenu(){
+        $("#menu").toggle("slow");
+        $(".debug-tool").toggle("slow");
+        $("form .actions-bar").toggle("slow");
+    };
 //]]>
 </script>
+
 <div class="debug-tool">
   <div class="class">
    <h2>Debug mode</h2>
@@ -203,6 +219,7 @@ p.view a:hover {
      <li><a class="multi<mt:if name="index_style" eq="multi"> on</mt:if>" onclick="setLayout('multi');">multi</a></li>
      <li><a class="multi2<mt:if name="index_style" eq="multi2"> on</mt:if>" onclick="setLayout('multi2');">multi2</a></li>
      <li><a class="multi2-l<mt:if name="index_style" eq="multi2-l"> on</mt:if>" onclick="setLayout('multi2-l');">multi2-l</a></li>
+     <li><a class="default<mt:if name="index_style" eq="default"> on</mt:if>" onclick="setLayout('default');">default</a></li>
     </ul>
    </div>
    <div class="eye-catch">
@@ -226,24 +243,36 @@ p.view a:hover {
      <li><a class="w-clear<mt:if name="fixed_width" eq="none"> on</mt:if>" onclick="setWidth('w-clear');">none</a></li>
     </ul>
    </div>
+<!--
    <div class="set">
     <h3>Set</h3>
     <ul>
      <li><a class="set1" onclick="setSet('multi eye-c set1');">set1</a></li>
      <li><a class="set2" onclick="setSet('multi2 eye-c set2');">set2</a></li>
     </ul>
-   </div>
+   </div> -->
    <div class="others">
     <h3>Others</h3>
     <ul>
-     <li><a class="gt<mt:if name="navi_on_top"> on</mt:if>" onclick="setOthers('gt');">gt</a></li>
-     <li><a class="gh" onclick="setOthers('gh');">hidden Navi</a></li>
+     <li><a class="gt<mt:if name="navi_on_top"> on</mt:if>" onclick="setNavi('gt');">Navi on Top</a></li>
+     <li><a class="gh<mt:if name="hide_navi"> on</mt:if>" onclick="setNavi('gh');">hidden Navi</a></li>
+     <li><a class="al<mt:if name="align_left"> on</mt:if>" onclick="setOthers('al');">align Left</a></li>
      <li><a class="o-clear" onclick="setOthers('o-clear');">none</a></li>
     </ul>
    </div>
   </div>
+
 </div>
-<p class="view"><a class="view"> - </a></p>
+
+<div class="pages">
+  <h2>Page Pattern</h2>
+  <ul>
+   <li><a class="mainIndex on" accesskey="1">Index</a></li>
+   <li><a class="category" accesskey="2">Category</a></li>
+   <li><a class="individual" accesskey="3">Individual</a></li>
+   <li><a class="archives" accesskey="4">Archive</a></li>
+  </ul>
+</div>
 
 <form enctype="multipart/form-data" method="post" action="<mt:var name="script_url">"">
   <input type="hidden" name="__mode" value="save_plugin_config" />
@@ -272,6 +301,24 @@ p.view a:hover {
     </div>
 </form>
 
-<iframe src="/mtvicuna_project/simple/themes/preview/index.html" height=1200 width=1100></iframe>
+<iframe id="iframe" src="/vicuna/themes/preview/index.html" height="1200" width="100%"></iframe>
+
+<script type="text/javascript">
+//<![CDATA[
+window.onload = function() {
+<mt:if name="index_style" ne="double">
+	$('#iframe').contents().find('body').removeClass('double').addClass('<mt:var name="index_style">');
+</mt:if>
+	$('#iframe').contents().find('body').addClass('<mt:var name="eyecatch_style">');
+	$('#iframe').contents().find('body').addClass('<mt:var name="fixed_width">');
+<mt:if name="navi_on_top">
+	$('#iframe').contents().find('body').addClass('gt');
+</mt:if>
+<mt:if name="hide_navi">
+	$('#iframe').contents().find('body').addClass('gh');
+</mt:if>
+}
+//]]>
+</script>
 
 <mt:include name="cms/include/footer.tmpl">
