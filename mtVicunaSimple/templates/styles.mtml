@@ -1,9 +1,19 @@
 @charset "UTF-8";
-@import url(<$MTBlogURL$>themes/style-vega/core.css);
-@import url(<$MTBlogURL$>themes/style-vega/layouts.css);
-@import url(<$MTBlogURL$>themes/css/additional-styles.css);
+/*
+
+name: Style-Vega
+designer: wu
+designer_url: http://3ping.org/
+developer: naoaki onozaki
+developer_url: http://code.zelazny.mydns.jp/trac/themes/
+layouts: single, double, double-l, multi, multi2, multi2-l
+*/
+
+@import url(<$mt:SupportDirectoryURL$>theme_static/mtVicunaSimple/style-vega/core.css);
+@import url(<$mt:SupportDirectoryURL$>theme_static/mtVicunaSimple/style-vega/layouts.css);
+@import url(<$mt:BlogURL$>themes/css/additional-styles.css);
 <MTIgnore>@import url(<$MTBlogURL$>themes/css/pager-styles.css);</MTIgnore>
-@import url(<$MTBlogURL$>themes/hatebu-anywhere/hatebu_anywhere.css);
+@import url(<$mt:BlogURL$>themes/hatebu-anywhere/hatebu_anywhere.css);
 p.mtlogo {
 	background-color:#F8F8F8;
 	border:1px solid #DDDDDD;
@@ -14,8 +24,7 @@ p.mtlogo {
 p.mtlogo img {
 	border:none;
 }
-dd.openID {
-}
+dd.openID { }
 dd.openID p {
 	background-color: #fff !important;
 	border:1px solid #ddd;
