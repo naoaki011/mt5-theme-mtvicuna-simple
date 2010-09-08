@@ -87,3 +87,5 @@ Use Default Style of Script.: trueでデフォルトスタイル falseを設定�
 Display only commented bookmarks.: trueにすると、コメントの書いてないブクマを表示しない。指定しない場合は、表示件数を超えた場合のみコメントを表示しない
 TargetURL: 表示するURL 未指定の場合、現在のページ
 HatenaBokkmark Comments: はてブコメント
+
+Edit Vicuna Layout: Vicunaのレイアウト変更
