@@ -302,11 +302,14 @@ p.view a:hover {
     </div>
 </form>
 
-<iframe id="iframe" src="/vicuna/themes/preview/index.html" height="1200" width="100%"></iframe>
+<iframe id="iframe" src="/mt-static/support/theme_static/mtVicunaSimple/preview/index.html" height="1200" width="100%"></iframe>
 
 <script type="text/javascript">
 //<![CDATA[
-window.onload = function() {
+var e_ifr = document.getElementById( "iframe" );
+
+e_ifr.onload  = function() {
+	$('#iframe').contents().find('link[rel=stylesheet]').attr('href' ,'http://localhost/mtvicuna_project/simple/styles.css');
 <mt:if name="index_style" ne="double">
 	$('#iframe').contents().find('body').removeClass('double').addClass('<mt:var name="index_style">');
 </mt:if>

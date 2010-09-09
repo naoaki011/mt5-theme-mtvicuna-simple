@@ -9,7 +9,7 @@ sub tag_version {
 #    my $scope = "blog:".$ctx->stash('blog_id');
 #    use Data::Dumper;
 #    doLog ($plugin);
-    return '2.4.2';
+    return '2.4.1';
 }
 
 sub tag_index_style {

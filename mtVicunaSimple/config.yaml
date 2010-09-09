@@ -14,10 +14,10 @@ themes:
   mtVicunaSimple:
     id: mtVicunaSimple
     label: mt.Vicuna Simple Theme
-    description: <__trans phrase="A MT5 Theme for Vicuna CMS.">
+    description: <__trans phrase="A MT5 Theme Plugin for Vicuna CMS.">
     author_name: wu
     author_link: http://3ping.org/
-    version: 2.4.2
+    version: 2.4.1
     class: blog
     static_path: blog_static
     l10n_lexicon:
