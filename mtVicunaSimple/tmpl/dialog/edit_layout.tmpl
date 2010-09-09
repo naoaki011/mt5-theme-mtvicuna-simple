@@ -186,6 +186,7 @@ p.view a:hover {
 
 	function setNavi(type) {
 		$('#iframe').contents().find('body').removeClass(otherClass).addClass(type);
+		$("div.others a").removeClass("on");
 		$("div.others a."+type).addClass("on");
 //		$("#index_style").val(type);
 	};
@@ -195,7 +196,15 @@ p.view a:hover {
 		$('#iframe').contents().find('body').removeClass(otherClass).addClass(type);
 		$("div.others a").removeClass("on");
 		$("div.others a."+type).addClass("on");
-//		$("#index_style").val(type);
+		if (type == 'gt') {
+			$("#navi_on_top").val('1');$("#hide_navi").val('0');$("#left_align").val('0');
+		} else if (type == 'gh') {
+			$("#navi_on_top").val('0');$("#hide_navi").val('1');$("#left_align").val('0');
+		} else if (type == 'al') {
+			$("#navi_on_top").val('0');$("#hide_navi").val('0');$("#left_align").val('1');
+		} else if (type == 'o-clear') {
+			$("#navi_on_top").val('0');$("#hide_navi").val('0');$("#left_align").val('0');
+		}
 	};
 
 // Menu On/Off
@@ -255,7 +264,7 @@ p.view a:hover {
     <h3>Others</h3>
     <ul>
      <li><a class="gt<mt:if name="navi_on_top"> on</mt:if>" onclick="setNavi('gt');">Navi on Top</a></li>
-     <li><a class="gh<mt:if name="hide_navi"> on</mt:if>" onclick="setNavi('gh');">hidden Navi</a></li>
+     <li><a class="gh<mt:if name="hide_navi"> on</mt:if>" onclick="setNavi('gh');">hide Navi</a></li>
      <li><a class="al<mt:if name="align_left"> on</mt:if>" onclick="setOthers('al');">align Left</a></li>
      <li><a class="o-clear" onclick="setOthers('o-clear');">none</a></li>
     </ul>
@@ -282,9 +291,9 @@ p.view a:hover {
   <input type="hidden" name="magic_token" value="<mt:var name="magic_token">" />
 
     <input type="hidden" name="index_style" id="index_style" value="<mt:var name="index_style">" />
-    <input type="hidden" name="entry_style" id="entry_style" value="default" />
-    <input type="hidden" name="monthly_style" id="monthly_style" value="default" />
-    <input type="hidden" name="category_style" id="category_style" value="default" />
+    <input type="hidden" name="entry_style" id="entry_style" value="<mt:var name="entry_style">" />
+    <input type="hidden" name="monthly_style" id="monthly_style" value="<mt:var name="monthly_style">" />
+    <input type="hidden" name="category_style" id="category_style" value="<mt:var name="category_style">" />
     <input type="hidden" name="eyecatch_style" id="eyecatch_style" value="<mt:var name="eyecatch_style">" />
     <input type="hidden" name="navi_on_top" id="navi_on_top" value="<mt:var name="navi_on_top">" />
     <input type="hidden" name="hide_navi" id="hide_navi" value="<mt:var name="hide_navi">" />
@@ -302,24 +311,29 @@ p.view a:hover {
     </div>
 </form>
 
-<iframe id="iframe" src="/mt-static/support/theme_static/mtVicunaSimple/preview/index.html" height="1200" width="100%"></iframe>
+<iframe id="iframe" src="<mt:var name="static_uri">support/theme_static/mtVicunaSimple/preview/index.html" height="1200" width="100%"></iframe>
 
 <script type="text/javascript">
 //<![CDATA[
 var e_ifr = document.getElementById( "iframe" );
 
 e_ifr.onload  = function() {
-	$('#iframe').contents().find('link[rel=stylesheet]').attr('href' ,'http://localhost/mtvicuna_project/simple/styles.css');
+	$('#iframe').contents().find('link[rel=stylesheet]').attr('href' ,'<mt:var name="blog_url">styles.css');
 <mt:if name="index_style" ne="double">
 	$('#iframe').contents().find('body').removeClass('double').addClass('<mt:var name="index_style">');
 </mt:if>
 	$('#iframe').contents().find('body').addClass('<mt:var name="eyecatch_style">');
 	$('#iframe').contents().find('body').addClass('<mt:var name="fixed_width">');
+<mt:if name="hide_navi">
+	$('#iframe').contents().find('body').addClass('gh');
+<mt:else>
 <mt:if name="navi_on_top">
 	$('#iframe').contents().find('body').addClass('gt');
 </mt:if>
-<mt:if name="hide_navi">
-	$('#iframe').contents().find('body').addClass('gh');
+</mt:else>
+</mt:if>
+<mt:if name="left_align">
+	$('#iframe').contents().find('body').addClass('al');
 </mt:if>
 }
 //]]>
