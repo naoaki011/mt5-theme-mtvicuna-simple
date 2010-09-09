@@ -334,6 +334,9 @@ settings:
   navi_on_top:
     default: 0
     scope: blog
+  hide_navi:
+    default: 0
+    scope: blog
   left_align:
     default: 0
     scope: blog
@@ -355,8 +358,10 @@ tags:
     VicunaEyecatch:      $mtVicunaSimple::mtVicunaSimple::Plugin::tag_eyecatch
     VicunaFixedWidth:    $mtVicunaSimple::mtVicunaSimple::Plugin::tag_fixed_width
     VicunaTagcloudStyle: $mtVicunaSimple::mtVicunaSimple::Plugin::tag_cloud_style
+    VicunaVersion:       $mtVicunaSimple::mtVicunaSimple::Plugin::tag_version
   block:
     IfVicunaNavionTop?:  $mtVicunaSimple::mtVicunaSimple::Plugin::if_nav_on_top
+    IfVicunaHideNavi?:   $mtVicunaSimple::mtVicunaSimple::Plugin::if_hide_nav
     IfVicunaLeftAlign?:  $mtVicunaSimple::mtVicunaSimple::Plugin::if_left_align
     IfVicunaUseSlimbox?: $mtVicunaSimple::mtVicunaSimple::Plugin::if_use_slimbox
 callbacks:

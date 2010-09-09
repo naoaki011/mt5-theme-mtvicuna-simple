@@ -8,5 +8,8 @@
 	<MTSetVarBlock name="page_id"><$MTPageID$></MTSetVarBlock>
             <li<MTIf name="current_page" eq="$page_id"> class="current"</MTIf>><a href="<$MTPagePermalink$>" title="<$MTPageTitle encode_html="1"$>"><$MTPageTitle encode_html="1"$></a></li>
 </MTPages>
+<MTCategories>
+            <li><a href="<$MTCategoryArchiveLink$>" title="<$MTCategoryLabel encode_html="1"$>"><$MTCategoryLabel encode_html="1"$></a></li>
+</MTCategories>
             <li><a href="<$MTLink template="feed_recent"$>"><__trans phrase="Syndication"></a></li>
         </ul>

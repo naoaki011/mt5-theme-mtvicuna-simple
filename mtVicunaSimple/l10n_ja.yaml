@@ -1,4 +1,3 @@
-Vicuna Credit: <a href="http://mt.vicuna.jp/" title="ver.2.3">Movable Type Template</a>
 mt.Vicuna Simple Theme: mt.Vicuna Simple テーマ
 Plugin for a MT5 Simple Theme for Vicuna CMS.: <a href="http://vicuna.jp/">VICUNA CMS</a>のMT5用Simpleテーマ・プラグイン
 A MT5 Theme for Vicuna CMS.: VICUNA CMSのMT5用テーマです。
@@ -89,3 +88,4 @@ TargetURL: 表示するURL 未指定の場合、現在のページ
 HatenaBokkmark Comments: はてブコメント
 
 Edit Vicuna Layout: Vicunaのレイアウト変更
+Hide Navigation: グローバルナビゲーションを表示しない

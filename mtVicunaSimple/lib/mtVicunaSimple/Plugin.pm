@@ -3,6 +3,15 @@ package mtVicunaSimple::Plugin;
 use strict;
 use MT 4;
 
+sub tag_version {
+#    my ( $ctx, $args ) = @_;
+#    my $plugin = MT->component("mtVicunaSimple");
+#    my $scope = "blog:".$ctx->stash('blog_id');
+#    use Data::Dumper;
+#    doLog ($plugin);
+    return '2.4.2';
+}
+
 sub tag_index_style {
     my ( $ctx, $args ) = @_;
     my $plugin = MT->component("mtVicunaSimple");
@@ -75,6 +84,14 @@ sub if_nav_on_top {
     return $ontop;
 }
 
+sub if_hide_nav {
+    my ( $ctx, $args, $cond ) = @_;
+    my $plugin = MT->component("mtVicunaSimple");
+    my $scope = "blog:".$ctx->stash('blog_id');
+    my $ontop = $plugin->get_config_value('hide_navi',$scope) || 0;
+    return $ontop;
+}
+
 sub if_left_align {
     my ( $ctx, $args, $cond ) = @_;
     my $plugin = MT->component("mtVicunaSimple");
@@ -97,8 +114,6 @@ sub _asset_options_image {
     my $plugin = MT->component("mtVicunaSimple");
     my $scope = "blog:".$blog_id;
     my $slimbox = $plugin->get_config_value('use_slimbox',$scope);
-#    doLog('use_slimbox'.$slimbox);
-#    unless ($slimbox) { } else {
     if ($slimbox != '') {
         use MT::Blog;
         my $blog = MT::Blog->load($blog_id) or die;
