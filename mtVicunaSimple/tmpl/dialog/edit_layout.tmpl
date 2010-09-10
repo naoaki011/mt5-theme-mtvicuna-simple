@@ -145,29 +145,29 @@ p.view a:hover {
 
 	$("#menu").css("display","none");
 
-	var layoutClass ="single double double-l multi multi2 multi2-l set1 set2 set3";
-	var eyeCatchClass ="eye-h eye-hb eye-m eye-c set1 set2 set3";	
-	var widthClass ="f800 f850 f900 f950 f1000";
+	var layoutClass ="single double double-l multi multi2 multi2-l set1 set2 set3 default";
+	var eyeCatchClass ="eye-h eye-hb eye-m eye-c set1 set2 set3 e-clear";	
+	var widthClass ="f800 f850 f900 f950 f1000 w-clear";
 	var otherClass ="al gt gh";
 
 	function setLayout(type) {
-		$('#iframe').contents().find('body').removeClass(layoutClass).addClass(type);
 		$("div.layout a").removeClass("on");
+		$('#iframe').contents().find('body').removeClass(layoutClass).addClass(type);
 		$("div.layout a."+type).addClass("on");
 		$("#index_style").val(type);
 	};
 
 // Eye Catch
-	
+
 	function setEye(type) {
 		$('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(type);
 		$("div.eye-catch a").removeClass("on");
 		$("div.eye-catch a."+type).addClass("on");
 		$("#eyecatch_style").val(type);
 	};
-	
+
 // Width
-	
+
 	function setWidth(type) {
 		$('#iframe').contents().find('body').removeClass(widthClass).addClass(type);
 		$("div.width a").removeClass("on");
@@ -181,15 +181,7 @@ p.view a:hover {
 //		$("body").removeClass(layoutClass).removeClass(eyeCatchClass);
 //		$("body").addClass(type);
 	};
-	
-// Navi
 
-	function setNavi(type) {
-		$('#iframe').contents().find('body').removeClass(otherClass).addClass(type);
-		$("div.others a").removeClass("on");
-		$("div.others a."+type).addClass("on");
-//		$("#index_style").val(type);
-	};
 // Others
 
 	function setOthers(type) {
@@ -205,6 +197,23 @@ p.view a:hover {
 		} else if (type == 'o-clear') {
 			$("#navi_on_top").val('0');$("#hide_navi").val('0');$("#left_align").val('0');
 		}
+	};
+
+// Tag Cloud
+
+	function setCloud(type) {
+		$("div.cloud a").removeClass("on");
+		$('#iframe').contents().find('#tagstyle').remove();
+		if (type !='none') {
+			if ($.browser.msie) {} else {
+				$('#iframe').contents().find('head').append('<link rel="stylesheet" type="text/css" href="<mt:var name="blog_url">styles.css" />');
+			}
+			$('#iframe').contents().find('head').append('<link rel="stylesheet" type="text/css" id="tagstyle" href="<mt:var name="blog_url">themes/vicuna-tagcloud/tagCloud'+type+'.css" />');
+		$("div.cloud a.style"+type).addClass("on");
+		} else {
+			$("div.cloud a.none").addClass("on");
+		}
+		$("#cloud_style").val(type);
 	};
 
 // Menu On/Off
@@ -263,12 +272,36 @@ p.view a:hover {
    <div class="others">
     <h3>Others</h3>
     <ul>
-     <li><a class="gt<mt:if name="navi_on_top"> on</mt:if>" onclick="setNavi('gt');">Navi on Top</a></li>
-     <li><a class="gh<mt:if name="hide_navi"> on</mt:if>" onclick="setNavi('gh');">hide Navi</a></li>
+     <li><a class="gt<mt:if name="navi_on_top"> on</mt:if>" onclick="setOthers('gt');">Navi on Top</a></li>
+     <li><a class="gh<mt:if name="hide_navi"> on</mt:if>" onclick="setOthers('gh');">hide Navi</a></li>
      <li><a class="al<mt:if name="align_left"> on</mt:if>" onclick="setOthers('al');">align Left</a></li>
      <li><a class="o-clear" onclick="setOthers('o-clear');">none</a></li>
     </ul>
    </div>
+   <div class="cloud">
+    <h3>TagCloud Style</h3>
+    <ul>
+     <li><a class="none<mt:if name="cloud_style" eq="none"> on</mt:if>" onclick="setCloud('none');">Skin Default</a></li>
+     <li><a class="style01<mt:if name="cloud_style" eq="01"> on</mt:if>" onclick="setCloud('01');">Style01</a></li>
+     <li><a class="style02<mt:if name="cloud_style" eq="02"> on</mt:if>" onclick="setCloud('02');">Style02</a></li>
+     <li><a class="style03<mt:if name="cloud_style" eq="03"> on</mt:if>" onclick="setCloud('03');">Style03</a></li>
+     <li><a class="style04<mt:if name="cloud_style" eq="04"> on</mt:if>" onclick="setCloud('04');">Style04</a></li>
+     <li><a class="style05<mt:if name="cloud_style" eq="05"> on</mt:if>" onclick="setCloud('05');">Style05</a></li>
+     <li><a class="style06<mt:if name="cloud_style" eq="06"> on</mt:if>" onclick="setCloud('06');">Style06</a></li>
+    </ul>
+   </div>
+   <div class="cloud">
+    <ul>
+     <li><a class="style07<mt:if name="cloud_style" eq="07"> on</mt:if>" onclick="setCloud('07');">Style07</a></li>
+     <li><a class="style08<mt:if name="cloud_style" eq="08"> on</mt:if>" onclick="setCloud('08');">Style08</a></li>
+     <li><a class="style09<mt:if name="cloud_style" eq="09"> on</mt:if>" onclick="setCloud('09');">Style09</a></li>
+     <li><a class="style10<mt:if name="cloud_style" eq="10"> on</mt:if>" onclick="setCloud('10');">Style10</a></li>
+     <li><a class="style11<mt:if name="cloud_style" eq="11"> on</mt:if>" onclick="setCloud('11');">Style11</a></li>
+     <li><a class="style12<mt:if name="cloud_style" eq="12"> on</mt:if>" onclick="setCloud('12');">Style12</a></li>
+     <li><a class="style13<mt:if name="cloud_style" eq="13"> on</mt:if>" onclick="setCloud('13');">Style13</a></li>
+    </ul>
+   </div>
+
   </div>
 
 </div>
@@ -295,10 +328,11 @@ p.view a:hover {
     <input type="hidden" name="monthly_style" id="monthly_style" value="<mt:var name="monthly_style">" />
     <input type="hidden" name="category_style" id="category_style" value="<mt:var name="category_style">" />
     <input type="hidden" name="eyecatch_style" id="eyecatch_style" value="<mt:var name="eyecatch_style">" />
+    <input type="hidden" name="fixed_width" id="fixed_width" value="<mt:var name="fixed_width">" />
     <input type="hidden" name="navi_on_top" id="navi_on_top" value="<mt:var name="navi_on_top">" />
     <input type="hidden" name="hide_navi" id="hide_navi" value="<mt:var name="hide_navi">" />
     <input type="hidden" name="left_align" id="left_align" value="<mt:var name="left_align">" />
-    <input type="hidden" name="fixed_width" id="fixed_width" value="<mt:var name="fixed_width">" />
+    <input type="hidden" name="cloud_style" id="cloud_style" value="<mt:var name="cloud_style">" />
     <input type="hidden" name="use_slimbox" id="use_slimbox" value="1" />
     <div class="actions-bar">
         <div class="actions-bar-inner pkg actions">
@@ -316,25 +350,54 @@ p.view a:hover {
 <script type="text/javascript">
 //<![CDATA[
 var e_ifr = document.getElementById( "iframe" );
-
-e_ifr.onload  = function() {
-	$('#iframe').contents().find('link[rel=stylesheet]').attr('href' ,'<mt:var name="blog_url">styles.css');
-<mt:if name="index_style" ne="double">
-	$('#iframe').contents().find('body').removeClass('double').addClass('<mt:var name="index_style">');
-</mt:if>
-	$('#iframe').contents().find('body').addClass('<mt:var name="eyecatch_style">');
-	$('#iframe').contents().find('body').addClass('<mt:var name="fixed_width">');
+if ($.browser.msie) {
+	e_ifr.onreadystatechange = function(){
+		if ( window.event.srcElement.readyState == "complete" ) {
+			$('#iframe').contents().find('head').append('<link rel="stylesheet" type="text/css" href="<mt:var name="blog_url">styles.css" />');
+<mt:unless name="index_style" like="double|default">
+			$('#iframe').contents().find('body').removeClass('double').addClass('<mt:var name="index_style">');
+</mt:unless>
+			$('#iframe').contents().find('body').addClass('<mt:var name="eyecatch_style">');
+			$('#iframe').contents().find('body').addClass('<mt:var name="fixed_width">');
 <mt:if name="hide_navi">
-	$('#iframe').contents().find('body').addClass('gh');
+			$('#iframe').contents().find('body').addClass('gh');
 <mt:else>
-<mt:if name="navi_on_top">
-	$('#iframe').contents().find('body').addClass('gt');
-</mt:if>
+	<mt:if name="navi_on_top">
+			$('#iframe').contents().find('body').addClass('gt');
+	</mt:if>
 </mt:else>
 </mt:if>
 <mt:if name="left_align">
-	$('#iframe').contents().find('body').addClass('al');
+			$('#iframe').contents().find('body').addClass('al');
 </mt:if>
+<mt:if name="cloud_style" ne="none">
+			$('#iframe').contents().find('head').append('<link rel="stylesheet" type="text/css" id="tagstyle" href="<mt:var name="blog_url">themes/vicuna-tagcloud/tagCloud<mt:var name="cloud_style">.css" />');
+</mt:if>
+		}
+	}
+} else {
+	e_ifr.onload  = function() {
+		$('#iframe').contents().find('link[rel=stylesheet]').attr('href' ,'<mt:var name="blog_url">styles.css');
+<mt:unless name="index_style" like="double|default">
+		$('#iframe').contents().find('body').removeClass('double').addClass('<mt:var name="index_style">');
+</mt:unless>
+		$('#iframe').contents().find('body').addClass('<mt:var name="eyecatch_style">');
+		$('#iframe').contents().find('body').addClass('<mt:var name="fixed_width">');
+<mt:if name="hide_navi">
+		$('#iframe').contents().find('body').addClass('gh');
+<mt:else>
+	<mt:if name="navi_on_top">
+		$('#iframe').contents().find('body').addClass('gt');
+	</mt:if>
+</mt:else>
+</mt:if>
+<mt:if name="left_align">
+		$('#iframe').contents().find('body').addClass('al');
+</mt:if>
+<mt:if name="cloud_style" ne="none">
+		$('#iframe').contents().find('head').append('<link rel="stylesheet" type="text/css" id="tagstyle" href="<mt:var name="blog_url">themes/vicuna-tagcloud/tagCloud<mt:var name="cloud_style">.css" />');
+</mt:if>
+	}
 }
 //]]>
 </script>
