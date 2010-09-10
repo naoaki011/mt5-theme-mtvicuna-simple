@@ -5,7 +5,8 @@
 <script type="text/javascript" src="<mt:var name="static_uri">jqueryui/ui.datepicker.js"></script>
 </mt:setvarblock>
 <mt:include name="cms/include/header.tmpl">
-<p class="view"><a class="view" onclick="showmenu();" title="Show/Hide Menu"> - </a></p>
+
+<p class="view"><a class="view" onclick="showmenu();" title="Show/Hide Menu">Show / Hide SideMenu</a></p>
 
 <style type="text/css">
 #content-header {
@@ -108,11 +109,8 @@ div.debug-tool h3 {
 p.view {
 	margin: 0;
 	padding: 5px;
-	right: 0;
-	top: 0;
 	clear: both;
 	color: #fff;
-	text-align: center;
 	font-size: 10px;
 	font-weight: bold;
 	text-transform: uppercase;
@@ -121,9 +119,7 @@ p.view {
 p.view a {
 	color: #fff;
 	background-color: #9C0;
-	display: block;
-	width: 11px;
-	height: 11px;
+	padding: 0.1em 0.5em;
 	cursor: pointer;
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -145,15 +141,18 @@ p.view a:hover {
 
 	$("#menu").css("display","none");
 
-	var layoutClass ="single double double-l multi multi2 multi2-l set1 set2 set3 default";
-	var eyeCatchClass ="eye-h eye-hb eye-m eye-c eye-u set1 set2 set3 e-clear";	
+	var layoutClass ="single double double-l multi multi2 multi2-l set1 set2 set3 set4 default";
+	var eyeCatchClass ="eye-h eye-hb eye-m eye-c eye-u set1 set2 set3 set4 e-clear";	
 	var widthClass ="f800 f850 f900 f950 f1000 w-clear";
 	var otherClass ="al gt gh";
 
+// Layout
+
 	function setLayout(type) {
-		$("div.layout a").removeClass("on");
 		$('#iframe').contents().find('body').removeClass(layoutClass).addClass(type);
+		$("div.layout a").removeClass("on");
 		$("div.layout a."+type).addClass("on");
+		$("div.set a").removeClass("on");
 		$("#index_style").val(type);
 	};
 
@@ -163,7 +162,51 @@ p.view a:hover {
 		$('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(type);
 		$("div.eye-catch a").removeClass("on");
 		$("div.eye-catch a."+type).addClass("on");
+		$("div.set a").removeClass("on");
 		$("#eyecatch_style").val(type);
+	};
+
+// Set
+
+	function setSet(type) {
+		$('#iframe').contents().find('body').removeClass(layoutClass).removeClass(eyeCatchClass);
+		if (type == 'set1'){
+			$('#iframe').contents().find('body').addClass('multi eye-c');
+			$("div.layout a").removeClass("on");
+			$("div.layout a.multi").addClass("on");
+			$("div.eye-catch a").removeClass("on");
+			$("div.eye-catch a.eye-c").addClass("on");
+			$("#index_style").val('multi');
+			$("#eyecatch_style").val('eye-c');
+		} else if (type == 'set2') {
+			$('#iframe').contents().find('body').addClass('multi2 eye-c');
+			$("div.layout a").removeClass("on");
+			$("div.layout a.multi2").addClass("on");
+			$("div.eye-catch a").removeClass("on");
+			$("div.eye-catch a.eye-c").addClass("on");
+			$("#index_style").val('multi2');
+			$("#eyecatch_style").val('eye-c');
+		} else if (type == 'set3') {
+			$('#iframe').contents().find('body').addClass('double eye-u eye-h');
+			$("div.layout a").removeClass("on");
+			$("div.layout a.double").addClass("on");
+			$("div.eye-catch a").removeClass("on");
+			$("div.eye-catch a.eye-u").addClass("on");
+			$("div.eye-catch a.eye-h").addClass("on");
+			$("#index_style").val('double');
+			$("#eyecatch_style").val('eye-u eye-h');
+		} else if (type == 'set4') {
+			$('#iframe').contents().find('body').addClass('double eye-u eye-hb');
+			$("div.layout a").removeClass("on");
+			$("div.layout a.double").addClass("on");
+			$("div.eye-catch a").removeClass("on");
+			$("div.eye-catch a.eye-u").addClass("on");
+			$("div.eye-catch a.eye-hb").addClass("on");
+			$("#index_style").val('double');
+			$("#eyecatch_style").val('eye-u eye-hb');
+		}
+		$("div.set a").removeClass("on");
+		$("div.set a."+type).addClass("on");
 	};
 
 // Width
@@ -175,19 +218,14 @@ p.view a:hover {
 		$("#fixed_width").val(type);
 	};
 
-// Set
-
-	function setSet(type) {
-//		$("body").removeClass(layoutClass).removeClass(eyeCatchClass);
-//		$("body").addClass(type);
-	};
-
 // Others
 
 	function setOthers(type) {
 		$('#iframe').contents().find('body').removeClass(otherClass).addClass(type);
 		$("div.others a").removeClass("on");
-		$("div.others a."+type).addClass("on");
+		if (type != 'o-clear') {
+			$("div.others a."+type).addClass("on");
+		}
 		if (type == 'gt') {
 			$("#navi_on_top").val('1');$("#hide_navi").val('0');$("#left_align").val('0');
 		} else if (type == 'gh') {
@@ -209,7 +247,7 @@ p.view a:hover {
 				$('#iframe').contents().find('head').append('<link rel="stylesheet" type="text/css" href="<mt:var name="blog_url">styles.css" />');
 			}
 			$('#iframe').contents().find('head').append('<link rel="stylesheet" type="text/css" id="tagstyle" href="<mt:var name="blog_url">themes/vicuna-tagcloud/tagCloud'+type+'.css" />');
-		$("div.cloud a.style"+type).addClass("on");
+			$("div.cloud a.style"+type).addClass("on");
 		} else {
 			$("div.cloud a.none").addClass("on");
 		}
@@ -217,17 +255,17 @@ p.view a:hover {
 	};
 
 // Menu On/Off
-    function showmenu(){
-        $("#menu").toggle("slow");
-        $(".debug-tool").toggle("slow");
-        $("form .actions-bar").toggle("slow");
+	function showmenu(){
+		$("#menu").toggle("slow");
+		$(".debug-tool").toggle("slow");
+		$("form .actions-bar").toggle("slow");
     };
 //]]>
 </script>
 
 <div class="debug-tool">
   <div class="class">
-   <h2>Debug mode</h2>
+   <h2>Layout Debug mode</h2>
    <div class="layout">
     <h3>Layout</h3>
     <ul>
@@ -251,6 +289,15 @@ p.view a:hover {
      <li><a class="e-clear<mt:if name="eyecatch_style" eq="none"> on</mt:if>" onclick="setEye('e-clear');">none</a></li>
     </ul>
    </div>
+   <div class="set">
+    <h3>Set</h3>
+    <ul>
+     <li><a class="set1" onclick="setSet('set1');">set1</a></li>
+     <li><a class="set2" onclick="setSet('set2');">set2</a></li>
+     <li><a class="set3" onclick="setSet('set3');">set3</a></li>
+     <li><a class="set4" onclick="setSet('set4');">set4</a></li>
+    </ul>
+   </div>
    <div class="width">
     <h3>Width</h3>
     <ul>
@@ -262,21 +309,13 @@ p.view a:hover {
      <li><a class="w-clear<mt:if name="fixed_width" eq="none"> on</mt:if>" onclick="setWidth('w-clear');">none</a></li>
     </ul>
    </div>
-<!--
-   <div class="set">
-    <h3>Set</h3>
-    <ul>
-     <li><a class="set1" onclick="setSet('multi eye-c set1');">set1</a></li>
-     <li><a class="set2" onclick="setSet('multi2 eye-c set2');">set2</a></li>
-    </ul>
-   </div> -->
    <div class="others">
     <h3>Others</h3>
     <ul>
      <li><a class="gt<mt:if name="navi_on_top"> on</mt:if>" onclick="setOthers('gt');">Navi on Top</a></li>
      <li><a class="gh<mt:if name="hide_navi"> on</mt:if>" onclick="setOthers('gh');">hide Navi</a></li>
      <li><a class="al<mt:if name="align_left"> on</mt:if>" onclick="setOthers('al');">align Left</a></li>
-     <li><a class="o-clear" onclick="setOthers('o-clear');">none</a></li>
+     <li><a class="o-clear" onclick="setOthers('o-clear');">Clear</a></li>
     </ul>
    </div>
    <div class="cloud">
@@ -308,7 +347,7 @@ p.view a:hover {
 </div>
 
 <div class="pages">
-  <h2>Page Pattern</h2>
+  <h2>Page Pattern ( will not work yet )</h2>
   <ul>
    <li><a class="mainIndex on" accesskey="1">Index</a></li>
    <li><a class="category" accesskey="2">Category</a></li>

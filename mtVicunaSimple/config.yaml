@@ -328,8 +328,14 @@ settings:
   category_style:
     default: default
     scope: blog
+  archive_style:
+    default: default
+    scope: blog
   eyecatch_style:
     default: eye-h
+    scope: blog
+  custom_set:
+    default: ''
     scope: blog
   navi_on_top:
     default: 0
@@ -349,15 +355,24 @@ settings:
   use_slimbox:
     default: 1
     scope: blog
+  lightbox_script:
+    default: slimbox
+    scope: blog
+  lightbox_selector:
+    default: lightbox
+    scope: blog
 tags:
   function:
     VicunaIndexStyle:    $mtVicunaSimple::mtVicunaSimple::Plugin::tag_index_style
     VicunaEntryStyle:    $mtVicunaSimple::mtVicunaSimple::Plugin::tag_entry_style
     VicunaMonthlyStyle:  $mtVicunaSimple::mtVicunaSimple::Plugin::tag_monthly_style
     VicunaCategoryStyle: $mtVicunaSimple::mtVicunaSimple::Plugin::tag_category_style
+    VicunaArchiveStyle:  $mtVicunaSimple::mtVicunaSimple::Plugin::tag_archive_style
     VicunaEyecatch:      $mtVicunaSimple::mtVicunaSimple::Plugin::tag_eyecatch
     VicunaFixedWidth:    $mtVicunaSimple::mtVicunaSimple::Plugin::tag_fixed_width
     VicunaTagcloudStyle: $mtVicunaSimple::mtVicunaSimple::Plugin::tag_cloud_style
+    VicunaLightboxScript: $mtVicunaSimple::mtVicunaSimple::Plugin::tag_lightbox_script
+    VicunaLightboxSelector: $mtVicunaSimple::mtVicunaSimple::Plugin::tag_lightbox_selector
     VicunaVersion:       $mtVicunaSimple::mtVicunaSimple::Plugin::tag_version
   block:
     IfVicunaNavionTop?:  $mtVicunaSimple::mtVicunaSimple::Plugin::if_nav_on_top

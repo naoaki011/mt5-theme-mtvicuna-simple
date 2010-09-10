@@ -44,6 +44,14 @@ sub tag_category_style {
     return $style;
 }
 
+sub tag_archive_style {
+    my ( $ctx, $args ) = @_;
+    my $plugin = MT->component("mtVicunaSimple");
+    my $scope = "blog:".$ctx->stash('blog_id');
+    my $style = $plugin->get_config_value('archive_style',$scope) || 'default';
+    return $style;
+}
+
 sub tag_eyecatch {
     my ( $ctx, $args ) = @_;
     my $plugin = MT->component("mtVicunaSimple");
@@ -108,6 +116,22 @@ sub if_use_slimbox {
     return $slimbox;
 }
 
+sub tag_lightbox_script {
+    my ( $ctx, $args ) = @_;
+    my $plugin = MT->component("mtVicunaSimple");
+    my $scope = "blog:".$ctx->stash('blog_id');
+    my $script = $plugin->get_config_value('lightbox_script',$scope) || 'slimbox';
+    return $script;
+}
+
+sub tag_lightbox_selector {
+    my ( $ctx, $args ) = @_;
+    my $plugin = MT->component("mtVicunaSimple");
+    my $scope = "blog:".$ctx->stash('blog_id');
+    my $selector = $plugin->get_config_value('lightbox_selector',$scope) || 'lightbox';
+    return $selector;
+}
+
 sub _asset_options_image {
     my ( $cb, $app, $param, $tmpl ) = @_;
     my $blog_id = $app->param('blog_id');
@@ -133,7 +157,7 @@ sub _asset_options_image {
             $opt->innerHTML(<<HTML);
             <input type="checkbox" id="insert_lightbox" name="insert_lightbox"
                 value="1"<mt:if name="make_thumb"> checked="checked" </mt:if> />
-            <label for="insert_lightbox"><__trans phrase='Use Slimbox'></label>
+            <label for="insert_lightbox"><__trans phrase='Use Lightbox Effect'></label>
 HTML
             $tmpl->insertBefore($opt, $el);
             $tmpl->rescan();
@@ -159,18 +183,30 @@ sub _edit_themeparams {
     my $blog_id = $app->param('blog_id');
     my $plugin = MT->component("mtVicunaSimple");
     my $scope = "blog:".$blog_id;
-    my $index_style = $plugin->get_config_value('index_style',$scope);
+    my $index_style    = $plugin->get_config_value('index_style',$scope);
+    my $entry_style    = $plugin->get_config_value('entry_style',$scope);
+    my $monthly_style  = $plugin->get_config_value('monthly_style',$scope);
+    my $category_style = $plugin->get_config_value('category_style',$scope);
+    my $archive_style  = $plugin->get_config_value('archive_style',$scope);
     my $eyecatch_style = $plugin->get_config_value('eyecatch_style',$scope);
-    my $fixed_width = $plugin->get_config_value('fixed_width',$scope);
-    my $cloud_style = $plugin->get_config_value('cloud_style',$scope);
-    my $navi_on_top = $plugin->get_config_value('navi_on_top',$scope);
-    my $left_align = $plugin->get_config_value('left_align',$scope);
+    my $custom_set     = $plugin->get_config_value('custom_set',$scope);
+    my $fixed_width    = $plugin->get_config_value('fixed_width',$scope);
+    my $cloud_style    = $plugin->get_config_value('cloud_style',$scope);
+    my $navi_on_top    = $plugin->get_config_value('navi_on_top',$scope);
+    my $hide_navi      = $plugin->get_config_value('hide_navi',$scope);
+    my $left_align     = $plugin->get_config_value('left_align',$scope);
     $app->load_tmpl( 'dialog/edit_layout.tmpl', {
         index_style    => $index_style,
+        entry_style    => $entry_style,
+        monthly_style  => $monthly_style,
+        category_style => $category_style,
+        archive_style  => $archive_style,
         eyecatch_style => $eyecatch_style,
+        custom_set     => $custom_set,
         fixed_width    => $fixed_width,
         cloud_style    => $cloud_style,
         navi_on_top    => $navi_on_top,
+        hide_navi      => $hide_navi,
         left_align     => $left_align } );
 }
 sub _if_vicuna {

@@ -15,6 +15,7 @@ Index Column Layout: インデックス・カラム
 Entry Column Layout: ブログ記事・カラム
 Monthly Listing Column Layout: 月別ブログ記事リスト・カラム
 Category Listing Column Layout: カテゴリ別ブログ記事リスト・カラム
+Archive Column Layout: アーカイブ・カラム
 Default: デフォルト
 Single column: シングルカラム
 Double column - Menu on right: 2カラム
@@ -36,6 +37,7 @@ Left align: 全体を左寄せにする
 Fixid width: 固定幅
 TagCloud Style: タグクラウドのスタイル
 Use Slimbox: Slimboxを使用する
+Use Lightbox Effect: Lightbox効果を使用する
 
 Related Entries: 関連エントリー
 Global Navigation: グローバルナビゲーション

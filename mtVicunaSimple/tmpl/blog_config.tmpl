@@ -87,6 +87,28 @@
     <br/>
 </mtapp:setting>
 <mtapp:setting
+  id="archive_style"
+  label="<__trans phrase="Archive Column Layout">"
+  hint="<__trans phrase="Hint">"
+  >
+    <input type="radio" name="archive_style" id="archive_style"<mt:if name="archive_style" eq="default"> checked="checked"</mt:if> value="default" />
+    <label for="archive_style"><__trans phrase="Default"></label><br/>
+    <input type="radio" name="archive_style" id="archive_style"<mt:if name="archive_style" eq="single"> checked="checked"</mt:if> value="single" />
+    <label for="archive_style"><__trans phrase="Single column"></label>&nbsp;
+    <input type="radio" name="archive_style" id="archive_style"<mt:if name="archive_style" eq="double"> checked="checked"</mt:if> value="double" />
+    <label for="archive_style"><__trans phrase="Double column - Menu on right"></label>&nbsp;
+    <input type="radio" name="archive_style" id="archive_style"<mt:if name="archive_style" eq="double-l"> checked="checked"</mt:if> value="double-l" />
+    <label for="archive_style"><__trans phrase="Double column - Menu on left"></label>
+    <br />
+    <input type="radio" name="archive_style" id="archive_style"<mt:if name="archive_style" eq="multi"> checked="checked"</mt:if> value="multi" />
+    <label for="archive_style"><__trans phrase="Multi column - Wing menu"></label>&nbsp;
+    <input type="radio" name="archive_style" id="archive_style"<mt:if name="archive_style" eq="multi2"> checked="checked"</mt:if> value="multi2" />
+    <label for="archive_style"><__trans phrase="Multi column - Double menu"></label>
+    <input type="radio" name="archive_style" id="archive_style"<mt:if name="archive_style" eq="multi2-l"> checked="checked"</mt:if> value="multi2-l" />
+    <label for="archive_style"><__trans phrase="Multi column - Double menu on left"></label>
+    <br/>
+</mtapp:setting>
+<mtapp:setting
   id="eyecatch_style"
   label="<__trans phrase="Eye Catch Image">"
   hint="<__trans phrase="Hint">"
@@ -171,8 +193,18 @@
 </mtapp:setting>
 <mtapp:setting
   id="use_slimbox"
-  label="<__trans phrase="Use Slimbox">"
+  label="<__trans phrase="Use Lightbox Effect">"
   hint="<__trans phrase="Hint">"
   >
     <input type="checkbox" name="use_slimbox" id="use_slimbox" value="1"<mt:if name="use_slimbox"> checked="checked"</mt:if> />
+</mtapp:setting>
+<mtapp:setting
+  id="lightbox_script"
+  label="<__trans phrase="Lightbox Script">"
+  hint="<__trans phrase="Hint">"
+  >
+    <select name="lightbox_script">
+      <option<mt:if name="lightbox_script" eq="slimbox"> selected="selected"</mt:if> value="slimbox"><__trans phrase="slimbox"></option>
+      <option<mt:if name="lightbox_script" eq="fancybox"> selected="selected"</mt:if> value="fancybox"><__trans phrase="fancybox"></option>
+    </select>
 </mtapp:setting>
