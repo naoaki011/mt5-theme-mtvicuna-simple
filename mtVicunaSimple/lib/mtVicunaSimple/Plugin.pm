@@ -4,12 +4,10 @@ use strict;
 use MT 4;
 
 sub tag_version {
-#    my ( $ctx, $args ) = @_;
-#    my $plugin = MT->component("mtVicunaSimple");
-#    my $scope = "blog:".$ctx->stash('blog_id');
-#    use Data::Dumper;
-#    doLog ($plugin);
-    return '2.4.1';
+    require MT::Theme;
+    my $theme = MT::Theme->load('mtVicunaSimple');
+    my $theme_version = $theme->version;
+    return $theme_version;
 }
 
 sub tag_index_style {
@@ -135,7 +133,7 @@ sub tag_lightbox_selector {
 sub modifier_adjust_hn {
     my ($text, $val) = @_;
     if ( $val ) {
-        $text =~ s/(<\/?[hH])([2-5])/&_increment($1,$2);/eg;
+        $text =~ s/(<\/?[hH])([2-5])([ >])/&_increment($1,$2,$3);/eg;
     }
     return $text;
 }
@@ -230,9 +228,9 @@ sub _if_vicuna {
 }
 
 sub _increment {
-    my ($htag,$leveln) = @_;
+    my ($htag,$leveln,$tail) = @_;
     $leveln += 1;
-    return $htag.$leveln;
+    return $htag.$leveln.$tail;
 }
 
 sub doLog {
