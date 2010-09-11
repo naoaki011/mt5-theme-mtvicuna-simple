@@ -254,6 +254,14 @@ p.view a:hover {
 		$("#cloud_style").val(type);
 	};
 
+// Load Page
+
+	function loadPage(page) {
+		$('#iframe').attr('src' ,'<mt:var name="static_uri">support/theme_static/mtVicunaSimple/preview/'+page+'.html');
+		$("div.pages a").removeClass("on");
+		$("div.pages a."+page).addClass("on");
+	};
+
 // Menu On/Off
 	function showmenu(){
 		$("#menu").toggle("slow");
@@ -281,11 +289,11 @@ p.view a:hover {
    <div class="eye-catch">
     <h3>Eye Catch</h3>
     <ul>
-     <li><a class="eye-h<mt:if name="eyecatch_style" eq="eye-h"> on</mt:if>" onclick="setEye('eye-h');">eye-h</a></li>
-     <li><a class="eye-hb<mt:if name="eyecatch_style" eq="eye-hb"> on</mt:if>" onclick="setEye('eye-hb');">eye-hb</a></li>
-     <li><a class="eye-m<mt:if name="eyecatch_style" eq="eye-m"> on</mt:if>" onclick="setEye('eye-m');">eye-m</a></li>
-     <li><a class="eye-c<mt:if name="eyecatch_style" eq="eye-c"> on</mt:if>" onclick="setEye('eye-c');">eye-c</a></li>
-     <li><a class="eye-u<mt:if name="eyecatch_style" eq="eye-u"> on</mt:if>" onclick="setEye('eye-u');">eye-u</a></li>
+     <li><a class="eye-h<mt:if name="eyecatch_style" like="eye-h"><mt:unless name="eyecatch_style" like="eye-hb"> on</mt:unless></mt:if>" onclick="setEye('eye-h');">eye-h</a></li>
+     <li><a class="eye-hb<mt:if name="eyecatch_style" like="eye-hb"> on</mt:if>" onclick="setEye('eye-hb');">eye-hb</a></li>
+     <li><a class="eye-m<mt:if name="eyecatch_style" like="eye-m"> on</mt:if>" onclick="setEye('eye-m');">eye-m</a></li>
+     <li><a class="eye-c<mt:if name="eyecatch_style" like="eye-c"> on</mt:if>" onclick="setEye('eye-c');">eye-c</a></li>
+     <li><a class="eye-u<mt:if name="eyecatch_style" like="eye-u"> on</mt:if>" onclick="setEye('eye-u');">eye-u</a></li>
      <li><a class="e-clear<mt:if name="eyecatch_style" eq="none"> on</mt:if>" onclick="setEye('e-clear');">none</a></li>
     </ul>
    </div>
@@ -349,10 +357,10 @@ p.view a:hover {
 <div class="pages">
   <h2>Page Pattern ( will not work yet )</h2>
   <ul>
-   <li><a class="mainIndex on" accesskey="1">Index</a></li>
-   <li><a class="category" accesskey="2">Category</a></li>
-   <li><a class="individual" accesskey="3">Individual</a></li>
-   <li><a class="archives" accesskey="4">Archive</a></li>
+   <li><a class="index on" accesskey="1" onclick="loadPage('index');">Index</a></li>
+   <li><a class="category" accesskey="2" onclick="loadPage('category');">Category</a></li>
+   <li><a class="individual" accesskey="3" onclick="loadPage('individual');">Individual</a></li>
+   <li><a class="archives" accesskey="4" onclick="loadPage('archives');">Archive</a></li>
   </ul>
 </div>
 
