@@ -14,7 +14,7 @@ themes:
   mtVicunaSimple:
     id: mtVicunaSimple
     label: mt.Vicuna Simple Theme
-    description: <__trans phrase="A MT5 Theme Plugin for Vicuna CMS.">
+    description: <__trans phrase="A MT5 Theme Plugin for Vicuna CMS. This Theme Build for MT Begginers such as Graphical Layout Editing screen.">
     author_name: wu
     author_link: http://3ping.org/
     version: 2.4.1
