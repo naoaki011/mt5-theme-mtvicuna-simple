@@ -57,7 +57,7 @@ themes:
               label: mt.Vicuna skin
               description_label: 'Styles that are compatible with the mt.Vicuna Theme.'
 #            mtvicuna_recent_skin:
-#              url: 'http://code.zelazny.mydns.jp/themes/mtVicuna-recent/'
+#              url: 'http://code.zelazny.mydns.jp/themes/mtVicuna-recent-24/'
 #              label: mt.Vicuna Recent skin
 #              description_label: 'Recent Vicuna Styles of the mt.Vicuna Theme.'
             mtvicuna_legacy_skin:
@@ -102,10 +102,10 @@ themes:
                 label: SiteMap 0.9
                 outfile: sitemap.xml
                 rebuild_me: 1
-              wxr_rss2: 
-                label: ExtendedRSS 2.0
-                outfile: rss.xml
-                rebuild_me: 1
+#              wxr_rss2: 
+#                label: ExtendedRSS 2.0
+#                outfile: rss.xml
+#                rebuild_me: 1
             individual:
               entry:
                 label: Entry
@@ -183,9 +183,9 @@ themes:
               global_navigation:
                 label: Global Navigation
                 filename: templateModule/global_navigation.mtml
-              hatebu_anywhere:
-                label: Hatena Bookmark Anywhere
-                filename: templateModule/hatebu_anywhere.mtml
+#              hatebu_anywhere:
+#                label: Hatena Bookmark Anywhere
+#                filename: templateModule/hatebu_anywhere.mtml
             system:
               comment_preview:
                 label: Comment Preview
@@ -317,19 +317,19 @@ themes:
 blog_config_template: tmpl/blog_config.tmpl
 settings:
   index_style:
-    default: default
+    default: double
     scope: blog
   entry_style:
-    default: default
+    default: single
     scope: blog
   monthly_style:
-    default: default
+    default: double
     scope: blog
   category_style:
-    default: default
+    default: double
     scope: blog
   archive_style:
-    default: default
+    default: single
     scope: blog
   eyecatch_style:
     default: eye-h

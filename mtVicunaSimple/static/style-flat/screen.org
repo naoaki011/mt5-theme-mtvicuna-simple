@@ -1,12 +1,13 @@
 @charset "UTF-8";
 /*
 
-name: Style-Vega
+name: Style-Flat
 designer: wu
 designer_url: http://3ping.org/
 developer: naoaki onozaki
 developer_url: http://code.zelazny.mydns.jp/trac/themes/
-layouts: vega
+layouts: single, double, double-l, multi, multi2, multi2-l
+
 */
 
 @import url(core.css);
