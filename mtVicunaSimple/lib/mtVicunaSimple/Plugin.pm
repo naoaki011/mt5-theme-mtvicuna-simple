@@ -132,6 +132,14 @@ sub tag_lightbox_selector {
     return $selector;
 }
 
+sub modifier_adjust_hn {
+    my ($text, $val) = @_;
+    if ( $val ) {
+        $text =~ s/(<\/?[hH])([2-5])/&_increment($1,$2);/eg;
+    }
+    return $text;
+}
+
 sub _asset_options_image {
     my ( $cb, $app, $param, $tmpl ) = @_;
     my $blog_id = $app->param('blog_id');
@@ -209,6 +217,7 @@ sub _edit_themeparams {
         hide_navi      => $hide_navi,
         left_align     => $left_align } );
 }
+
 sub _if_vicuna {
     my $app = MT->instance;
     my $blog = $app->blog;
@@ -218,6 +227,12 @@ sub _if_vicuna {
     } else {
         return 0;
     }
+}
+
+sub _increment {
+    my ($htag,$leveln) = @_;
+    $leveln += 1;
+    return $htag.$leveln;
 }
 
 sub doLog {

@@ -379,6 +379,8 @@ tags:
     IfVicunaHideNavi?:   $mtVicunaSimple::mtVicunaSimple::Plugin::if_hide_nav
     IfVicunaLeftAlign?:  $mtVicunaSimple::mtVicunaSimple::Plugin::if_left_align
     IfVicunaUseSlimbox?: $mtVicunaSimple::mtVicunaSimple::Plugin::if_use_slimbox
+  modifier:
+    adjust_hn:           $mtVicunaSimple::mtVicunaSimple::Plugin::modifier_adjust_hn
 callbacks:
     template_param.asset_options_image: $mtVicunaSimple::mtVicunaSimple::Plugin::_asset_options_image
     template_param.asset_insert:        $mtVicunaSimple::mtVicunaSimple::Plugin::_asset_insert_param
