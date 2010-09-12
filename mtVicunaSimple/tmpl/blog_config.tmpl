@@ -3,8 +3,6 @@
   label="<__trans phrase="Index Column Layout">"
   hint="<__trans phrase="Hint">"
   >
-    <input type="radio" name="index_style" id="index_style"<mt:if name="index_style" eq="default"> checked="checked"</mt:if> value="default" />
-    <label for="index_style"><__trans phrase="Default"></label><br/>
     <input type="radio" name="index_style" id="index_style"<mt:if name="index_style" eq="single"> checked="checked"</mt:if> value="single" />
     <label for="index_style"><__trans phrase="Single column"></label>&nbsp;
     <input type="radio" name="index_style" id="index_style"<mt:if name="index_style" eq="double"> checked="checked"</mt:if> value="double" />
@@ -25,8 +23,6 @@
   label="<__trans phrase="Entry Column Layout">"
   hint="<__trans phrase="Hint">"
   >
-    <input type="radio" name="entry_style" id="entry_style"<mt:if name="entry_style" eq="default"> checked="checked"</mt:if> value="default" />
-    <label for="entry_style"><__trans phrase="Default"></label><br/>
     <input type="radio" name="entry_style" id="entry_style"<mt:if name="entry_style" eq="single"> checked="checked"</mt:if> value="single" />
     <label for="entry_style"><__trans phrase="Single column"></label>&nbsp;
     <input type="radio" name="entry_style" id="entry_style"<mt:if name="entry_style" eq="double"> checked="checked"</mt:if> value="double" />
@@ -47,8 +43,6 @@
   label="<__trans phrase="Monthly Listing Column Layout">"
   hint="<__trans phrase="Hint">"
   >
-    <input type="radio" name="monthly_style" id="monthly_style"<mt:if name="monthly_style" eq="default"> checked="checked"</mt:if> value="default" />
-    <label for="monthly_style"><__trans phrase="Default"></label><br/>
     <input type="radio" name="monthly_style" id="monthly_style"<mt:if name="monthly_style" eq="single"> checked="checked"</mt:if> value="single" />
     <label for="monthly_style"><__trans phrase="Single column"></label>&nbsp;
     <input type="radio" name="monthly_style" id="monthly_style"<mt:if name="monthly_style" eq="double"> checked="checked"</mt:if> value="double" />
@@ -69,8 +63,6 @@
   label="<__trans phrase="Category Listing Column Layout">"
   hint="<__trans phrase="Hint">"
   >
-    <input type="radio" name="category_style" id="category_style"<mt:if name="category_style" eq="default"> checked="checked"</mt:if> value="default" />
-    <label for="category_style"><__trans phrase="Default"></label><br/>
     <input type="radio" name="category_style" id="category_style"<mt:if name="category_style" eq="single"> checked="checked"</mt:if> value="single" />
     <label for="category_style"><__trans phrase="Single column"></label>&nbsp;
     <input type="radio" name="category_style" id="category_style"<mt:if name="category_style" eq="double"> checked="checked"</mt:if> value="double" />
@@ -91,8 +83,6 @@
   label="<__trans phrase="Archive Column Layout">"
   hint="<__trans phrase="Hint">"
   >
-    <input type="radio" name="archive_style" id="archive_style"<mt:if name="archive_style" eq="default"> checked="checked"</mt:if> value="default" />
-    <label for="archive_style"><__trans phrase="Default"></label><br/>
     <input type="radio" name="archive_style" id="archive_style"<mt:if name="archive_style" eq="single"> checked="checked"</mt:if> value="single" />
     <label for="archive_style"><__trans phrase="Single column"></label>&nbsp;
     <input type="radio" name="archive_style" id="archive_style"<mt:if name="archive_style" eq="double"> checked="checked"</mt:if> value="double" />
@@ -109,27 +99,93 @@
     <br/>
 </mtapp:setting>
 <mtapp:setting
-  id="eyecatch_style"
-  label="<__trans phrase="Eye Catch Image">"
+  id="index_eyecatch"
+  label="<__trans phrase="Index Eye Catch Image">"
   hint="<__trans phrase="Hint">"
   >
-    <input type="radio" name="eyecatch_style" id="eyecatch_style"<mt:if name="eyecatch_style" eq="none"> checked="checked"</mt:if> value="none" />
-    <label for="eyecatch_style"><__trans phrase="None"></label><br/>
-    <input type="radio" name="eyecatch_style" id="eyecatch_style"<mt:if name="eyecatch_style" eq="eye-h"> checked="checked"</mt:if> value="eye-h" />
-    <label for="eyecatch_style"><__trans phrase="Header area"></label>&nbsp;
-    <input type="radio" name="eyecatch_style" id="eyecatch_style"<mt:if name="eyecatch_style" eq="eye-hb"> checked="checked"</mt:if> value="eye-hb" />
-    <label for="eyecatch_style"><__trans phrase="Header area (Banner type)"></label>&nbsp;
-    <input type="radio" name="eyecatch_style" id="eyecatch_style"<mt:if name="eyecatch_style" eq="eye-c"> checked="checked"</mt:if> value="eye-c" />
-    <label for="eyecatch_style"><__trans phrase="Contents area"></label>
+    <input type="radio" name="index_eyecatch" id="index_eyecatch"<mt:if name="index_eyecatch" eq="none"> checked="checked"</mt:if> value="none" />
+    <label for="index_eyecatch"><__trans phrase="None"></label><br/>
+    <input type="radio" name="index_eyecatch" id="index_eyecatch"<mt:if name="index_eyecatch" eq="eye-h"> checked="checked"</mt:if> value="eye-h" />
+    <label for="index_eyecatch"><__trans phrase="Header area"></label>&nbsp;
+    <input type="radio" name="index_eyecatch" id="index_eyecatch"<mt:if name="index_eyecatch" eq="eye-hb"> checked="checked"</mt:if> value="eye-hb" />
+    <label for="index_eyecatche"><__trans phrase="Header area (Banner type)"></label>&nbsp;
+    <input type="radio" name="index_eyecatch" id="index_eyecatch"<mt:if name="index_eyecatch" eq="eye-c"> checked="checked"</mt:if> value="eye-c" />
+    <label for="index_eyecatch"><__trans phrase="Contents area"></label>
     <br />
-    <input type="radio" name="eyecatch_style" id="eyecatch_style"<mt:if name="eyecatch_style" eq="eye-m"> checked="checked"</mt:if> value="eye-m" />
-    <label for="eyecatch_style"><__trans phrase="Main area"></label>&nbsp;
-<mt:ignore>
-    <input type="radio" name="eyecatch_style" id="eyecatch_style"<mt:if name="eyecatch_style" eq="set1"> checked="checked"</mt:if> value="set1" />
-    <label for="eyecatch_style"><__trans phrase="Special layout 1"></label>
-    <input type="radio" name="eyecatch_style" id="eyecatch_style"<mt:if name="eyecatch_style" eq="set2"> checked="checked"</mt:if> value="set2" />
-    <label for="eyecatch_style"><__trans phrase="Special layout 2"></label>
-</mt:ignore>
+    <input type="radio" name="index_eyecatch" id="index_eyecatch"<mt:if name="index_eyecatch" eq="eye-m"> checked="checked"</mt:if> value="eye-m" />
+    <label for="index_eyecatch"><__trans phrase="Main area"></label>&nbsp;
+    <br/>
+</mtapp:setting>
+<mtapp:setting
+  id="entry_eyecatch"
+  label="<__trans phrase="Entry Eye Catch Image">"
+  hint="<__trans phrase="Hint">"
+  >
+    <input type="radio" name="entry_eyecatch" id="entry_eyecatch"<mt:if name="entry_eyecatch" eq="none"> checked="checked"</mt:if> value="none" />
+    <label for="entry_eyecatch"><__trans phrase="None"></label><br/>
+    <input type="radio" name="entry_eyecatch" id="entry_eyecatch"<mt:if name="entry_eyecatch" eq="eye-h"> checked="checked"</mt:if> value="eye-h" />
+    <label for="entry_eyecatch"><__trans phrase="Header area"></label>&nbsp;
+    <input type="radio" name="entry_eyecatch" id="entry_eyecatch"<mt:if name="entry_eyecatch" eq="eye-hb"> checked="checked"</mt:if> value="eye-hb" />
+    <label for="entry_eyecatch"><__trans phrase="Header area (Banner type)"></label>&nbsp;
+    <input type="radio" name="entry_eyecatch" id="entry_eyecatch"<mt:if name="entry_eyecatch" eq="eye-c"> checked="checked"</mt:if> value="eye-c" />
+    <label for="entry_eyecatch"><__trans phrase="Contents area"></label>
+    <br />
+    <input type="radio" name="entry_eyecatch" id="entry_eyecatch"<mt:if name="entry_eyecatch" eq="eye-m"> checked="checked"</mt:if> value="eye-m" />
+    <label for="entry_eyecatch"><__trans phrase="Main area"></label>&nbsp;
+    <br/>
+</mtapp:setting>
+<mtapp:setting
+  id="category_eyecatch"
+  label="<__trans phrase="Category Eye Catch Image">"
+  hint="<__trans phrase="Hint">"
+  >
+    <input type="radio" name="category_eyecatch" id="category_eyecatch"<mt:if name="category_eyecatch" eq="none"> checked="checked"</mt:if> value="none" />
+    <label for="category_eyecatch"><__trans phrase="None"></label><br/>
+    <input type="radio" name="category_eyecatch" id="category_eyecatch"<mt:if name="category_eyecatch" eq="eye-h"> checked="checked"</mt:if> value="eye-h" />
+    <label for="category_eyecatch"><__trans phrase="Header area"></label>&nbsp;
+    <input type="radio" name="category_eyecatch" id="category_eyecatch"<mt:if name="category_eyecatch" eq="eye-hb"> checked="checked"</mt:if> value="eye-hb" />
+    <label for="category_eyecatch"><__trans phrase="Header area (Banner type)"></label>&nbsp;
+    <input type="radio" name="category_eyecatch" id="category_eyecatch"<mt:if name="category_eyecatch" eq="eye-c"> checked="checked"</mt:if> value="eye-c" />
+    <label for="category_eyecatch"><__trans phrase="Contents area"></label>
+    <br />
+    <input type="radio" name="category_eyecatch" id="category_eyecatch"<mt:if name="category_eyecatch" eq="eye-m"> checked="checked"</mt:if> value="eye-m" />
+    <label for="category_eyecatch"><__trans phrase="Main area"></label>&nbsp;
+    <br/>
+</mtapp:setting>
+<mtapp:setting
+  id="monthly_eyecatch"
+  label="<__trans phrase="Monthly Eye Catch Image">"
+  hint="<__trans phrase="Hint">"
+  >
+    <input type="radio" name="monthly_eyecatch" id="monthly_eyecatch"<mt:if name="monthly_eyecatch" eq="none"> checked="checked"</mt:if> value="none" />
+    <label for="monthly_eyecatch"><__trans phrase="None"></label><br/>
+    <input type="radio" name="monthly_eyecatch" id="monthly_eyecatch"<mt:if name="monthly_eyecatch" eq="eye-h"> checked="checked"</mt:if> value="eye-h" />
+    <label for="monthly_eyecatch"><__trans phrase="Header area"></label>&nbsp;
+    <input type="radio" name="monthly_eyecatch" id="monthly_eyecatch"<mt:if name="monthly_eyecatch" eq="eye-hb"> checked="checked"</mt:if> value="eye-hb" />
+    <label for="monthly_eyecatch"><__trans phrase="Header area (Banner type)"></label>&nbsp;
+    <input type="radio" name="monthly_eyecatch" id="monthly_eyecatch"<mt:if name="monthly_eyecatch" eq="eye-c"> checked="checked"</mt:if> value="eye-c" />
+    <label for="monthly_eyecatch"><__trans phrase="Contents area"></label>
+    <br />
+    <input type="radio" name="monthly_eyecatch" id="monthly_eyecatch"<mt:if name="monthly_eyecatch" eq="eye-m"> checked="checked"</mt:if> value="eye-m" />
+    <label for="monthly_eyecatch"><__trans phrase="Main area"></label>&nbsp;
+    <br/>
+</mtapp:setting>
+<mtapp:setting
+  id="archive_eyecatch"
+  label="<__trans phrase="Archive Eye Catch Image">"
+  hint="<__trans phrase="Hint">"
+  >
+    <input type="radio" name="archive_eyecatch" id="archive_eyecatch"<mt:if name="archive_eyecatch" eq="none"> checked="checked"</mt:if> value="none" />
+    <label for="archive_eyecatch"><__trans phrase="None"></label><br/>
+    <input type="radio" name="archive_eyecatch" id="archive_eyecatch"<mt:if name="archive_eyecatch" eq="eye-h"> checked="checked"</mt:if> value="eye-h" />
+    <label for="archive_eyecatch"><__trans phrase="Header area"></label>&nbsp;
+    <input type="radio" name="archive_eyecatch" id="archive_eyecatch"<mt:if name="archive_eyecatch" eq="eye-hb"> checked="checked"</mt:if> value="eye-hb" />
+    <label for="archive_eyecatch"><__trans phrase="Header area (Banner type)"></label>&nbsp;
+    <input type="radio" name="archive_eyecatch" id="archive_eyecatch"<mt:if name="archive_eyecatch" eq="eye-c"> checked="checked"</mt:if> value="eye-c" />
+    <label for="archive_eyecatch"><__trans phrase="Contents area"></label>
+    <br />
+    <input type="radio" name="archive_eyecatch" id="archive_eyecatch"<mt:if name="archive_eyecatch" eq="eye-m"> checked="checked"</mt:if> value="eye-m" />
+    <label for="archive_eyecatch"><__trans phrase="Main area"></label>&nbsp;
     <br/>
 </mtapp:setting>
 <mtapp:setting

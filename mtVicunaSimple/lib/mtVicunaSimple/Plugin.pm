@@ -10,11 +10,22 @@ sub tag_version {
     return $theme_version;
 }
 
+sub _if_vicuna {
+    my $app = MT->instance;
+    my $blog = $app->blog;
+    my $themeid = $blog->theme_id;
+    if ($themeid eq 'mtVicunaSimple') {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
 sub tag_index_style {
     my ( $ctx, $args ) = @_;
     my $plugin = MT->component("mtVicunaSimple");
     my $scope = "blog:".$ctx->stash('blog_id');
-    my $style = $plugin->get_config_value('index_style',$scope) || 'default';
+    my $style = $plugin->get_config_value('index_style',$scope) || 'double';
     return $style;
 }
 
@@ -22,7 +33,7 @@ sub tag_entry_style {
     my ( $ctx, $args ) = @_;
     my $plugin = MT->component("mtVicunaSimple");
     my $scope = "blog:".$ctx->stash('blog_id');
-    my $style = $plugin->get_config_value('entry_style',$scope) || 'default';
+    my $style = $plugin->get_config_value('entry_style',$scope) || 'single';
     return $style;
 }
 
@@ -30,7 +41,7 @@ sub tag_monthly_style {
     my ( $ctx, $args ) = @_;
     my $plugin = MT->component("mtVicunaSimple");
     my $scope = "blog:".$ctx->stash('blog_id');
-    my $style = $plugin->get_config_value('monthly_style',$scope) || 'default';
+    my $style = $plugin->get_config_value('monthly_style',$scope) || 'double';
     return $style;
 }
 
@@ -38,7 +49,7 @@ sub tag_category_style {
     my ( $ctx, $args ) = @_;
     my $plugin = MT->component("mtVicunaSimple");
     my $scope = "blog:".$ctx->stash('blog_id');
-    my $style = $plugin->get_config_value('category_style',$scope) || 'default';
+    my $style = $plugin->get_config_value('category_style',$scope) || 'double';
     return $style;
 }
 
@@ -46,15 +57,55 @@ sub tag_archive_style {
     my ( $ctx, $args ) = @_;
     my $plugin = MT->component("mtVicunaSimple");
     my $scope = "blog:".$ctx->stash('blog_id');
-    my $style = $plugin->get_config_value('archive_style',$scope) || 'default';
+    my $style = $plugin->get_config_value('archive_style',$scope) || 'single';
     return $style;
 }
 
-sub tag_eyecatch {
+#sub tag_eyecatch {
+#    my ( $ctx, $args ) = @_;
+#    my $plugin = MT->component("mtVicunaSimple");
+#    my $scope = "blog:".$ctx->stash('blog_id');
+#    my $style = $plugin->get_config_value('eyecatch_style',$scope) || 'eye-h';
+#    return $style;
+#}
+
+sub tag_index_eyecatch {
     my ( $ctx, $args ) = @_;
     my $plugin = MT->component("mtVicunaSimple");
     my $scope = "blog:".$ctx->stash('blog_id');
-    my $style = $plugin->get_config_value('eyecatch_style',$scope) || 'eye-h';
+    my $style = $plugin->get_config_value('index_eyecatch',$scope) || 'eye-h';
+    return $style;
+}
+
+sub tag_entry_eyecatch {
+    my ( $ctx, $args ) = @_;
+    my $plugin = MT->component("mtVicunaSimple");
+    my $scope = "blog:".$ctx->stash('blog_id');
+    my $style = $plugin->get_config_value('entry_eyecatch',$scope) || 'eye-h';
+    return $style;
+}
+
+sub tag_category_eyecatch {
+    my ( $ctx, $args ) = @_;
+    my $plugin = MT->component("mtVicunaSimple");
+    my $scope = "blog:".$ctx->stash('blog_id');
+    my $style = $plugin->get_config_value('category_eyecatch',$scope) || 'eye-h';
+    return $style;
+}
+
+sub tag_monthly_eyecatch {
+    my ( $ctx, $args ) = @_;
+    my $plugin = MT->component("mtVicunaSimple");
+    my $scope = "blog:".$ctx->stash('blog_id');
+    my $style = $plugin->get_config_value('monthly_eyecatch',$scope) || 'eye-h';
+    return $style;
+}
+
+sub tag_archive_eyecatch {
+    my ( $ctx, $args ) = @_;
+    my $plugin = MT->component("mtVicunaSimple");
+    my $scope = "blog:".$ctx->stash('blog_id');
+    my $style = $plugin->get_config_value('archive_eyecatch',$scope) || 'eye-h';
     return $style;
 }
 
@@ -138,6 +189,12 @@ sub modifier_adjust_hn {
     return $text;
 }
 
+sub _increment {
+    my ($htag,$leveln,$tail) = @_;
+    $leveln += 1;
+    return $htag.$leveln.$tail;
+}
+
 sub _asset_options_image {
     my ( $cb, $app, $param, $tmpl ) = @_;
     my $blog_id = $app->param('blog_id');
@@ -194,8 +251,12 @@ sub _edit_themeparams {
     my $monthly_style  = $plugin->get_config_value('monthly_style',$scope);
     my $category_style = $plugin->get_config_value('category_style',$scope);
     my $archive_style  = $plugin->get_config_value('archive_style',$scope);
-    my $eyecatch_style = $plugin->get_config_value('eyecatch_style',$scope);
-    my $custom_set     = $plugin->get_config_value('custom_set',$scope);
+    my $index_eyecatch    = $plugin->get_config_value('index_eyecatch',$scope);
+    my $entry_eyecatch    = $plugin->get_config_value('entry_eyecatch',$scope);
+    my $category_eyecatch = $plugin->get_config_value('category_eyecatch',$scope);
+    my $monthly_eyecatch  = $plugin->get_config_value('monthly_eyecatch',$scope);
+    my $archive_eyecatch  = $plugin->get_config_value('archive_eyecatch',$scope);
+#    my $custom_set        = $plugin->get_config_value('custom_set',$scope);
     my $fixed_width    = $plugin->get_config_value('fixed_width',$scope);
     my $cloud_style    = $plugin->get_config_value('cloud_style',$scope);
     my $navi_on_top    = $plugin->get_config_value('navi_on_top',$scope);
@@ -207,30 +268,17 @@ sub _edit_themeparams {
         monthly_style  => $monthly_style,
         category_style => $category_style,
         archive_style  => $archive_style,
-        eyecatch_style => $eyecatch_style,
-        custom_set     => $custom_set,
+        index_eyecatch    => $index_eyecatch,
+        entry_eyecatch    => $entry_eyecatch,
+        category_eyecatch => $category_eyecatch,
+        monthly_eyecatch  => $monthly_eyecatch,
+        archive_eyecatch  => $archive_eyecatch,
+#        custom_set        => $custom_set,
         fixed_width    => $fixed_width,
         cloud_style    => $cloud_style,
         navi_on_top    => $navi_on_top,
         hide_navi      => $hide_navi,
         left_align     => $left_align } );
-}
-
-sub _if_vicuna {
-    my $app = MT->instance;
-    my $blog = $app->blog;
-    my $themeid = $blog->theme_id;
-    if ($themeid eq 'mtVicunaSimple') {
-        return 1;
-    } else {
-        return 0;
-    }
-}
-
-sub _increment {
-    my ($htag,$leveln,$tail) = @_;
-    $leveln += 1;
-    return $htag.$leveln.$tail;
 }
 
 sub doLog {

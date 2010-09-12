@@ -6,7 +6,10 @@
 </mt:setvarblock>
 <mt:include name="cms/include/header.tmpl">
 
-<p class="view"><a class="view" onclick="showmenu();" title="Show/Hide Menu">Show / Hide SideMenu</a></p>
+<p class="view">
+	<a class="view" onclick="showmenu();" title="Show/Hide Menu">Show / Hide SideMenu</a>
+	<span class="notation">Global Settings</span>
+</p>
 
 <style type="text/css">
 #content-header {
@@ -21,7 +24,15 @@ width: 100%;
 div.class div {
 	width:12em;
 	float: left;
-	margin-left:1em;
+	margin: 0.2em 0.5em;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;	
+}
+div.class div.width,
+div.class div.others,
+div.class div.cloud {
+	background-color: #eef;
 }
 div.debug-tool,
 div.pages {
@@ -129,6 +140,15 @@ p.view a {
 p.view a:hover {
 	background-color: #9F0;
 }
+p.view span.notation {
+	color: #222;
+	background-color: #eef;
+	padding: 0.1em 0.5em;
+	float: right;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
 .actions-bar {
 	margin: 0.5em 0 1em 0;
 	float: right;
@@ -141,29 +161,49 @@ p.view a:hover {
 
 	$("#menu").css("display","none");
 
-	var layoutClass ="single double double-l multi multi2 multi2-l set1 set2 set3 set4 default";
-	var eyeCatchClass ="eye-h eye-hb eye-m eye-c eye-u set1 set2 set3 set4 e-clear";	
-	var widthClass ="f800 f850 f900 f950 f1000 w-clear";
+	var layoutClass ="single double double-l multi multi2 multi2-l";
+	var eyeCatchClass ="eye-h eye-hb eye-m eye-c eye-u";
+	var widthClass ="f800 f850 f900 f950 f1000 none";
 	var otherClass ="al gt gh";
+	var loadedPage ="index";
 
 // Layout
 
 	function setLayout(type) {
-		$('#iframe').contents().find('body').removeClass(layoutClass).addClass(type);
 		$("div.layout a").removeClass("on");
+		if (type == 'default'){
+			if (loadedPage == 'individual') {
+				$('#iframe').contents().find('body').removeClass(layoutClass).addClass('single');
+				$("div.layout a.single").addClass("on");
+				$("#entry_style").val('single');
+			} else if (loadedPage == 'archive') {
+				$('#iframe').contents().find('body').removeClass(layoutClass).addClass('single');
+				$("div.layout a.single").addClass("on");
+				$("#archive_style").val('single');
+			} else {
+				$('#iframe').contents().find('body').removeClass(layoutClass).addClass('double');
+				$("div.layout a.double").addClass("on");
+				$("#"+loadedPage+"_style").val('double');
+			}
+		} else {
+			$('#iframe').contents().find('body').removeClass(layoutClass).addClass(type);
 		$("div.layout a."+type).addClass("on");
+			$("#"+loadedPage+"_style").val(type);
+		}
 		$("div.set a").removeClass("on");
-		$("#index_style").val(type);
 	};
 
 // Eye Catch
 
 	function setEye(type) {
-		$('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(type);
+		$('#iframe').contents().find('body').removeClass(eyeCatchClass);
+		if (type != 'e-clear') {
+			$('#iframe').contents().find('body').addClass(type);
+		}
 		$("div.eye-catch a").removeClass("on");
 		$("div.eye-catch a."+type).addClass("on");
 		$("div.set a").removeClass("on");
-		$("#eyecatch_style").val(type);
+		$("#"+loadedPage+"_eyecatch").val(type);
 	};
 
 // Set
@@ -176,16 +216,16 @@ p.view a:hover {
 			$("div.layout a.multi").addClass("on");
 			$("div.eye-catch a").removeClass("on");
 			$("div.eye-catch a.eye-c").addClass("on");
-			$("#index_style").val('multi');
-			$("#eyecatch_style").val('eye-c');
+			$("#"+loadedPage+"_style").val('multi');
+			$("#"+loadedPage+"_eyecatch").val('eye-c');
 		} else if (type == 'set2') {
 			$('#iframe').contents().find('body').addClass('multi2 eye-c');
 			$("div.layout a").removeClass("on");
 			$("div.layout a.multi2").addClass("on");
 			$("div.eye-catch a").removeClass("on");
 			$("div.eye-catch a.eye-c").addClass("on");
-			$("#index_style").val('multi2');
-			$("#eyecatch_style").val('eye-c');
+			$("#"+loadedPage+"_style").val('multi2');
+			$("#"+loadedPage+"_eyecatch").val('eye-c');
 		} else if (type == 'set3') {
 			$('#iframe').contents().find('body').addClass('double eye-u eye-h');
 			$("div.layout a").removeClass("on");
@@ -193,8 +233,8 @@ p.view a:hover {
 			$("div.eye-catch a").removeClass("on");
 			$("div.eye-catch a.eye-u").addClass("on");
 			$("div.eye-catch a.eye-h").addClass("on");
-			$("#index_style").val('double');
-			$("#eyecatch_style").val('eye-u eye-h');
+			$("#"+loadedPage+"_style").val('double');
+			$("#"+loadedPage+"_eyecatch").val('eye-u eye-h');
 		} else if (type == 'set4') {
 			$('#iframe').contents().find('body').addClass('double eye-u eye-hb');
 			$("div.layout a").removeClass("on");
@@ -202,8 +242,8 @@ p.view a:hover {
 			$("div.eye-catch a").removeClass("on");
 			$("div.eye-catch a.eye-u").addClass("on");
 			$("div.eye-catch a.eye-hb").addClass("on");
-			$("#index_style").val('double');
-			$("#eyecatch_style").val('eye-u eye-hb');
+			$("#"+loadedPage+"_style").val('double');
+			$("#"+loadedPage+"_eyecatch").val('eye-u eye-hb');
 		}
 		$("div.set a").removeClass("on");
 		$("div.set a."+type).addClass("on");
@@ -212,10 +252,15 @@ p.view a:hover {
 // Width
 
 	function setWidth(type) {
-		$('#iframe').contents().find('body').removeClass(widthClass).addClass(type);
+		$('#iframe').contents().find('body').removeClass(widthClass);
 		$("div.width a").removeClass("on");
+		if (type != 'w-clear') {
+			$('#iframe').contents().find('body').addClass(type);
 		$("div.width a."+type).addClass("on");
 		$("#fixed_width").val(type);
+		} else {
+			$("#fixed_width").val('none');
+		}
 	};
 
 // Others
@@ -258,8 +303,31 @@ p.view a:hover {
 
 	function loadPage(page) {
 		$('#iframe').attr('src' ,'<mt:var name="static_uri">support/theme_static/mtVicunaSimple/preview/'+page+'.html');
+		loadedPage = page;
 		$("div.pages a").removeClass("on");
 		$("div.pages a."+page).addClass("on");
+		if (page == "index") {
+			var layout = '<mt:var name="index_style">';
+			var eyecatch = '<mt:var name="index_eyecatch">';
+		} else if (page == "individual") {
+			var layout = '<mt:var name="entry_style">';
+			var eyecatch = '<mt:var name="entry_eyecatch">';
+		} else if (page == "category") {
+			var layout = '<mt:var name="category_style">';
+			var eyecatch = '<mt:var name="category_eyecatch">';
+		} else if (page == "monthly") {
+			var layout = '<mt:var name="monthly_style">';
+			var eyecatch = '<mt:var name="monthly_eyecatch">';
+		} else if (page == "archive") {
+			var layout = '<mt:var name="archive_style">';
+			var eyecatch = '<mt:var name="archive_eyecatch">';
+		}
+		$('#iframe').contents().find('body').removeClass(layoutClass).addClass(layout);
+		$('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(eyecatch);
+		$("div.layout a").removeClass("on");
+		$("div.layout a."+layout).addClass("on");
+		$("div.eye-catch a").removeClass("on");
+		$("div.eye-catch a."+eyecatch).addClass("on");
 	};
 
 // Menu On/Off
@@ -277,24 +345,24 @@ p.view a:hover {
    <div class="layout">
     <h3>Layout</h3>
     <ul>
-     <li><a class="single<mt:if name="index_style" eq="single"> on</mt:if>" onclick="setLayout('single');">single</a></li>
-     <li><a class="double<mt:if name="index_style" eq="double"> on</mt:if>" onclick="setLayout('double');">double</a></li>
-     <li><a class="double-l<mt:if name="index_style" eq="double-l"> on</mt:if>" onclick="setLayout('double-l');">double-l</a></li>
-     <li><a class="multi<mt:if name="index_style" eq="multi"> on</mt:if>" onclick="setLayout('multi');">multi</a></li>
-     <li><a class="multi2<mt:if name="index_style" eq="multi2"> on</mt:if>" onclick="setLayout('multi2');">multi2</a></li>
-     <li><a class="multi2-l<mt:if name="index_style" eq="multi2-l"> on</mt:if>" onclick="setLayout('multi2-l');">multi2-l</a></li>
-     <li><a class="default<mt:if name="index_style" eq="default"> on</mt:if>" onclick="setLayout('default');">default</a></li>
+     <li><a class="single" onclick="setLayout('single');">single</a></li>
+     <li><a class="double" onclick="setLayout('double');">double</a></li>
+     <li><a class="double-l" onclick="setLayout('double-l');">double-l</a></li>
+     <li><a class="multi" onclick="setLayout('multi');">multi</a></li>
+     <li><a class="multi2" onclick="setLayout('multi2');">multi2</a></li>
+     <li><a class="multi2-l" onclick="setLayout('multi2-l');">multi2-l</a></li>
+     <li><a class="default" onclick="setLayout('default');">default</a></li>
     </ul>
    </div>
    <div class="eye-catch">
     <h3>Eye Catch</h3>
     <ul>
-     <li><a class="eye-h<mt:if name="eyecatch_style" like="eye-h"><mt:unless name="eyecatch_style" like="eye-hb"> on</mt:unless></mt:if>" onclick="setEye('eye-h');">eye-h</a></li>
-     <li><a class="eye-hb<mt:if name="eyecatch_style" like="eye-hb"> on</mt:if>" onclick="setEye('eye-hb');">eye-hb</a></li>
-     <li><a class="eye-m<mt:if name="eyecatch_style" like="eye-m"> on</mt:if>" onclick="setEye('eye-m');">eye-m</a></li>
-     <li><a class="eye-c<mt:if name="eyecatch_style" like="eye-c"> on</mt:if>" onclick="setEye('eye-c');">eye-c</a></li>
-     <li><a class="eye-u<mt:if name="eyecatch_style" like="eye-u"> on</mt:if>" onclick="setEye('eye-u');">eye-u</a></li>
-     <li><a class="e-clear<mt:if name="eyecatch_style" eq="none"> on</mt:if>" onclick="setEye('e-clear');">none</a></li>
+     <li><a class="eye-h" onclick="setEye('eye-h');">eye-h</a></li>
+     <li><a class="eye-hb" onclick="setEye('eye-hb');">eye-hb</a></li>
+     <li><a class="eye-m" onclick="setEye('eye-m');">eye-m</a></li>
+     <li><a class="eye-c" onclick="setEye('eye-c');">eye-c</a></li>
+     <li><a class="eye-u" onclick="setEye('eye-u');">eye-u</a></li>
+     <li><a class="e-clear" onclick="setEye('e-clear');">none</a></li>
     </ul>
    </div>
    <div class="set">
@@ -373,9 +441,14 @@ p.view a:hover {
 
     <input type="hidden" name="index_style" id="index_style" value="<mt:var name="index_style">" />
     <input type="hidden" name="entry_style" id="entry_style" value="<mt:var name="entry_style">" />
-    <input type="hidden" name="monthly_style" id="monthly_style" value="<mt:var name="monthly_style">" />
     <input type="hidden" name="category_style" id="category_style" value="<mt:var name="category_style">" />
-    <input type="hidden" name="eyecatch_style" id="eyecatch_style" value="<mt:var name="eyecatch_style">" />
+    <input type="hidden" name="monthly_style" id="monthly_style" value="<mt:var name="monthly_style">" />
+    <input type="hidden" name="archive_style" id="archive_style" value="<mt:var name="archive_style">" />
+    <input type="hidden" name="index_eyecatch" id="index_eyecatch" value="<mt:var name="index_eyecatch">" />
+    <input type="hidden" name="entry_eyecatch" id="entry_eyecatch" value="<mt:var name="entry_eyecatch">" />
+    <input type="hidden" name="category_eyecatch" id="category_eyecatch" value="<mt:var name="category_eyecatch">" />
+    <input type="hidden" name="monthly_eyecatch" id="monthly_eyecatch" value="<mt:var name="monthly_eyecatch">" />
+    <input type="hidden" name="archive_eyecatch" id="index_eyecatch" value="<mt:var name="archive_eyecatch">" />
     <input type="hidden" name="fixed_width" id="fixed_width" value="<mt:var name="fixed_width">" />
     <input type="hidden" name="navi_on_top" id="navi_on_top" value="<mt:var name="navi_on_top">" />
     <input type="hidden" name="hide_navi" id="hide_navi" value="<mt:var name="hide_navi">" />
@@ -405,8 +478,12 @@ if ($.browser.msie) {
 <mt:unless name="index_style" like="double|default">
 			$('#iframe').contents().find('body').removeClass('double').addClass('<mt:var name="index_style">');
 </mt:unless>
-			$('#iframe').contents().find('body').addClass('<mt:var name="eyecatch_style">');
+<mt:if name="index_eyecatch" ne="none">
+			$('#iframe').contents().find('body').addClass('<mt:var name="index_eyecatch">');
+</mt:if>
+<mt:if name="fixed_width" ne="none">
 			$('#iframe').contents().find('body').addClass('<mt:var name="fixed_width">');
+</mt:if>
 <mt:if name="hide_navi">
 			$('#iframe').contents().find('body').addClass('gh');
 <mt:else>
@@ -421,6 +498,8 @@ if ($.browser.msie) {
 <mt:if name="cloud_style" ne="none">
 			$('#iframe').contents().find('head').append('<link rel="stylesheet" type="text/css" id="tagstyle" href="<mt:var name="blog_url">themes/vicuna-tagcloud/tagCloud<mt:var name="cloud_style">.css" />');
 </mt:if>
+			$("div.layout a.<mt:var name="index_style">").addClass("on");
+			$("div.eye-catch a.<mt:var name="index_eyecatch">").addClass("on");
 		}
 	}
 } else {
@@ -429,7 +508,7 @@ if ($.browser.msie) {
 <mt:unless name="index_style" like="double|default">
 		$('#iframe').contents().find('body').removeClass('double').addClass('<mt:var name="index_style">');
 </mt:unless>
-		$('#iframe').contents().find('body').addClass('<mt:var name="eyecatch_style">');
+		$('#iframe').contents().find('body').addClass('<mt:var name="index_eyecatch">');
 		$('#iframe').contents().find('body').addClass('<mt:var name="fixed_width">');
 <mt:if name="hide_navi">
 		$('#iframe').contents().find('body').addClass('gh');
@@ -445,6 +524,8 @@ if ($.browser.msie) {
 <mt:if name="cloud_style" ne="none">
 		$('#iframe').contents().find('head').append('<link rel="stylesheet" type="text/css" id="tagstyle" href="<mt:var name="blog_url">themes/vicuna-tagcloud/tagCloud<mt:var name="cloud_style">.css" />');
 </mt:if>
+		$("div.layout a.<mt:var name="index_style">").addClass("on");
+		$("div.eye-catch a.<mt:var name="index_eyecatch">").addClass("on");
 	}
 }
 //]]>

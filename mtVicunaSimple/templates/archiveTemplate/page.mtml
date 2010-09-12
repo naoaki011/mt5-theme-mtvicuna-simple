@@ -8,6 +8,13 @@
   left_align=<MTIfVicunaLeftAlign>1<MTElse>0</MTIfVicunaLeftAlign>
   fixid_width=<$MTVicunaFixedWidth$>
   jquery=1
+<MTIfWebsite>
+  website_id=<$MTWebsiteID$>
+<MTElse>
+  website_id=<MTBlogParentWebsite><$MTWebsiteID$></MTBlogParentWebsite>
+</MTIfWebsite>
+  blog_id=<$MTBlogID$>
+  current_page=<$MTPageID$>
 </MTSetVars>
 <MTIf name="page_layout" like="bazooka|future|warship"><MTSetVar name="legacy_style" value="1" /><MTSetVar name="design_layout" value="1" /></MTIf>
 <MTIf name="entry_style" eq="default">

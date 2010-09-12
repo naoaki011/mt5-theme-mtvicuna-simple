@@ -125,7 +125,7 @@ themes:
                   category-monthly: 
                     archive_type: Category-Monthly
                     file_template: "%-c/%y/%m/%i"
-              monthly_entry_listing:
+              datebased_entry_listing:
                 label: Monthly Entry Listing
                 filename: archiveTemplate/monthly_entry_listing.mtml
                 mappings:
@@ -331,12 +331,24 @@ settings:
   archive_style:
     default: single
     scope: blog
-  eyecatch_style:
+  index_eyecatch:
     default: eye-h
     scope: blog
-  custom_set:
-    default: ''
+  entry_eyecatch:
+    default: eye-h
     scope: blog
+  category_eyecatch:
+    default: eye-h
+    scope: blog
+  monthly_eyecatch:
+    default: eye-h
+    scope: blog
+  archive_eyecatch:
+    default: eye-h
+    scope: blog
+#  custom_set:
+#    default: ''
+#    scope: blog
   navi_on_top:
     default: 0
     scope: blog
@@ -365,10 +377,14 @@ tags:
   function:
     VicunaIndexStyle:    $mtVicunaSimple::mtVicunaSimple::Plugin::tag_index_style
     VicunaEntryStyle:    $mtVicunaSimple::mtVicunaSimple::Plugin::tag_entry_style
-    VicunaMonthlyStyle:  $mtVicunaSimple::mtVicunaSimple::Plugin::tag_monthly_style
     VicunaCategoryStyle: $mtVicunaSimple::mtVicunaSimple::Plugin::tag_category_style
+    VicunaMonthlyStyle:     $mtVicunaSimple::mtVicunaSimple::Plugin::tag_monthly_style
     VicunaArchiveStyle:  $mtVicunaSimple::mtVicunaSimple::Plugin::tag_archive_style
-    VicunaEyecatch:      $mtVicunaSimple::mtVicunaSimple::Plugin::tag_eyecatch
+    VicunaIndexEyecatch:    $mtVicunaSimple::mtVicunaSimple::Plugin::tag_eyecatch
+    VicunaEntryEyecatch:    $mtVicunaSimple::mtVicunaSimple::Plugin::tag_eyecatch
+    VicunaCategoryEyecatch: $mtVicunaSimple::mtVicunaSimple::Plugin::tag_eyecatch
+    VicunaMonthlyEyecatch:  $mtVicunaSimple::mtVicunaSimple::Plugin::tag_eyecatch
+    VicunaArchiveEyecatch:  $mtVicunaSimple::mtVicunaSimple::Plugin::tag_eyecatch
     VicunaFixedWidth:    $mtVicunaSimple::mtVicunaSimple::Plugin::tag_fixed_width
     VicunaTagcloudStyle: $mtVicunaSimple::mtVicunaSimple::Plugin::tag_cloud_style
     VicunaLightboxScript: $mtVicunaSimple::mtVicunaSimple::Plugin::tag_lightbox_script
@@ -403,7 +419,6 @@ applications:
                 mode: edit_themeparams
                 view:
                     - blog
-                    - website
                 condition: $mtVicunaSimple::mtVicunaSimple::Plugin::_if_vicuna
         methods:
             edit_themeparams: $mtVicunaSimple::mtVicunaSimple::Plugin::_edit_themeparams

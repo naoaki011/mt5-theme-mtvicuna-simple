@@ -23,9 +23,11 @@
 		<priority>1.0</priority>
 	</url>
 </MTPages></MTIfArchiveTypeEnabled>
+<MTIf tag="Link" template="archive_index">
 	<url>
 		<loc><$MTLink template="archive_index" encode_xml="1"$></loc>
 		<lastmod><$MTDate utc="1" format="%Y-%m-%dT%H:%M:%S"$><$MTBlogTimezone$></lastmod>
 		<priority>0.7</priority>
 	</url>
+</MTIf>
 </urlset>
