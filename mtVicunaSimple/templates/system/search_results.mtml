@@ -1,13 +1,16 @@
 <MTSetVars>
   tempName=system_search
-	<MTIfStraightSearch>
+<MTIfStraightSearch>
   page_title=<__trans phrase="Results matching &ldquo;[_1]&rdquo;" params="<$MTSearchString$>">
-	<MTElse>
+<MTElse>
   page_title=<__trans phrase="Search Results">
-	</MTIfStraightSearch>
-	<MTIfTagSearch>
+</MTIfStraightSearch>
+<MTIfTagSearch>
   page_title=<__trans phrase="Results tagged &ldquo;[_1]&rdquo;" params="<$MTSearchString$>">
-	</MTIfTagSearch>
+</MTIfTagSearch>
+<MTNoSearch>
+  page_title=<__trans phrase="Search Results">
+</MTNoSearch>
   search_type=<MTIfStraightSearch>search<MTElse>tag</MTIfStraightSearch>
   style=<$MTVicunaEntryStyle$>
   eyecatch=<MTIf tag="VicunaEntryEyecatch" ne="none"><$MTVicunaEntryEyecatch$></MTIf>
