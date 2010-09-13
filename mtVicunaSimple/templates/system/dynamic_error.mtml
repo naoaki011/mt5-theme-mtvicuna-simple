@@ -8,24 +8,21 @@
   page_layout=double
 </MTIf>
   eyecatch=eye-h
-  navi_ontop=0
-  left_align=0
   fixid_width=
-  jquery=0
 </MTSetVars>
 <?xml version="1.0" encoding="<$MTPublishCharset$>" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="<$MTDefaultLanguage$>" xml:lang="<$MTDefaultLanguage$>">
 <head profile="http://purl.org/net/ns/metaprof">
     <$MTInclude module="<__trans phrase="HTML Head">"$>
-    <title><$MTGetVar name="page_title"$></title>
+    <title><$MTGetVar name="page_title" escape="html"$></title>
 </head>
-<body class="individual system error <MTVar name="page_layout">">
+<body class="individual system error <$MTVar name="page_layout" _default="double"$><MTIf name="eyecatch"> <$MTVar name="eyecatch"$></MTIf><MTIf name="fixid_width"> <$MTVar name="fixid_width"$></MTIf>">
     <$MTInclude module="<__trans phrase="Banner Header">"$>
     <div id="content">
         <div id="main">
             <p class="topicPath"><a href="<$MTBlogURL$>" rel="nofollow">Home</a> &gt; <span class="current">Error</span></p>
-            <h1><$MTGetVar name="page_title"$></h1>
+            <h1><$MTGetVar name="page_title" escape="html"$></h1>
             <div class="entry">
                 <ul class="info">
                     <li>Error</li>

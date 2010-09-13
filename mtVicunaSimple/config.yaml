@@ -94,6 +94,10 @@ themes:
                 label: JavaScript
                 outfile: js/mt.js
                 rebuild_me: 1
+#              mt_jquery_script: 
+#                label: mt.jQueryScript
+#                outfile: js/mt.jQuery.js
+#                rebuild_me: 1
               user_jquery:
                 label: User JQuery
                 outfile: js/user_jquery.js
@@ -127,7 +131,7 @@ themes:
                     file_template: "%-c/%y/%m/%i"
               datebased_entry_listing:
                 label: Monthly Entry Listing
-                filename: archiveTemplate/monthly_entry_listing.mtml
+                filename: archiveTemplate/datebase_entry_listing.mtml
                 mappings:
                   monthly:
                     archive_type: Monthly
@@ -165,6 +169,9 @@ themes:
               comments:
                 label: Comments
                 filename: templateModule/comments.mtml
+#              comments_ajax:
+#                label: Comments
+#                filename: templateModule/comments_ajax.mtml
               comment_detail:
                 label: Comment Detail
                 filename: templateModule/comment_detail.mtml
@@ -380,11 +387,11 @@ tags:
     VicunaCategoryStyle: $mtVicunaSimple::mtVicunaSimple::Plugin::tag_category_style
     VicunaMonthlyStyle:     $mtVicunaSimple::mtVicunaSimple::Plugin::tag_monthly_style
     VicunaArchiveStyle:  $mtVicunaSimple::mtVicunaSimple::Plugin::tag_archive_style
-    VicunaIndexEyecatch:    $mtVicunaSimple::mtVicunaSimple::Plugin::tag_eyecatch
-    VicunaEntryEyecatch:    $mtVicunaSimple::mtVicunaSimple::Plugin::tag_eyecatch
-    VicunaCategoryEyecatch: $mtVicunaSimple::mtVicunaSimple::Plugin::tag_eyecatch
-    VicunaMonthlyEyecatch:  $mtVicunaSimple::mtVicunaSimple::Plugin::tag_eyecatch
-    VicunaArchiveEyecatch:  $mtVicunaSimple::mtVicunaSimple::Plugin::tag_eyecatch
+    VicunaIndexEyecatch:    $mtVicunaSimple::mtVicunaSimple::Plugin::tag_index_eyecatch
+    VicunaEntryEyecatch:    $mtVicunaSimple::mtVicunaSimple::Plugin::tag_entry_eyecatch
+    VicunaCategoryEyecatch: $mtVicunaSimple::mtVicunaSimple::Plugin::tag_category_eyecatch
+    VicunaMonthlyEyecatch:  $mtVicunaSimple::mtVicunaSimple::Plugin::tag_monthly_eyecatch
+    VicunaArchiveEyecatch:  $mtVicunaSimple::mtVicunaSimple::Plugin::tag_archive_eyecatch
     VicunaFixedWidth:    $mtVicunaSimple::mtVicunaSimple::Plugin::tag_fixed_width
     VicunaTagcloudStyle: $mtVicunaSimple::mtVicunaSimple::Plugin::tag_cloud_style
     VicunaLightboxScript: $mtVicunaSimple::mtVicunaSimple::Plugin::tag_lightbox_script

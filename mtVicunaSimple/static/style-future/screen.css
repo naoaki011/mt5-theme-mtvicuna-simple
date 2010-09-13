@@ -7,6 +7,7 @@ designer_url: http://3ping.org/
 developer: naoaki onozaki
 developer_url: http://code.zelazny.mydns.jp/trac/themes/
 layouts: future
+
 */
 
 @import url(core.css);
@@ -21,8 +22,7 @@ p.mtlogo {
 p.mtlogo img {
 	border:none;
 }
-dd.openID {
-}
+dd.openID { }
 dd.openID p {
 	background-color: #fff !important;
 	border:1px solid #ddd;
@@ -47,6 +47,10 @@ dd.openID p a:visited {
 
 dd.openID p a:hover {
 	color: #2091da;
+}
+
+.hidden {
+	display: none;
 }
 li#top-prev-comments,
 li#top-num-comments,

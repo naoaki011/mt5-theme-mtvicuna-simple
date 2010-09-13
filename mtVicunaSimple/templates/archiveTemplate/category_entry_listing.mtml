@@ -5,24 +5,27 @@
 		<MTArchivePrevious>  prev_archive=1</MTArchivePrevious>
 		<MTArchiveNext>  next_archive=1</MTArchiveNext>
 	</MTIf>
-  category_style=<$MTVicunaCategoryStyle$>
-  eyecatch=<$MTVicunaEyecatch$>
+  style=<$MTVicunaCategoryStyle$>
+  eyecatch=<MTIf tag="VicunaCategoryEyecatch" ne="none"><$MTVicunaCategoryEyecatch$></MTIf>
   navi_ontop=<MTIfVicunaNavionTop>1<MTElse>0</MTIfVicunaNavionTop>
   left_align=<MTIfVicunaLeftAlign>1<MTElse>0</MTIfVicunaLeftAlign>
   fixid_width=<$MTVicunaFixedWidth$>
-  jquery=1
-    website_id=<MTBlogParentWebsite><$MTWebsiteID$></MTBlogParentWebsite>
-    blog_id=<$MTBlogID$>
-    template_id=<$mt:BuildTemplateID$>
+  website_id=<MTBlogParentWebsite><$MTWebsiteID$></MTBlogParentWebsite>
+  blog_id=<$MTBlogID$>
+  template_id=<$mt:BuildTemplateID$>
 </MTSetVars>
-<MTIf name="page_layout" like="bazooka|future|warship"><MTSetVar name="legacy_style" value="1" /><MTSetVar name="design_layout" value="1" /></MTIf>
-<MTIf name="category_style" eq="default">
-	<MTUnless name="page_layout"><MTSetvar name="page_layout" value="double" /></MTUnless>
-	<MTIf name="page_layout" like="layout-wt|bazooka|future|warship"><MTSetvar name="page_layout" value="double" /></MTIf>
+<MTIf name="page_layout" like="bazooka|warship"><MTSetVar name="legacy_style" value="1" /></MTIf>
+<MTIf name="page_layout" like="bazooka|warship|future"><MTSetVar name="design_layout" value="1" /></MTIf>
+<MTIf name="page_layout" like="layout-wt">
+	<MTSetvar name="page_layout" value="double" />
 <MTElse>
-	<MTSetvarBlock name="page_layout"><$MTVar name="category_style"$></MTSetVarBlock>
-	<MTIf name="design_layout">
-		<MTIf name="category_style" like="double|multi"><MTSetvar name="page_layout" value="double" /><MTElse><MTSetvar name="page_layout" value="single" /></MTIf>
+	<MTSetvarBlock name="page_layout"><$MTVar name="style"$></MTSetVarBlock>
+</MTIf>
+<MTIf name="design_layout">
+	<MTIf name="style" like="double|multi">
+		<MTSetvar name="page_layout" value="double" />
+	<MTElse>
+		<MTSetvar name="page_layout" value="single" />
 	</MTIf>
 </MTIf>
 <MTIf name="legacy_style">
@@ -41,13 +44,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="<$MTDefaultLanguage$>" xml:lang="<$MTDefaultLanguage$>">
 <head profile="http://purl.org/net/ns/metaprof">
     <$MTInclude module="<__trans phrase="HTML Head">"$>
-<MTUnless name="prev_archive">
-    <link rel="prev" href="<$MTArchiveLink$>" title="<$MTArchiveTitle encode_html="1"$>" />
-</MTUnless>
-<MTUnless name="next_archive">
-    <link rel="next" href="<$MTArchiveLink$>" title="<$MTArchiveTitle encode_html="1"$>" />
-</MTUnless>
-<MTCategoryDescription remove_html="1" ltrim="1" setvar="category_description" />
+<MTIf name="prev_archive">
+    <link rel="prev" href="<$MTArchiveLink$>" title="<$MTArchiveTitle escape="html"$>" />
+</MTIf>
+<MTIf name="next_archive">
+    <link rel="next" href="<$MTArchiveLink$>" title="<$MTArchiveTitle escape="html"$>" />
+</MTIf>
+<MTCategoryDescription strip_linefeeds="1" remove_html="1" trim="1" setvar="category_description" />
 <MTIf name="category_description">
     <meta name="description" content="<$MTVar name="category_description"$>" />
 <MTElse>
@@ -62,24 +65,24 @@
 <MTIfPingsAccepted>
 <!--$MTEntryTrackbackData$-->
 </MTIfPingsAccepted>
-    <title><$MTGetVar name="page_title"$> - <MTBlogName encode_html="1"$></title>
+    <title><$MTGetVar name="page_title" escape="html"$> - <MTBlogName escape="html"$></title>
 </head>
-<body class="category <$MTVar name="page_layout"$><MTUnless name="legacy_style"><MTIf name="eyecatch"> <$MTVar name="eyecatch"$></MTIf><MTIf name="navi_ontop"> gt</MTIf><MTIf name="left_align"> al</MTIf><MTIf name="fixid_width"> <$MTVar name="fixid_width"$></MTIf><MTElse><MTIf name="eyecatch"> <$MTVar name="eyecatch"$></MTIf></MTUnless>">
+<body class="category <$MTVar name="page_layout"$><MTIf name="eyecatch"> <$MTVar name="eyecatch"$></MTIf><MTIf name="navi_ontop"> gt</MTIf><MTIf name="left_align"> al</MTIf><MTIf name="fixid_width"> <$MTVar name="fixid_width"$></MTIf>">
     <$MTInclude module="<__trans phrase="Banner Header">"$>
     <div id="content">
         <div id="main">
             <$MTInclude module="<__trans_section component="mtVicunaSimple"><__trans phrase="Topic Path"></__trans_section>"$>
 <MTIf name="datebased_archive">
             <$MTInclude module="<__trans_section component="mtVicunaSimple"><__trans phrase="Next Entry Link Simple"></__trans_section>"$>
-            <h1><$MTGetVar name="page_title"$></h1>
+            <h1><$MTGetVar name="page_title" escape="html"$></h1>
 <MTElse>
-            <h1><__trans phrase="Recently in <em>[_1]</em> Category" params="<$MTArchiveTitle$>"></h1>
+            <h1><__trans phrase="Recently in <em>[_1]</em> Category" params="<$MTArchiveTitle escape="html"$>"></h1>
 </MTIf>
 <MTCategoryCount setvar="limit" />
-<MTUnless name="datebased_archive">
+<MTIf name="datebased_archive">
 <MTIfArchiveTypeEnabled archive_type="Category-Monthly"><$MTVar name="limit" value="auto"$></MTIfArchiveTypeEnabled>
-</MTUnless>
-<MTEntries limit="$limit">
+</MTIf>
+<MTEntries limit="$limit" offset="0">
             <$MTInclude module="<__trans phrase="Entry Summary">"$>
 </MTEntries>
 <MTUnless name="datebased_archive">

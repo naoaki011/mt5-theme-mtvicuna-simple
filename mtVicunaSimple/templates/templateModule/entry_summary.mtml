@@ -1,25 +1,25 @@
             <div class="section entry hentry" id="entry<$MTEntryID pad="1"$>">
-                <h2 class="asset-name entry-title"><a href="<$mt:EntryPermalink$>" rel="bookmark"><$mt:EntryTitle$></a></h2>
+                <h2 class="asset-name entry-title"><a href="<$mt:EntryPermalink$>" rel="bookmark"><$mt:EntryTitle escape="html"$></a></h2>
                 <ul class="info">
 <MTIf tag="EntryAuthorDisplayName">
                     <li class="name byline">Posted by: <span class="vcard author"><$MTEntryAuthorDisplayName show_hcard="1"$></span></li>
 </MTIf>
                     <li class="date"><abbr class="published" title="<$MTEntryDate format_name="iso8601"$>"><$MTEntryDate format="%x %X"$></abbr></li>
 <MTIf tag="MTEntryCategory">
-                    <li class="category"><MTEntryCategories glue=" | "><a href="<$MTCategoryArchiveLink$>" title="<$MTCategoryLabel encode_html="1"$> Index"><$MTCategoryLabel$></a></MTEntryCategories></li>
+                    <li class="category"><MTEntryCategories glue=" | "><a href="<$MTCategoryArchiveLink$>" title="<$MTCategoryLabel escape="html"$> Index"><$MTCategoryLabel escape="html"$></a></MTEntryCategories></li>
 </MTIf>
 <MTEntryIfTagged>
-                    <li class="tags"><MTEntryTags glue=", "><a href="javascript:void(0)" onclick="location.href='<$MTTagSearchLink encode_js="1"$>';return false;" rel="tag" title="<$MTTagName encode_html="1"$> tag Search"><$MTTagName encode_html="1"$></a></MTEntryTags></li>
+                    <li class="tags"><MTEntryTags glue=", "><a href="javascript:void(0)" onclick="location.href='<$MTTagSearchLink encode_js="1"$>';return false;" rel="tag" title="<$MTTagName escape="html"$> tag Search"><$MTTagName escape="html"$></a></MTEntryTags></li>
 </MTEntryIfTagged>
                 </ul>
 <MTSetVarBlock name="entry_contents">
                 <div class="textBody">
-					<$MTEntryBody adjust_hn="1"$>
-	<MTIf tag="EntryMore" convert_breaks="0">
-		<MTIf tag="EntryBody">
+<$MTEntryBody adjust_hn="1"$>
+	<MTIf tag="EntryMore" strip_linefeeds="1" trim="1">
+		<MTIf tag="EntryBody" strip_linefeeds="1" trim="1">
 <p class="continue"><a href="<$MTEntryPermalink$>#extended" title="<__trans phrase="Extended"> - <$MTEntryTitle encode_html="1"$>" rel="nofollow">Continue reading</a></p>
 		<MTElse>
-					<$MTEntryMore adjust_hn="1"$>
+<$MTEntryMore adjust_hn="1"$>
 		</MTIf>
 	</MTIf>
                 </div>

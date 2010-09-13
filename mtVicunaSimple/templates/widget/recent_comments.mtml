@@ -1,14 +1,20 @@
-<MTIf tag="BlogCommentCount">
-	<MTComments lastn="10" sort_order="descend">
+<MTIfWebsite>
+	<MTSetVar name="include_modifier" value="children" />
+<MTElse>
+	<MTSetVar name="include_modifier" value="$blog_id" />
+</MTIfWebsite>
+<MTIf tag="BlogCommentCount" include_blogs="$include_modifier">
+	<MTComments lastn="10" sort_order="descend" include_blogs="$include_modifier">
 		<MTCommentsHeader>
-        <dt><__trans phrase="Recent Comments"></dt>
-        <dd class="recentComments">
-            <ul>
+                <dt><__trans phrase="Recent Comments"></dt>
+                <dd class="recentComments">
+                    <ul>
 		</MTCommentsHeader>
-                <li><__trans phrase="<em>[_1]:</em> [_2] <a href="[_3]" title="full comment on: [_4]">read more</a>" params="<$MTCommentAuthor$>%%<$MTCommentBody strip_linefeeds="1" ltrim="1" remove_html="1" words="20"$>%%<$MTCommentLink$>%%<MTCommentEntry><$MTEntryTitle$></MTCommentEntry>"></li>
+                        <li><__trans phrase="<em>[_1]:</em> [_2] <a href="[_3]" title="full comment on: [_4]">read more</a>" params="<$MTCommentAuthor$>%%<$MTCommentBody strip_linefeeds="1" trim="1" remove_html="1" words="20"$>%%<$MTCommentLink$>%%<MTCommentEntry><$MTEntryTitle escape="html"$></MTCommentEntry>"></li>
 		<MTCommentsFooter>
-            </ul>
-        </dd>
+                    </ul>
+                </dd>
 		</MTCommentsFooter>
 	</MTComments>
 </MTIf>
+                

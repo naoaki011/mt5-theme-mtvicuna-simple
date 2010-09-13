@@ -1,25 +1,28 @@
 <MTIfArchiveTypeEnabled archive_type="Monthly">
 <MTIf tag="BlogEntryCount">
-        <dt><__trans phrase="Archives"></dt>
-        <dd class="monthlyArchives">
+                <dt><__trans phrase="Archives"></dt>
+                <dd class="monthlyArchives">
 	<MTArchiveList archive_type="Yearly">
-            <ul>
-                <li><$MTArchiveDate format="%Y"$>
+                    <ul>
+                        <li><$MTArchiveDate format="%Y"$>
 		<MTArchiveList archive_type="Monthly">
 			<MTArchiveListHeader>
-                    <ul>
+                            <ul>
 			</MTArchiveListHeader>
-                        <li><a href="<$MTArchiveLink$>" title="<$MTArchiveCount$>Entries" rel="nofollow"><span class="archiveYear"><$MTArchiveDate format="%Y"$></span><span class="dateSeparator">-</span><span class="archiveMonth"><$MTArchiveDate format="%m"$></span></a></li>
+                                <li><a href="<$MTArchiveLink$>" title="<$MTArchiveCount singular="1 Entry" plural="# Entries" none="0 Entry"$>" rel="nofollow"><span class="archiveYear"><$MTArchiveDate format="%Y"$></span><span class="dateSeparator">-</span><span class="archiveMonth"><$MTArchiveDate format="%m"$></span></a></li>
 			<MTArchiveListFooter>
-                    </ul>
+                            </ul>
 			</MTArchiveListFooter>
 		</MTArchiveList>
-                </li>
+                        </li>
 		<MTArchiveListFooter>
-                <li><a href="<$MTLink template="<__trans phrase="Archive Index">"$>" title="<$MTBlogEntryCount$>Entries">All</a></li>
+			<MTIf tag="Link" template="archive_index">
+                        <li><a href="<$MTLink template="<__trans phrase="archive_index">"$>" title="<$MTBlogEntryCount singular="1 Entry" plural="# Entries" none="0 Entry"$>">All</a></li>
+			</MTIf>
 		</MTArchiveListFooter>
-            </ul>
+                    </ul>
 	</MTArchiveList>
-        </dd>
+                </dd>
 </MTIf>
 </MTIfArchiveTypeEnabled>
+                

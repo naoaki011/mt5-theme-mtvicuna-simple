@@ -1,0 +1,110 @@
+//
+// This file defines blog variables and phrases which are used by javascript functions.
+//
+var mt;
+mt = {
+    cookie: {
+        name: "<$mt:UserSessionCookieName$>",
+        domain: "<$mt:UserSessionCookieDomain$>",
+        path: "<$mt:UserSessionCookiePath$>",
+        timeout: <$mt:UserSessionCookieTimeout$>
+    },
+    links: {
+        signIn: '<$mt:SignInLink$>',
+        signOut: '<$mt:SignOutLink$>'
+    },
+    blog: {
+        id: <$mt:BlogID _default="0"$>,
+        url: '<$mt:BlogURL encode_url="1"$>',
+        staticWebPath: '<$mt:StaticWebPath$>',
+        adminScript: '<$mt:AdminScript$>',
+        signInLink: '<$mt:SignInLink$>',
+        signOutLink: '<$mt:SignOutLink$>',
+        comments: {
+            script: '<$mt:CGIPath$><$mt:CommentScript$>',
+            armor: '<$mt:BlogSitePath encode_sha1="1"$>',
+            accepted: <mt:IfCommentsAccepted>1<mt:Else>0</mt:IfCommentsAccepted>,
+            captchaFields: '<$mt:CaptchaFields$>'
+        },
+        community: {
+            script: '<$mt:CGIPath$><$mt:CommunityScript$>',
+            ifAnonymousRecommendAllowed: <mt:IfAnonymousRecommendAllowed>1<mt:Else>0</mt:IfAnonymousRecommendAllowed>
+        },
+        pings: {
+            accepted: <mt:IfPingsAccepted>1<mt:Else>0</mt:IfPingsAccepted>
+        },
+        registration: {
+            required: <mt:IfRegistrationRequired>1<mt:Else>0</mt:IfRegistrationRequired>,
+            allowed: <mt:IfRegistrationAllowed>1<mt:Else>0</mt:IfRegistrationAllowed>
+        }
+    }
+};
+
+function jqueryGreet() {
+    $('#comment-greeting').greet({
+        mode: 'mtpro',
+        editProfileText: 'プロフィール編集',
+        logoutText: 'サインアウト',
+        loginText: 'サインイン',
+        registerText: '登録する',
+        loggedInMessage: 'こんにちは %u さん (%p | %o)',
+        loggedOutMessage: '%i または %r'
+    });
+    if ($('#commentsForm')) {
+        $("#commentsForm").onauthchange(function(evt, user) {
+            var openDataDiv = $("#comments-open-data");
+            if (openDataDiv && user.is_authenticated) {
+                $("<p><img src='"+user.userpic+"' width='40' height='40' alt='" + user.name + "' />" + user.name + "さん、サインインありがとうございます。</p>").insertBefore(this);
+                $("#comment-author", openDataDiv).val(user.name);
+                $("#comment-email", openDataDiv).val(user.email);
+                $("#comment-url", openDataDiv).val(user.url);
+                $(openDataDiv).fadeOut(1000);
+            }
+        });
+    };
+}
+
+function jqueryCommentForm() {
+    if ($('#commentsForm')) {
+        var form = $('#commentsForm').commentForm({ 
+            insertMethod: 'append',
+            target: '.comments-open-content'
+        });
+        $('a[title=返信]').reply({
+            sourceForm: form
+        });
+    };
+}
+
+function signInSubmitHandler(e) {
+  var f = $(this);
+  var id = f.attr('id');
+  $(this).append('<div class="spinner"></div><div class="spinner-status"></div>');
+  var spinner_selector = '#'+id+' .spinner, #'+id+' .spinner-status';
+  $(this).ajaxSubmit({
+    target: '#divToUpdate',
+    url: '<$mt:CGIPath$><$mt:CommentScript$>',
+    type: 'post',
+    contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+    iframe: false,
+    dataType: 'json',
+    clearForm: true,
+    beforeSubmit: function(formData, jqForm, options) {
+/*      $(spinner_selector).fadeIn('fast').css('height',f.height());*/
+      $(spinner_selector).fadeIn('fast');
+    },
+    success: function(data) {
+        if (data.status == 1) {
+          alert('Thanks for your comment!');
+          $(spinner_selector).fadeOut('fast');
+          var u = $.fn.movabletype.fetchUser();
+/*          f.fadeOut('fast',function() { f.parent().find('form.logged-in').fadeIn('fast'); });*/
+        } else {
+          alert("login failure");
+          $(spinner_selector).fadeOut('fast');
+          f.find('p.error').html(data.message).fadeIn('fast');
+        }
+    }
+  });
+  return false;
+};

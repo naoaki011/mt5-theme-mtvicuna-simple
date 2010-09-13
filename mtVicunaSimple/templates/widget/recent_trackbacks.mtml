@@ -1,15 +1,17 @@
-<MTIf tag="BlogPingCount">
-		<MTPings lastn="5">
-			<MTPingsHeader>
-        <dt><__trans_section component="mtVicunaSimple"><__trans phrase="Recent Trackbacks"></__trans_section></dt>
-        <dd class="recentTrackbacks">
-            <ul>
-			</MTPingsHeader>
-                <li><em><MTPingEntry><a href="<$MTEntryPermalink$>"><$MTEntryTitle$></a></MTPingEntry></em>:
-                <br /> └ <a href="<$MTPingURL encode_xml="1"$>" rel="nofollow"><MTPingBlogName /></a></li>
-			<MTPingsFooter>
-            </ul>
-        </dd>
-			</MTPingsFooter>
-		</MTPings>
+<MTIfWebsite>
+	<MTSetVar name="include_modifier" value="children" />
+<MTElse>
+	<MTSetVar name="include_modifier" value="$blog_id" />
+</MTIfWebsite>
+<MTIf tag="BlogPingCount" include_blogs="$include_modifier">
+                <dt><__trans_section component="mtVicunaSimple"><__trans phrase="Recent Trackbacks"></__trans_section></dt>
+                <dd class="recentTrackbacks">
+                    <ul>
+	<MTPings lastn="5" include_blogs="$include_modifier">
+                        <li><em><MTPingEntry><a href="<$MTEntryPermalink$>"><$MTEntryTitle escape="html"$></a></MTPingEntry></em>:
+                        <br /> └ <a href="<$MTPingURL encode_xml="1"$>" rel="nofollow"><$MTPingBlogName escape="html"$></a></li>
+	</MTPings>
+                    </ul>
+                </dd>
 </MTif>
+                

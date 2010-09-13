@@ -1,27 +1,27 @@
 <MTIfPingsActive>
-<div class="section" id="trackback">
-    <h2><__trans phrase="Trackbacks">:<span class="count"><$MTEntryTrackbackCount$></span></h2>
-	<mt:IfPingsAccepted>
-    <dl class="info">
-        <dt><__trans phrase="TrackBack URL for this entry"></dt>
-        <dd class="URL"><$MTEntryTrackbackLink$></dd>
-        <dt><__trans phrase="Listed below are links to weblogs that reference"></dt>
-        <dd><a href="<$MTEntryPermalink$>"><$MTEntryTitle encode_html="1"$></a> from <a href="<$MTBlogURL$>"><$MTBlogName encode_html="1"$></a></dd>
-    </dl>
+                <div class="section" id="trackback">
+                    <h2><__trans phrase="Trackbacks">:<span class="count"><$MTEntryTrackbackCount$></span></h2>
+	<MTIfPingsAccepted>
+                    <dl class="info">
+                        <dt><__trans phrase="TrackBack URL for this entry"></dt>
+                        <dd class="URL"><$MTEntryTrackbackLink$></dd>
+                        <dt><__trans phrase="Listed below are links to weblogs that reference"></dt>
+                        <dd><a href="<$MTEntryPermalink$>"><$MTEntryTitle escape="html"$></a> from <a href="<$MTBlogURL$>"><$MTBlogName escape="html"$></a></dd>
+                    </dl>
 	</MTIfPingsAccepted>
 	<MTPings>
 		<MTPingsHeader>
-    <dl class="log">
+                    <dl class="log">
 		</MTPingsHeader>
-        <dt id="ping-<$MTPingID$>">
-            <span class="name"><a href="<$MTPingURL$>"><$MTPingTitle$> from <$MTPingBlogName$></a></span> <span class="date"><$MTPingDate format="%Y-%m-%d (%a) %H:%M"$></span>
-        </dt>
-        <dd>
-            <__trans phrase="[_1] <a href="[_2]">Read More</a>" params="<$MTPingExcerpt remove_html="1"$>%%<$mt:PingURL$>">
-        </dd>
-		<mt:PingsFooter>
-    </dl>
-		</mt:PingsFooter>
+                        <dt id="ping-<$MTPingID$>">
+                            <span class="name"><a href="<$MTPingURL$>"><$MTPingTitle escape="html"$> from <$MTPingBlogName escape="html"$></a></span> <span class="date"><$MTPingDate format="%Y-%m-%d (%a) %H:%M"$></span>
+                        </dt>
+                        <dd>
+                            <__trans phrase="[_1] <a href="[_2]">Read More</a>" params="<$MTPingExcerpt remove_html="1" decode_html="1" escape="html"$>%%<$MTPingURL$>">
+                        </dd>
+		<MTPingsFooter>
+                    </dl>
+		</MTPingsFooter>
 	</MTPings>
-</div>
+                </div>
 </MTIfPingsActive>

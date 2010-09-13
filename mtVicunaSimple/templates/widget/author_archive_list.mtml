@@ -1,18 +1,17 @@
 <MTIfArchiveTypeEnabled archive_type="Author">
 	<MTArchiveList archive_type="Author">
 		<MTArchiveListHeader>
-        <dt><__trans phrase="Authors"></dt>
-        <dd class="authors">
-            <ul>
+                <dt><__trans phrase="Authors"></dt>
+                <dd class="authors">
+                    <ul>
 		</MTArchiveListHeader>
-                <li>
-                    <a href="<$MTArchiveLink$>">
-                        <__trans phrase="[_1] ([_2])" params="<$MTArchiveTitle$>%%<$MTArchiveCount$>">
-                    </a>
-                </li>
+                        <li>
+                            <a href="<$MTArchiveLink$>"><__trans phrase="[_1] ([_2])" params="<$MTArchiveTitle escape="html"$>%%<$MTArchiveCount$>"></a>
+                        </li>
 		<MTArchiveListFooter>
-            </ul>
-        </dd>
+                    </ul>
+                </dd>
 		</MTArchiveListFooter>
 	</MTArchiveList>
 </MTIfArchiveTypeEnabled>
+                

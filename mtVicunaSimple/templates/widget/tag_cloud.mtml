@@ -1,12 +1,22 @@
-<MTTags top="20">
-	<MTIf name="__first__">
-        <dt><__trans phrase="Tag Cloud"></dt>
-        <dd class="tagCloud">
-            <ul class="tagCloud">
-	</MTIf>
-            <li class="level<MTTagRank$>"><a href="javascript:void(0)" onclick="location.href='<$MTTagSearchLink encode_js="1"$>';return false;" rel="tag nofollow"><$MTTagName$></a></li>
-	<MTIf name="__last__">
-            </ul>
-        </dd>
-	</MTIf>
+<MTIfWebsite>
+	<MTSetVar name="include_modifier" value="children" />
+<MTElse>
+	<MTSetVar name="include_modifier" value="$blog_id" />
+</MTIfWebsite>
+<MTTags top="20" include_blogs="$include_modifier">
+	<MTTagName setvar="tagname" />
+	<MTSetVarBlock name="tag_htmls" key="$tagname"><li class="level<$MTTagRank$>"><a href="javascript:void(0)" onclick="location.href='<$MTTagSearchLink encode_js="1"$>';return false;" rel="tag nofollow"><$MTTagName escape="html"$></a></li></MTSetVarBlock>
 </MTTags>
+<MTLoop name="tag_htmls" sort_by="key">
+	<MTIf name="__first__">
+                <dt>Tag Cloud</dt>
+                <dd class="tagCloud">
+                    <ul class="tagCloud">
+	</MTIf>
+                        <$MTVar name="__value__"$>
+	<MTIf name="__last__">
+                    </ul>
+                </dd>
+	</MTIf>
+</MTLoop>
+                

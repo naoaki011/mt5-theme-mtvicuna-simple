@@ -1,19 +1,23 @@
 <MTIgnore>
-  エントリー内の最初の画像アイテムに、エントリーへのリンクを貼り表示します。
-  @Featuredタグの付いた画像アイテムは、そちらが優先表示されます。
+	Links for first ImageAsset thumbnail in Entries OR ImageAsset tagged with @Featured.
 </MTIgnore>
-<MTIf tag="AssetCount">
-	<MTSetVar name="entry_count" value="10" />
-	<MTSetVarTemplate name="EntryAssetLabeled">
-                <li>
-                    <a href="<$MTEntryPermalink$>" title="<$MTEntryTitle$>" rel="nofollow">
-                        <img src="<$MTAssetThumbnailURL height="70" square="1"$>" alt="<$MTEntryTitle encode_html="1"$>" width="70" height="70" />
-                    </a>
-                </li>
-	</MTSetVarTemplate>
-	<MTBlogID setvar="blog_id" />
-	<MTBlogs include_blogs="$blog_id" ignore_archive_context="1">
-		<MTEntries include_blogs="$blog_id" lastn="0">
+<MTBlogURL cat="themes/" setvar="blogThemesStaticPath" />
+<MTSetVar name="entry_count" value="9" />
+<MTSetVarTemplate name="EntryAssetLabeled">
+                        <li>
+                            <a href="<$MTEntryPermalink$>" title="<$MTEntryTitle escape="html"$>" rel="nofollow">
+                                <img src="<$MTAssetThumbnailURL height="70" square="1"$>" alt="<$MTEntryTitle escape="html"$>" width="70" height="70" />
+                            </a>
+                        </li>
+</MTSetVarTemplate>
+<MTBlogID setvar="blog_id" />
+<MTIfWebsite>
+	<MTSetVar name="include_modifier" value="children" />
+<MTElse>
+	<MTSetVar name="include_modifier" value="$blog_id" />
+</MTIfWebsite>
+<MTBlogs include_blogs="$blog_id" ignore_archive_context="1">
+	<MTEntries include_blogs="$include_modifier" lastn="0">
 		<MTIf  name="entry_count" gt="0">
 				<MTEntryID setvar="entryid" />
 			<MTSetVar name="entry_html" ="">
@@ -26,6 +30,14 @@
 							<MTVar name="EntryAssetLabeled" setvar="entry_html" />
 					</MTAssetIfTagged>
 				</MTUnless>
+			<MTElse>
+				<MTSetVarBlock name="entry_html">
+                        <li>
+                            <a href="<$MTEntryPermalink$>" title="<$MTEntryTitle escape="html"$>" rel="nofollow">
+                                <img src="<$MTVar name="blogThemesStaticPath"$>images/no_photo.gif" alt="<$MTEntryTitle escape="html"$>" width="70" height="70" />
+                            </a>
+                        </li>
+				</MTSetVarBlock>
 			</MTEntryAssets>
 			<MTIf name="entry_html">
 					<MTSetVar name="entry_count" op="--" />
@@ -33,17 +45,17 @@
 			</MTIf>
 		</MTIf>
 	</MTEntries>
-	</MTBlogs>
-	<MTLoop name="entry_htmls">
+</MTBlogs>
+<MTLoop name="entry_htmls">
 		<MTIf name="__first__">
-        <dt><__trans_section component="mtVicunaSimple"><__trans phrase="Recent Entry Assets"></__trans_section></dt>
-        <dd class="recentEntryasset">
-            <ul class="thumb">
+                <dt>Recent Entry</dt>
+                <dd class="recentEntry">
+                    <ul class="thumb">
 		</MTIf>
 		<$MTVar name="__value__"$>
 		<MTIf name="__last__">
-            </ul>
-        </dd>
+                    </ul>
+                </dd>
 		</MTIf>
-	</MTLoop>
-</MTIf>
+</MTLoop>
+                

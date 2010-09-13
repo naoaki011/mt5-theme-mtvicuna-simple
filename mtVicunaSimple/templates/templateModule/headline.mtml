@@ -1,15 +1,15 @@
-                    <dt<MTIf name="__odd__"> class="odd"</MTIf>><a href="<$MTEntryPermalink$>"><$MTEntryTitle$></a><span class="date"> - Posted date: <$MTEntryDate></span></dt>
+                    <dt<MTIf name="__odd__"> class="odd"</MTIf>><a href="<$MTEntryPermalink$>"><$MTEntryTitle escape="html"$></a><span class="date"> - Posted date: <$MTEntryDate></span></dt>
                     <dd<MTIf name="__odd__"> class="odd"</MTIf>>
                         <ul>
-                            <li class="textBody"><$MTEntryExcerpt remove_html="1" ltrim="1"$></li>
+                            <li class="textBody"><$MTEntryExcerpt remove_html="1" strip_linefeeds="1" trim="1"$></li>
 <MTIf tag="EntryAuthorDisplayName">
                             <li class="author">Posted by: <span class="name"><$MTEntryAuthorDisplayName$></span></li>
 </MTIf>
 <MTIf tag="EntryCategory">
-                            <li class="category">Category: <MTEntryCategories glue=" | "><a href="<$MTCategoryArchiveLink$>" title="<MTCategoryLabel> Index"><MTCategoryLabel></a></MTEntryCategories></li>
+                            <li class="category">Category: <MTEntryCategories glue=" | "><a href="<$MTCategoryArchiveLink$>" title="<$MTCategoryLabel escape="html"$> Index"><$MTCategoryLabel escape="html"$></a></MTEntryCategories></li>
 </MTIf>
 <MTEntryIfTagged>
-                            <li class="tag">Tag: <MTEntryTags glue=", "><a href="<$MTTagSearchLink$>" rel="nofollow"><$MTTagName$></a></MTEntryTags></li>
+                            <li class="tag">Tag: <MTEntryTags glue=", "><a href="<$MTTagSearchLink$>" rel="nofollow"><$MTTagName escape="html"$></a></MTEntryTags></li>
 </MTEntryIfTagged>
-    </ul>
-    </dd>
+                        </ul>
+                    </dd>

@@ -1,13 +1,18 @@
-                    <dt><__trans_section component="mtVicunaSimple"><__trans phrase="Blog Listing"></__trans_section></dt>
-                    <dd class="blogs">
-                        <ul class="blog">
-<MTBlogID setvar="cur_blogid" />
-<MTBlogs include_blogs="siblings">
-	<MTIf tag=BlogID eq="$cur_blogid">
-                            <li><$mt:BlogName encode_html="1"$></li>
+                <dt><__trans_section component="mtVicunaSimple"><__trans phrase="Blog Listing"></__trans_section></dt>
+                <dd class="blogs">
+                    <ul class="blog">
+<MTIfWebsite>
+	<MTSetVar name="include_modifier" value="children" />
+<MTElse>
+	<MTSetVar name="include_modifier" value="siblings" />
+</MTIfWebsite>
+<MTBlogs include_blogs="$include_modifier">
+	<MTIf tag=BlogID eq="$blog_id">
+                        <li><$MTBlogName escape="html"$></li>
 	<MTElse>
-                            <li><a href="<$mt:BlogURL$>" title="<$mt:BlogName encode_html="1"$>"><$mt:BlogName encode_html="1"$></a><MTIf tag="BlogDescription">:<$MTBlogDescription encode_html="1"$></MTIf></li>
+                        <li><a href="<$MTBlogURL$>" title="<$MTBlogName escape="html"$>"><$MTBlogName escape="html"$></a><MTIf tag="BlogDescription" strip_linefeeds="1" trim="1">:<$MTBlogDescription remove_html="1" strip_linefeeds="1" trim="1" escape="html"$></MTIf></li>
 	</MTIf>
 </MTBlogs>
-                        </ul>
-                    </dd>
+                    </ul>
+                </dd>
+                

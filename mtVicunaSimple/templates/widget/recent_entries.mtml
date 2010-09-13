@@ -1,17 +1,20 @@
-<MTIf tag="BlogEntryCount">
-	<MTBlogID setvar="blog_id" />
-	<MTBlogs include_blogs="$blog_id" ignore_archive_context="1">
-		<MTEntries include_blogs="$blog_id" lastn="5">
-		<MTEntriesHeader>
-        <dt><__trans phrase="Recent Entries"></dt>
-        <dd class="recentEntries">
-            <ul>
-		</MTEntriesHeader>
-                <li><a href="<$mt:EntryPermalink$>"><$mt:EntryTitle$></a></li>
-		<MTEntriesFooter>
-            </ul>
-        </dd>
-		</MTEntriesFooter>
-	</MTEntries>
-	</MTBlogs>
-</MTIf>
+<MTIfWebsite>
+	<MTSetVar name="include_modifier" value="children" />
+<MTElse>
+	<MTSetVar name="include_modifier" value="$blog_id" />
+</MTIfWebsite>
+                <dt><__trans phrase="Recent Entries"></dt>
+                <dd class="recentEntries">
+<MTEntries lastn="5" include_blogs="$include_modifier">
+	<MTEntriesHeader>
+                    <ul>
+	</MTEntriesHeader>
+                        <li><a href="<$MTEntryPermalink$>"><$MTEntryTitle escape="html"$></a></li>
+	<MTEntriesFooter>
+                    </ul>
+	</MTEntriesFooter>
+<MTElse>
+                    <p><__trans phrase="No Entries"></p>
+</MTEntries>
+                </dd>
+                
