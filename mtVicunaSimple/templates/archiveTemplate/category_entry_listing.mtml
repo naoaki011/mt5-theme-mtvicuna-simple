@@ -79,9 +79,13 @@
             <h1><__trans phrase="Recently in <em>[_1]</em> Category" params="<$MTArchiveTitle escape="html"$>"></h1>
 </MTIf>
 <MTCategoryCount setvar="limit" />
-<MTIf name="datebased_archive">
-<MTIfArchiveTypeEnabled archive_type="Category-Monthly"><$MTVar name="limit" value="auto"$></MTIfArchiveTypeEnabled>
-</MTIf>
+<MTIfArchiveTypeEnabled archive_type="Category-Monthly">
+	<MTIf name="datebased_archive">
+		<MTArchiveCount setvar="limit" />
+	<MTElse>
+		<$MTVar name="limit" value="auto"$>
+	</MTIf>
+</MTIfArchiveTypeEnabled>
 <MTEntries limit="$limit" offset="0">
             <$MTInclude module="<__trans phrase="Entry Summary">"$>
 </MTEntries>
@@ -94,10 +98,12 @@
 			<MTEntryDate format="/%Y/%m/" setvar="year_month" />
 			<MTEntryID pad="1" setvar="entry_id" />
 		</MTEntries>
-            <p class="archives"><a href="<$MTBlogURL$><$MTSubCategoryPath separator="-"$><$MTVar name="year_month"$>#entry<$MTVar name="entry_id"$>">next archives</a></p>
+            <p class="archives"><a href="<$MTBlogURL$><$MTSubCategoryPath separator="-"$><$MTVar name="year_month"$>#entry<$MTVar name="entry_id"$>">Next archives</a></p>
 	</MTIf>
 <MTElse>
+	<MTIf tag="Link" template="archive_index">
             <p class="archives"><a href="<$MTLink template="archive_index"$>">Index of all entries</a></p>
+	</MTIf>
 </MTIfArchiveTypeEnabled>
             <$MTInclude module="<__trans_section component="mtVicunaSimple"><__trans phrase="Topic Path"></__trans_section>"$>
         </div>
