@@ -89,9 +89,11 @@
 <MTEntries limit="$limit" offset="0">
             <$MTInclude module="<__trans phrase="Entry Summary">"$>
 </MTEntries>
-<MTUnless name="datebased_archive">
+<MTIf name="datebased_archive">
+            <$MTInclude module="<__trans_section component="mtVicunaSimple"><__trans phrase="Next Entry Link Detailed"></__trans_section>"$>
+<MTElse>
             <!--$MTInclude module="<__trans phrase="Trackbacks">"$-->
-</MTUnless>
+</MTIf>
 <MTIfArchiveTypeEnabled archive_type="Category-Monthly">
 	<MTIf name="archive_class" eq="category-archive">
 		<MTEntries unique="1" limit="1">
