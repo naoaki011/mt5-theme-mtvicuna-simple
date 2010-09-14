@@ -187,7 +187,7 @@ p.view span.notation {
 			}
 		} else {
 			$('#iframe').contents().find('body').removeClass(layoutClass).addClass(type);
-		$("div.layout a."+type).addClass("on");
+			$("div.layout a."+type).addClass("on");
 			$("#"+loadedPage+"_style").val(type);
 		}
 		$("div.set a").removeClass("on");
@@ -256,8 +256,8 @@ p.view span.notation {
 		$("div.width a").removeClass("on");
 		if (type != 'w-clear') {
 			$('#iframe').contents().find('body').addClass(type);
-		$("div.width a."+type).addClass("on");
-		$("#fixed_width").val(type);
+			$("div.width a."+type).addClass("on");
+			$("#fixed_width").val(type);
 		} else {
 			$("#fixed_width").val('none');
 		}
@@ -305,7 +305,8 @@ p.view span.notation {
 		$('#iframe').attr('src' ,'<mt:var name="static_uri">support/theme_static/mtVicunaSimple/preview/'+page+'.html');
 		loadedPage = page;
 		$("div.pages a").removeClass("on");
-		$("div.pages a."+page).addClass("on");
+		$("div.layout a").removeClass("on");
+		$("div.eye-catch a").removeClass("on");
 		if (page == "index") {
 			var layout = '<mt:var name="index_style">';
 			var eyecatch = '<mt:var name="index_eyecatch">';
@@ -318,15 +319,14 @@ p.view span.notation {
 		} else if (page == "monthly") {
 			var layout = '<mt:var name="monthly_style">';
 			var eyecatch = '<mt:var name="monthly_eyecatch">';
-		} else if (page == "archive") {
+		} else if (page == "archives") {
 			var layout = '<mt:var name="archive_style">';
 			var eyecatch = '<mt:var name="archive_eyecatch">';
 		}
 		$('#iframe').contents().find('body').removeClass(layoutClass).addClass(layout);
 		$('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(eyecatch);
-		$("div.layout a").removeClass("on");
+		$("div.pages a."+page).addClass("on");
 		$("div.layout a."+layout).addClass("on");
-		$("div.eye-catch a").removeClass("on");
 		$("div.eye-catch a."+eyecatch).addClass("on");
 	};
 
@@ -524,8 +524,22 @@ if ($.browser.msie) {
 <mt:if name="cloud_style" ne="none">
 		$('#iframe').contents().find('head').append('<link rel="stylesheet" type="text/css" id="tagstyle" href="<mt:var name="blog_url">themes/vicuna-tagcloud/tagCloud<mt:var name="cloud_style">.css" />');
 </mt:if>
-		$("div.layout a.<mt:var name="index_style">").addClass("on");
-		$("div.eye-catch a.<mt:var name="index_eyecatch">").addClass("on");
+		if (loadedPage == "index") {
+			$("div.layout a.<mt:var name="index_style">").addClass("on");
+			$("div.eye-catch a.<mt:var name="index_eyecatch">").addClass("on");
+		} else if (loadedPage == "individual") {
+			$("div.layout a.<mt:var name="entry_style">").addClass("on");
+			$("div.eye-catch a.<mt:var name="entry_eyecatch">").addClass("on");
+		} else if (loadedPage == "category") {
+			$("div.layout a.<mt:var name="category_style">").addClass("on");
+			$("div.eye-catch a.<mt:var name="category_eyecatch">").addClass("on");
+		} else if (loadedPage == "monthly") {
+			$("div.layout a.<mt:var name="monthly_style">").addClass("on");
+			$("div.eye-catch a.<mt:var name="monthly_eyecatch">").addClass("on");
+		} else if (loadedPage == "archives") {
+			$("div.layout a.<mt:var name="archive_style">").addClass("on");
+			$("div.eye-catch a.<mt:var name="archive_eyecatch">").addClass("on");
+		}
 	}
 }
 //]]>
