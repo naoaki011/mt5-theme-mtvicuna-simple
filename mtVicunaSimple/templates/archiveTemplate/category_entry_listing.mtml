@@ -99,8 +99,12 @@
 		<MTEntries unique="1" limit="1">
 			<MTEntryDate format="/%Y/%m/" setvar="year_month" />
 			<MTEntryID pad="1" setvar="entry_id" />
+		<MTElse>
+			<MTSetVar name="no_next_archive" value="1" />
 		</MTEntries>
+		<MTUnless name="no_next_archive">
             <p class="archives"><a href="<$MTBlogURL$><$MTSubCategoryPath separator="-"$><$MTVar name="year_month"$>#entry<$MTVar name="entry_id"$>">Next archives</a></p>
+		</MTUnless>
 	</MTIf>
 <MTElse>
 	<MTIf tag="Link" template="archive_index">
