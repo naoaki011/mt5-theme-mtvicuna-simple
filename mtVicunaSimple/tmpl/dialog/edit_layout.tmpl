@@ -478,12 +478,8 @@ if ($.browser.msie) {
 <mt:unless name="index_style" like="double|default">
 			$('#iframe').contents().find('body').removeClass('double').addClass('<mt:var name="index_style">');
 </mt:unless>
-<mt:if name="index_eyecatch" ne="none">
 			$('#iframe').contents().find('body').addClass('<mt:var name="index_eyecatch">');
-</mt:if>
-<mt:if name="fixed_width" ne="none">
 			$('#iframe').contents().find('body').addClass('<mt:var name="fixed_width">');
-</mt:if>
 <mt:if name="hide_navi">
 			$('#iframe').contents().find('body').addClass('gh');
 <mt:else>
@@ -498,8 +494,22 @@ if ($.browser.msie) {
 <mt:if name="cloud_style" ne="none">
 			$('#iframe').contents().find('head').append('<link rel="stylesheet" type="text/css" id="tagstyle" href="<mt:var name="blog_url">themes/vicuna-tagcloud/tagCloud<mt:var name="cloud_style">.css" />');
 </mt:if>
-			$("div.layout a.<mt:var name="index_style">").addClass("on");
-			$("div.eye-catch a.<mt:var name="index_eyecatch">").addClass("on");
+			if (loadedPage == "index") {
+				$("div.layout a.<mt:var name="index_style">").addClass("on");
+				$("div.eye-catch a.<mt:var name="index_eyecatch">").addClass("on");
+			} else if (loadedPage == "individual") {
+				$("div.layout a.<mt:var name="entry_style">").addClass("on");
+				$("div.eye-catch a.<mt:var name="entry_eyecatch">").addClass("on");
+			} else if (loadedPage == "category") {
+				$("div.layout a.<mt:var name="category_style">").addClass("on");
+				$("div.eye-catch a.<mt:var name="category_eyecatch">").addClass("on");
+			} else if (loadedPage == "monthly") {
+				$("div.layout a.<mt:var name="monthly_style">").addClass("on");
+				$("div.eye-catch a.<mt:var name="monthly_eyecatch">").addClass("on");
+			} else if (loadedPage == "archives") {
+				$("div.layout a.<mt:var name="archive_style">").addClass("on");
+				$("div.eye-catch a.<mt:var name="archive_eyecatch">").addClass("on");
+			}
 		}
 	}
 } else {
