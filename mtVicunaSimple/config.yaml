@@ -382,50 +382,51 @@ settings:
     scope: blog
 tags:
   function:
-    VicunaIndexStyle:    $mtVicunaSimple::mtVicunaSimple::Plugin::tag_index_style
-    VicunaEntryStyle:    $mtVicunaSimple::mtVicunaSimple::Plugin::tag_entry_style
-    VicunaCategoryStyle: $mtVicunaSimple::mtVicunaSimple::Plugin::tag_category_style
+    VicunaIndexStyle:       $mtVicunaSimple::mtVicunaSimple::Plugin::tag_index_style
+    VicunaEntryStyle:       $mtVicunaSimple::mtVicunaSimple::Plugin::tag_entry_style
+    VicunaCategoryStyle:    $mtVicunaSimple::mtVicunaSimple::Plugin::tag_category_style
     VicunaMonthlyStyle:     $mtVicunaSimple::mtVicunaSimple::Plugin::tag_monthly_style
-    VicunaArchiveStyle:  $mtVicunaSimple::mtVicunaSimple::Plugin::tag_archive_style
+    VicunaArchiveStyle:     $mtVicunaSimple::mtVicunaSimple::Plugin::tag_archive_style
     VicunaIndexEyecatch:    $mtVicunaSimple::mtVicunaSimple::Plugin::tag_index_eyecatch
     VicunaEntryEyecatch:    $mtVicunaSimple::mtVicunaSimple::Plugin::tag_entry_eyecatch
     VicunaCategoryEyecatch: $mtVicunaSimple::mtVicunaSimple::Plugin::tag_category_eyecatch
     VicunaMonthlyEyecatch:  $mtVicunaSimple::mtVicunaSimple::Plugin::tag_monthly_eyecatch
     VicunaArchiveEyecatch:  $mtVicunaSimple::mtVicunaSimple::Plugin::tag_archive_eyecatch
-    VicunaFixedWidth:    $mtVicunaSimple::mtVicunaSimple::Plugin::tag_fixed_width
-    VicunaTagcloudStyle: $mtVicunaSimple::mtVicunaSimple::Plugin::tag_cloud_style
-    VicunaLightboxScript: $mtVicunaSimple::mtVicunaSimple::Plugin::tag_lightbox_script
+    VicunaFixedWidth:       $mtVicunaSimple::mtVicunaSimple::Plugin::tag_fixed_width
+    VicunaTagcloudStyle:    $mtVicunaSimple::mtVicunaSimple::Plugin::tag_cloud_style
+    VicunaLightboxScript:   $mtVicunaSimple::mtVicunaSimple::Plugin::tag_lightbox_script
     VicunaLightboxSelector: $mtVicunaSimple::mtVicunaSimple::Plugin::tag_lightbox_selector
-    VicunaVersion:       $mtVicunaSimple::mtVicunaSimple::Plugin::tag_version
+#    VicunaBlogSkinLayout:   $mtVicunaSimple::mtVicunaSimple::Plugin::tag_blog_skin_layout
+    VicunaVersion:          $mtVicunaSimple::mtVicunaSimple::Plugin::tag_version
   block:
-    IfVicunaNavionTop?:  $mtVicunaSimple::mtVicunaSimple::Plugin::if_nav_on_top
-    IfVicunaHideNavi?:   $mtVicunaSimple::mtVicunaSimple::Plugin::if_hide_nav
-    IfVicunaLeftAlign?:  $mtVicunaSimple::mtVicunaSimple::Plugin::if_left_align
-    IfVicunaUseSlimbox?: $mtVicunaSimple::mtVicunaSimple::Plugin::if_use_slimbox
+    IfVicunaNavionTop?:     $mtVicunaSimple::mtVicunaSimple::Plugin::if_nav_on_top
+    IfVicunaHideNavi?:      $mtVicunaSimple::mtVicunaSimple::Plugin::if_hide_nav
+    IfVicunaLeftAlign?:     $mtVicunaSimple::mtVicunaSimple::Plugin::if_left_align
+    IfVicunaUseSlimbox?:    $mtVicunaSimple::mtVicunaSimple::Plugin::if_use_slimbox
   modifier:
-    adjust_hn:           $mtVicunaSimple::mtVicunaSimple::Plugin::modifier_adjust_hn
+    adjust_hn:              $mtVicunaSimple::mtVicunaSimple::Plugin::modifier_adjust_hn
 callbacks:
-    template_param.asset_options_image: $mtVicunaSimple::mtVicunaSimple::Plugin::_asset_options_image
-    template_param.asset_insert:        $mtVicunaSimple::mtVicunaSimple::Plugin::_asset_insert_param
-    blog_template_set_change: >>
-        sub {
-            my ($cb, $param) = @_;
-            my $blog = $param->{blog};
-            my $blog_template_set = $blog->template_set || '';
-            return 1
-                if 'mtVicunaSimple' ne $blog_template_set;
-            $blog->page_layout('double');
-            $blog->save;
-        }
+  template_param.asset_options_image: $mtVicunaSimple::mtVicunaSimple::Plugin::_asset_options_image
+  template_param.asset_insert:        $mtVicunaSimple::mtVicunaSimple::Plugin::_asset_insert_param
+  blog_template_set_change: >>
+    sub {
+      my ($cb, $param) = @_;
+      my $blog = $param->{blog};
+      my $blog_template_set = $blog->template_set || '';
+      return 1
+        if 'mtVicunaSimple' ne $blog_template_set;
+      $blog->page_layout('double');
+      $blog->save;
+    }
 applications:
-    cms:
-        menus:
-            design:edit_themeparams:
-                label: Edit Vicuna Layout
-                order: 300
-                mode: edit_themeparams
-                view:
-                    - blog
-                condition: $mtVicunaSimple::mtVicunaSimple::Plugin::_if_vicuna
-        methods:
-            edit_themeparams: $mtVicunaSimple::mtVicunaSimple::Plugin::_edit_themeparams
+  cms:
+    menus:
+      design:edit_themeparams:
+        label: Edit Vicuna Layout
+        order: 300
+        mode: edit_themeparams
+        view:
+          - blog
+        condition: $mtVicunaSimple::mtVicunaSimple::Plugin::_if_vicuna
+    methods:
+      edit_themeparams: $mtVicunaSimple::mtVicunaSimple::Plugin::_edit_themeparams
