@@ -180,6 +180,17 @@ p.view span.notation {
 	var loadedOthers ="<mt:if name="hide_navi">gh<mt:elseif name="navi_on_top">gt<mt:elseif name="left_align">al</mt:if>";
 	var loadedCloud ="<mt:if name="cloud_style" ne="none"><mt:var name="cloud_style"></mt:if>";
 	var vicuna_skin_layout ="<mt:var name="vicuna_skin_layout">";
+	if (vicuna_skin_layout == "flat") {
+		var skinType = "recent";
+	} else if (vicuna_skin_layout == "galaxy") {
+		var skinType = "recent";
+	} else if (vicuna_skin_layout == "mono") {
+		var skinType = "recent";
+	} else if (vicuna_skin_layout == "vega") {
+		var skinType = "recent";
+	} else if (vicuna_skin_layout == "bazooka") {
+		var skinType = "design";
+	}
 
 // Layout
 
@@ -233,27 +244,27 @@ p.view span.notation {
 		$('#iframe').contents().find('body').removeClass(eyeCatchClass);
 		if (type != 'e-clear') {
 			$('#iframe').contents().find('body').addClass(type);
-			if (page == "index") {
+			if (loadedPage == "index") {
 				loadedIndexEyecatch = type;
-			} else if (page == "individual") {
+			} else if (loadedPage == "individual") {
 				loadedEntryEyecatch = type;
-			} else if (page == "category") {
+			} else if (loadedPage == "category") {
 				loadedCategoryEyecatch = type;
-			} else if (page == "monthly") {
+			} else if (loadedPage == "monthly") {
 				loadedMonthlyEyecatch = type;
-			} else if (page == "archives") {
+			} else if (loadedPage == "archives") {
 				loadedArchiveEyecatch = type;
 			}
 		} else {
-			if (page == "index") {
+			if (loadedPage == "index") {
 				loadedIndexEyecatch = '';
-			} else if (page == "individual") {
+			} else if (loadedPage == "individual") {
 				loadedEntryEyecatch = '';
-			} else if (page == "category") {
+			} else if (loadedPage == "category") {
 				loadedCategoryEyecatch = '';
-			} else if (page == "monthly") {
+			} else if (loadedPage == "monthly") {
 				loadedMonthlyEyecatch = '';
-			} else if (page == "archives") {
+			} else if (loadedPage == "archives") {
 				loadedArchiveEyecatch = '';
 			}
 		}
@@ -551,7 +562,7 @@ p.view span.notation {
 </div>
 
 <div class="pages">
-  <h2>Page Pattern ( will not work yet )</h2>
+  <h2>Page Pattern</h2>
   <ul>
    <li><a class="index on" accesskey="1" onclick="loadPage('index');">Index</a></li>
    <li><a class="category" accesskey="2" onclick="loadPage('category');">Category</a></li>
@@ -642,6 +653,20 @@ if ($.browser.msie) {
 				$('div.layout a.'+loadedArchiveStyle).addClass("on");
 				$('div.eye-catch a.'+loadedArchiveEyecatch).addClass("on");
 			}
+			if (skinType == "recent") {
+				$("div.eye-catch a.eye-u").closest("li").remove();
+				$("div.set a.set3").closest("li").remove();
+				$("div.set a.set4").closest("li").remove();
+				$("div.others a.gh").closest("li").remove();
+			} else if (skinType == "design") {
+				$("div.layout a.double-l").closest("li").remove();
+				$("div.layout a.multi").closest("li").remove();
+				$("div.layout a.multi2").closest("li").remove();
+				$("div.layout a.multi2-l").closest("li").remove();
+				$("div.eye-catch a.eye-m").closest("li").remove();
+				$("div.set a.set1").closest("li").remove();
+				$("div.set a.set2").closest("li").remove();
+			}
 		}
 	}
 } else {
@@ -685,6 +710,20 @@ if ($.browser.msie) {
 		} else if (loadedPage == "archives") {
 			$('div.layout a.'+loadedArchiveStyle).addClass("on");
 			$('div.eye-catch a.'+loadedArchiveEyecatch).addClass("on");
+		}
+		if (skinType == "recent") {
+			$("div.eye-catch a.eye-u").closest("li").remove();
+			$("div.set a.set3").closest("li").remove();
+			$("div.set a.set4").closest("li").remove();
+			$("div.others a.gh").closest("li").remove();
+		} else if (skinType == "design") {
+			$("div.layout a.double-l").closest("li").remove();
+			$("div.layout a.multi").closest("li").remove();
+			$("div.layout a.multi2").closest("li").remove();
+			$("div.layout a.multi2-l").closest("li").remove();
+			$("div.eye-catch a.eye-m").closest("li").remove();
+			$("div.set a.set1").closest("li").remove();
+			$("div.set a.set2").closest("li").remove();
 		}
 	}
 }
