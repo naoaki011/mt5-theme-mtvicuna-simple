@@ -161,8 +161,8 @@ p.view span.notation {
 
 	$("#menu").css("display","none");
 
-	var layoutClass ="single double double-l multi multi2 multi2-l";
-	var eyeCatchClass ="eye-h eye-hb eye-m eye-c eye-u";
+	var layoutClass ="single double double-l multi multi2 multi2-l set1 set2";
+	var eyeCatchClass ="eye-h eye-hb eye-m eye-c eye-u set1 set2";
 	var widthClass ="f800 f850 f900 f950 f1000 none";
 	var otherClass ="al gt gh";
 	var loadedPage ="index";
@@ -188,7 +188,11 @@ p.view span.notation {
 		var skinType = "recent";
 	} else if (vicuna_skin_layout == "vega") {
 		var skinType = "recent";
+	} else if (vicuna_skin_layout == "future") {
+		var skinType = "future";
 	} else if (vicuna_skin_layout == "bazooka") {
+		var skinType = "design";
+	} else if (vicuna_skin_layout == "warship") {
 		var skinType = "design";
 	}
 
@@ -279,7 +283,7 @@ p.view span.notation {
 	function setSet(type) {
 		$('#iframe').contents().find('body').removeClass(layoutClass).removeClass(eyeCatchClass);
 		if (type == 'set1'){
-			$('#iframe').contents().find('body').addClass('multi eye-c');
+			$('#iframe').contents().find('body').addClass('multi eye-c set1');
 			$("div.layout a").removeClass("on");
 			$("div.layout a.multi").addClass("on");
 			$("div.eye-catch a").removeClass("on");
@@ -303,7 +307,7 @@ p.view span.notation {
 				loadedArchiveEyecatch = 'eye-c';
 			}
 		} else if (type == 'set2') {
-			$('#iframe').contents().find('body').addClass('multi2 eye-c');
+			$('#iframe').contents().find('body').addClass('multi2 eye-c set2');
 			$("div.layout a").removeClass("on");
 			$("div.layout a.multi2").addClass("on");
 			$("div.eye-catch a").removeClass("on");
@@ -609,122 +613,75 @@ p.view span.notation {
 
 <script type="text/javascript">
 //<![CDATA[
+function initialLoad() {
+	if (loadedPage == "index") {
+		$('#iframe').contents().find('body').removeClass(layoutClass).addClass(loadedIndexStyle);
+		$('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(loadedIndexEyecatch);
+	} else if (loadedPage == "individual") {
+		$('#iframe').contents().find('body').removeClass(layoutClass).addClass(loadedEntryStyle);
+		$('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(loadedEntryEyecatch);
+	} else if (loadedPage == "category") {
+		$('#iframe').contents().find('body').removeClass(layoutClass).addClass(loadedCategoryStyle);
+		$('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(loadedCategoryEyecatch);
+	} else if (loadedPage == "monthly") {
+		$('#iframe').contents().find('body').removeClass(layoutClass).addClass(loadedMonthlyStyle);
+		$('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(loadedMonthlyEyecatch);
+	} else if (loadedPage == "archives") {
+		$('#iframe').contents().find('body').removeClass(layoutClass).addClass(loadedArchiveStyle);
+		$('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(loadedArchiveEyecatch);
+	}
+	$('#iframe').contents().find('body').addClass(loadedWidth);
+	if (loadedOthers) {
+		$('#iframe').contents().find('body').addClass(loadedOthers);
+	}
+	if (loadedCloud) {
+		$('#iframe').contents().find('head').append('<link rel="stylesheet" type="text/css" id="tagstyle" href="<mt:var name="blog_url">themes/vicuna-tagcloud/tagCloud'+loadedCloud+'.css" />');
+	}
+	if (loadedPage == "index") {
+		$('div.layout a.'+loadedIndexStyle).addClass("on");
+		$('div.eye-catch a.'+loadedIndexEyecatch).addClass("on");
+	} else if (loadedPage == "individual") {
+		$('div.layout a.'+loadedEntryStyle).addClass("on");
+		$('div.eye-catch a.'+loadedEntryEyecatch).addClass("on");
+	} else if (loadedPage == "category") {
+		$('div.layout a.'+loadedCategoryStyle).addClass("on");
+		$('div.eye-catch a.'+loadedCategoryEyecatch).addClass("on");
+	} else if (loadedPage == "monthly") {
+		$('div.layout a.'+loadedMonthlyStyle).addClass("on");
+		$('div.eye-catch a.'+loadedMonthlyEyecatch).addClass("on");
+	} else if (loadedPage == "archives") {
+		$('div.layout a.'+loadedArchiveStyle).addClass("on");
+		$('div.eye-catch a.'+loadedArchiveEyecatch).addClass("on");
+	}
+	if (skinType == "recent") {
+		$("div.eye-catch a.eye-u").closest("li").remove();
+		$("div.set a.set3").closest("li").remove();
+		$("div.set a.set4").closest("li").remove();
+		$("div.others a.gh").closest("li").remove();
+	} else if (skinType == "future") {
+		$("div.layout a.double-l").closest("li").remove();
+		$("div.layout a.multi").closest("li").remove();
+		$("div.layout a.multi2").closest("li").remove();
+		$("div.layout a.multi2-l").closest("li").remove();
+		$("div.eye-catch a.eye-m").closest("li").remove();
+		$("div.set a.set1").closest("li").remove();
+		$("div.set a.set2").closest("li").remove();
+	}
+}
+
+
 var e_ifr = document.getElementById( "iframe" );
 if ($.browser.msie) {
 	e_ifr.onreadystatechange = function(){
 		if ( window.event.srcElement.readyState == "complete" ) {
 			$('#iframe').contents().find('head').append('<link rel="stylesheet" type="text/css" href="<mt:var name="blog_url">styles.css" />');
-			if (loadedPage == "index") {
-				$('#iframe').contents().find('body').removeClass(layoutClass).addClass(loadedIndexStyle);
-				$('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(loadedIndexEyecatch);
-			} else if (loadedPage == "individual") {
-				$('#iframe').contents().find('body').removeClass(layoutClass).addClass(loadedEntryStyle);
-				$('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(loadedEntryEyecatch);
-			} else if (loadedPage == "category") {
-				$('#iframe').contents().find('body').removeClass(layoutClass).addClass(loadedCategoryStyle);
-				$('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(loadedCategoryEyecatch);
-			} else if (loadedPage == "monthly") {
-				$('#iframe').contents().find('body').removeClass(layoutClass).addClass(loadedMonthlyStyle);
-				$('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(loadedMonthlyEyecatch);
-			} else if (loadedPage == "archives") {
-				$('#iframe').contents().find('body').removeClass(layoutClass).addClass(loadedArchiveStyle);
-				$('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(loadedArchiveEyecatch);
-			}
-			$('#iframe').contents().find('body').addClass(loadedWidth);
-			if (loadedOthers) {
-				$('#iframe').contents().find('body').addClass(loadedOthers);
-			}
-			if (loadedCloud) {
-				$('#iframe').contents().find('head').append('<link rel="stylesheet" type="text/css" id="tagstyle" href="<mt:var name="blog_url">themes/vicuna-tagcloud/tagCloud'+loadedCloud+'.css" />');
-			}
-			if (loadedPage == "index") {
-				$('div.layout a.'+loadedIndexStyle).addClass("on");
-				$('div.eye-catch a.'+loadedIndexEyecatch).addClass("on");
-			} else if (loadedPage == "individual") {
-				$('div.layout a.'+loadedEntryStyle).addClass("on");
-				$('div.eye-catch a.'+loadedEntryEyecatch).addClass("on");
-			} else if (loadedPage == "category") {
-				$('div.layout a.'+loadedCategoryStyle).addClass("on");
-				$('div.eye-catch a.'+loadedCategoryEyecatch).addClass("on");
-			} else if (loadedPage == "monthly") {
-				$('div.layout a.'+loadedMonthlyStyle).addClass("on");
-				$('div.eye-catch a.'+loadedMonthlyEyecatch).addClass("on");
-			} else if (loadedPage == "archives") {
-				$('div.layout a.'+loadedArchiveStyle).addClass("on");
-				$('div.eye-catch a.'+loadedArchiveEyecatch).addClass("on");
-			}
-			if (skinType == "recent") {
-				$("div.eye-catch a.eye-u").closest("li").remove();
-				$("div.set a.set3").closest("li").remove();
-				$("div.set a.set4").closest("li").remove();
-				$("div.others a.gh").closest("li").remove();
-			} else if (skinType == "design") {
-				$("div.layout a.double-l").closest("li").remove();
-				$("div.layout a.multi").closest("li").remove();
-				$("div.layout a.multi2").closest("li").remove();
-				$("div.layout a.multi2-l").closest("li").remove();
-				$("div.eye-catch a.eye-m").closest("li").remove();
-				$("div.set a.set1").closest("li").remove();
-				$("div.set a.set2").closest("li").remove();
-			}
+			initialLoad();
 		}
 	}
 } else {
 	e_ifr.onload  = function() {
 		$('#iframe').contents().find('link[rel=stylesheet]').attr('href' ,'<mt:var name="blog_url">styles.css');
-		if (loadedPage == "index") {
-			$('#iframe').contents().find('body').removeClass(layoutClass).addClass(loadedIndexStyle);
-			$('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(loadedIndexEyecatch);
-		} else if (loadedPage == "individual") {
-			$('#iframe').contents().find('body').removeClass(layoutClass).addClass(loadedEntryStyle);
-			$('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(loadedEntryEyecatch);
-		} else if (loadedPage == "category") {
-			$('#iframe').contents().find('body').removeClass(layoutClass).addClass(loadedCategoryStyle);
-			$('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(loadedCategoryEyecatch);
-		} else if (loadedPage == "monthly") {
-			$('#iframe').contents().find('body').removeClass(layoutClass).addClass(loadedMonthlyStyle);
-			$('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(loadedMonthlyEyecatch);
-		} else if (loadedPage == "archives") {
-			$('#iframe').contents().find('body').removeClass(layoutClass).addClass(loadedArchiveStyle);
-			$('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(loadedArchiveEyecatch);
-		}
-		$('#iframe').contents().find('body').addClass(loadedWidth);
-		if (loadedOthers) {
-			$('#iframe').contents().find('body').addClass(loadedOthers);
-		}
-		if (loadedCloud) {
-			$('#iframe').contents().find('head').append('<link rel="stylesheet" type="text/css" id="tagstyle" href="<mt:var name="blog_url">themes/vicuna-tagcloud/tagCloud'+loadedCloud+'.css" />');
-		}
-		if (loadedPage == "index") {
-			$('div.layout a.'+loadedIndexStyle).addClass("on");
-			$('div.eye-catch a.'+loadedIndexEyecatch).addClass("on");
-		} else if (loadedPage == "individual") {
-			$('div.layout a.'+loadedEntryStyle).addClass("on");
-			$('div.eye-catch a.'+loadedEntryEyecatch).addClass("on");
-		} else if (loadedPage == "category") {
-			$('div.layout a.'+loadedCategoryStyle).addClass("on");
-			$('div.eye-catch a.'+loadedCategoryEyecatch).addClass("on");
-		} else if (loadedPage == "monthly") {
-			$('div.layout a.'+loadedMonthlyStyle).addClass("on");
-			$('div.eye-catch a.'+loadedMonthlyEyecatch).addClass("on");
-		} else if (loadedPage == "archives") {
-			$('div.layout a.'+loadedArchiveStyle).addClass("on");
-			$('div.eye-catch a.'+loadedArchiveEyecatch).addClass("on");
-		}
-		if (skinType == "recent") {
-			$("div.eye-catch a.eye-u").closest("li").remove();
-			$("div.set a.set3").closest("li").remove();
-			$("div.set a.set4").closest("li").remove();
-			$("div.others a.gh").closest("li").remove();
-		} else if (skinType == "design") {
-			$("div.layout a.double-l").closest("li").remove();
-			$("div.layout a.multi").closest("li").remove();
-			$("div.layout a.multi2").closest("li").remove();
-			$("div.layout a.multi2-l").closest("li").remove();
-			$("div.eye-catch a.eye-m").closest("li").remove();
-			$("div.set a.set1").closest("li").remove();
-			$("div.set a.set2").closest("li").remove();
-		}
+		initialLoad();
 	}
 }
 //]]>
