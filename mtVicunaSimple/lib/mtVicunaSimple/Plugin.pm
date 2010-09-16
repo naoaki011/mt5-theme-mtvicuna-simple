@@ -238,6 +238,16 @@ HTML
 sub _asset_insert_param {
     my ( $cb, $app, $param, $tmpl ) = @_;
     my $upload_html = $param->{ upload_html };
+    my $wrap;
+    if ($upload_html =~ / class=\"mt-image-left\"/) {
+        $wrap = '<p class="img_L">';
+    }
+    if ($upload_html =~ / class=\"mt-image-right\"/) {
+        $wrap = '<p class="img_R">';
+    }
+    if ($upload_html =~ / class=\"mt-image-center\"/) {
+        $wrap = '<p>';
+    }
     if ( $app->param('insert_lightbox') ) {
         $upload_html =~ s/<a/<a rel="lightbox"/i;
     }
@@ -245,6 +255,9 @@ sub _asset_insert_param {
     $upload_html =~ s/ style=\"\"//i;
     $upload_html =~ s/ style=\"float\: (right|left)\; margin\: 0 (0|20px) 20px (0|20px)\;\"//i;
     $upload_html =~ s/ style=\"text-align\: center\; display\: block\; margin\: 0 auto 20px\;\"//i;
+    if ($wrap) {
+        $upload_html = $wrap.$upload_html.'</p>';
+    }
     $param->{ upload_html } = $upload_html;
 }
 
