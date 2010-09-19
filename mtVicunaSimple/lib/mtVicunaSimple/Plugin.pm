@@ -2,6 +2,7 @@ package mtVicunaSimple::Plugin;
 
 use strict;
 use MT 4;
+use MT::Util qw( encode_html );
 
 sub tag_version {
     require MT::Theme;
@@ -184,7 +185,7 @@ sub tag_lightbox_selector {
     my ( $ctx, $args ) = @_;
     my $plugin = MT->component("mtVicunaSimple");
     my $scope = "blog:".$ctx->stash('blog_id');
-    my $selector = $plugin->get_config_value('lightbox_selector',$scope) || 'lightbox';
+    my $selector = $plugin->get_config_value('lightbox_selector',$scope) || 'rel="lightbox"';
     return $selector;
 }
 
@@ -213,8 +214,34 @@ sub _asset_options_image {
         my $blog = MT::Blog->load($blog_id) or die;
         my $themeid = $blog->theme_id;
         if ($themeid eq 'mtVicunaSimple') {
-           my $asset_id = $param->{asset_id} or return;
+            my $asset_id = $param->{asset_id} or return;
             my $asset = MT::Asset->load( $asset_id ) or return;
+
+            my $insert_options = '';
+            my $lb_select1 = $plugin->get_config_value('lb_select1',$scope);
+            my $lightbox_selector1 = MT::Util::encode_html($plugin->get_config_value('lightbox_selector1',$scope),1);
+            if (($lb_select1) && ($lightbox_selector1)) {
+                $insert_options .= '<option value="' . $lightbox_selector1 . '">' . $lightbox_selector1 . '</option>' . "\n";
+            }
+            my $lb_select2 = $plugin->get_config_value('lb_select2',$scope);
+            my $lightbox_selector2 = MT::Util::encode_html($plugin->get_config_value('lightbox_selector2',$scope),1);
+            if (($lb_select2) && ($lightbox_selector2)) {
+                $insert_options .= '<option value="' . $lightbox_selector2 . '">' . $lightbox_selector2 . '</option>' . "\n";
+            }
+            my $lb_select3 = $plugin->get_config_value('lb_select3',$scope);
+            my $lightbox_selector3 = MT::Util::encode_html($plugin->get_config_value('lightbox_selector3',$scope),1);
+            if (($lb_select3) && ($lightbox_selector3)) {
+                $insert_options .= '<option value="' . $lightbox_selector3 . '">' . $lightbox_selector3 . '</option>' . "\n";
+            }
+            my $lb_select4 = $plugin->get_config_value('lb_select4',$scope);
+            my $lightbox_selector4 = MT::Util::encode_html($plugin->get_config_value('lightbox_selector4',$scope),1);
+            if (($lb_select4) && ($lightbox_selector4)) {
+                $insert_options .= '<option value="' . $lightbox_selector4 . '">' . $lightbox_selector4 . '</option>' . "\n";
+            }
+            if ($insert_options eq '') {
+                $insert_options .= '<option value="rel=&quot;lightbox&quot;">rel=&quot;lightbox&quot;</option>' . "\n";
+            }
+
             my $el = $tmpl->getElementById('image_alignment')
                 or return;
             my $opt = $tmpl->createElement('app:setting', {
@@ -226,8 +253,16 @@ sub _asset_options_image {
             });
             $opt->innerHTML(<<HTML);
             <input type="checkbox" id="insert_lightbox" name="insert_lightbox"
+                onclick="if(this.checked){document.getElementById('create_thumbnail').checked=true;
+                document.getElementById('thumb_width').focus();
+                }else{
+                document.getElementById('create_thumbnail').checked=false;}"
                 value="1"<mt:if name="make_thumb"> checked="checked" </mt:if> />
-            <label for="insert_lightbox"><__trans phrase='Use Lightbox Effect'></label>
+            <label for="insert_lightbox"><__trans_section component="mtVicunaSimple"><__trans phrase='Use Lightbox Effect'></__trans_section></label>
+            <br />
+            <select id="insert_class" name="insert_class">
+                $insert_options
+            </select>
 HTML
             $tmpl->insertBefore($opt, $el);
             $tmpl->rescan();
@@ -237,28 +272,57 @@ HTML
 
 sub _asset_insert_param {
     my ( $cb, $app, $param, $tmpl ) = @_;
-    my $upload_html = $param->{ upload_html };
-    my $wrap;
-    if ($upload_html =~ / class=\"mt-image-left\"/) {
-        $wrap = '<p class="img_L">';
+    my $blog_id = $app->param('blog_id');
+    my $plugin = MT->component("mtVicunaSimple");
+    my $scope = "blog:".$blog_id;
+    my $cleanup_insert = $plugin->get_config_value('cleanup_insert',$scope);
+    if ($cleanup_insert) {
+        my $rightalign_class = $plugin->get_config_value('rightalign_class',$scope);
+        my $centeralign_class = $plugin->get_config_value('centeralign_class',$scope);
+        my $leftalign_class = $plugin->get_config_value('leftalign_class',$scope);
+        my $upload_html = $param->{ upload_html };
+        my $wrap;
+        if ($cleanup_insert == '1') {
+            if ($upload_html =~ / class=\"mt-image-left\"/) {
+                $wrap = '<p class="'.$leftalign_class.'">';
+            }
+            if ($upload_html =~ / class=\"mt-image-right\"/) {
+                $wrap = '<p class="'.$rightalign_class.'">';
+            }
+            if ($upload_html =~ / class=\"mt-image-center\"/) {
+                if ($centeralign_class) {
+                    $wrap = '<p class="'.$centeralign_class.'">';
+                } else {
+                    $wrap = '<p>';
+                }
+            }
+        }
+        my $insert_class = $app->param('insert_class');
+        if ( $app->param('insert_lightbox') ) {
+            $insert_class = '<a '.$insert_class;
+            $upload_html =~ s/<a/$insert_class/g;
+        }
+        if ($cleanup_insert == '2') {
+            $upload_html =~ s/ class=\"mt-image-none\"//i;
+            $rightalign_class = ' class="'.$rightalign_class.'"';
+            $upload_html =~ s/ class=\"mt-image-right\"/$rightalign_class/g;
+            $leftalign_class = ' class="'.$leftalign_class.'"';
+            $upload_html =~ s/ class=\"mt-image-left\"/$leftalign_class/g;
+            if ($centeralign_class) {
+                $centeralign_class = ' class="'.$centeralign_class.'"';
+            }
+            $upload_html =~ s/ class=\"mt-image-center\"/$centeralign_class/g;
+        } else {
+            $upload_html =~ s/ class=\"mt-image-(none|right|left|center)\"//i;
+        }
+        $upload_html =~ s/ style=\"\"//i;
+        $upload_html =~ s/ style=\"float\: (right|left)\; margin\: 0 (0|20px) 20px (0|20px)\;\"//i;
+        $upload_html =~ s/ style=\"text-align\: center\; display\: block\; margin\: 0 auto 20px\;\"//i;
+        if ($wrap) {
+            $upload_html = $wrap.$upload_html.'</p>';
+        }
+        $param->{ upload_html } = $upload_html;
     }
-    if ($upload_html =~ / class=\"mt-image-right\"/) {
-        $wrap = '<p class="img_R">';
-    }
-    if ($upload_html =~ / class=\"mt-image-center\"/) {
-        $wrap = '<p>';
-    }
-    if ( $app->param('insert_lightbox') ) {
-        $upload_html =~ s/<a/<a rel="lightbox"/i;
-    }
-    $upload_html =~ s/ class=\"mt-image-(none|right|left|center)\"//i;
-    $upload_html =~ s/ style=\"\"//i;
-    $upload_html =~ s/ style=\"float\: (right|left)\; margin\: 0 (0|20px) 20px (0|20px)\;\"//i;
-    $upload_html =~ s/ style=\"text-align\: center\; display\: block\; margin\: 0 auto 20px\;\"//i;
-    if ($wrap) {
-        $upload_html = $wrap.$upload_html.'</p>';
-    }
-    $param->{ upload_html } = $upload_html;
 }
 
 sub _edit_themeparams {

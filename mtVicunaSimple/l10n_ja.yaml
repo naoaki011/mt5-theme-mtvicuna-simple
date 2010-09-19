@@ -1,5 +1,5 @@
 mt.Vicuna Simple Theme: mt.Vicuna Simple テーマ
-Plugin for a MT5 Simple Theme for Vicuna CMS.: <a href="http://vicuna.jp/">VICUNA CMS</a>のMT5用Simpleテーマ・プラグイン
+Vicuna CMS Plugin for a Movable Type 5 Theme. mt.Vicuna Simple Theme Plugin is Optimized for Beginners.: <a href="http://vicuna.jp/">VICUNA CMS</a>のMovable Type 5 用テーマ・プラグインです。mt.Vicuna Simpleテーマは初心者向けに最適されています。
 A MT5 Theme Plugin for Vicuna CMS.: VICUNA CMSのMT5用テーマ・プラグインです。
 A MT5 Theme Plugin for Vicuna CMS. This Theme Build for MT Begginers such as Graphical Layout Editing screen.: VICUNA CMSのMT5用テーマ・プラグインです。このテーマはグラフィカルなレイアウト変更画面などにより、MT初心者向けに作成されています。
 mt.Vicuna skin: mt.Vicunaスキン
@@ -96,3 +96,14 @@ HatenaBokkmark Comments: はてブコメント
 
 Edit Vicuna Layout: Vicunaのレイアウト変更
 Hide Navigation: グローバルナビゲーションを表示しない
+CleanUp Asset Insert: アイテム挿入をクリーンアップする
+No CleanUp: クリーンアップしない
+Add Class for Wrap Paragraph tag: pタグで囲み、クラスを追加する
+Add Class for Image tag: imgタグにクラスを追加する
+Alignment Class: 位置揃えクラス
+Lightbox Script: Lightboxスクリプト
+Lightbox Selector: Lightboxセレクター
+RightAlign: 右揃え
+CenterALign: 中央揃え
+LeftAlign: 左揃え
+Use: 使用する
