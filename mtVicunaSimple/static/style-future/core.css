@@ -1145,17 +1145,17 @@ div#utilities dl dd table.calendar td a {
 
 div#utilities dl dd table.calendar td a:link {
 	color: #fff;
-	background-image: url(images/interface/circle02.png);
+	background-image: url(images/icon/circle02.png);
 }
 
 div#utilities dl dd table.calendar td a:visited {
 	color: #aaa;
-	background-image: url(images/interface/circle01.png);
+	background-image: url(images/icon/circle01.png);
 }
 
 div#utilities dl dd table.calendar td a:hover {
 	color: #000;
-	background-image: url(images/interface/circle03.png);
+	background-image: url(images/icon/circle03.png);
 }
 
 /* Option
