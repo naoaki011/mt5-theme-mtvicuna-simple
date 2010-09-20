@@ -464,6 +464,14 @@ body.set2 div#utilities dl.others dd {
 
 ========================================*/
 
+/* hidden Navi <body class="gh">
+---------------*/
+
+body.gh div#header .globalNavi,
+body.gh div#header #globalNavi {
+	display:none !important;
+}
+
 /* Navi on top <body class="gt">
 ---------------*/
 
@@ -479,6 +487,7 @@ body.gt ul#globalNavi {
 	left: 0;
 	bottom: auto;
 }
+
 /* No Centering - <body class="al">
 ---------------*/
 
