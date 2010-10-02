@@ -226,17 +226,21 @@ p.view span.notation {
 		} else {
 			$('#iframe').contents().find('body').removeClass(layoutClass).addClass(type);
 			$("div.layout a."+type).addClass("on");
-			$("#"+loadedPage+"_style").val(type);
 			if (loadedPage == "index") {
 				loadedIndexStyle = type;
+				$("#index_style").val(type);
 			} else if (loadedPage == "individual") {
 				loadedEntryStyle = type;
+				$("#entry_style").val(type);
 			} else if (loadedPage == "category") {
 				loadedCategoryStyle = type;
+				$("#category_style").val(type);
 			} else if (loadedPage == "monthly") {
 				loadedMonthlyStyle = type;
+				$("#monthly_style").val(type);
 			} else if (loadedPage == "archives") {
 				loadedArchiveStyle = type;
+				$("#archive_style").val(type);
 			}
 		}
 		$("div.set a").removeClass("on");
@@ -275,7 +279,17 @@ p.view span.notation {
 		$("div.eye-catch a").removeClass("on");
 		$("div.eye-catch a."+type).addClass("on");
 		$("div.set a").removeClass("on");
-		$("#"+loadedPage+"_eyecatch").val(type);
+		if (loadedPage == "index") {
+			$("#index_eyecatch").val(type);
+		} else if (loadedPage == "individual") {
+			$("#entry_eyecatch").val(type);
+		} else if (loadedPage == "category") {
+			$("#category_eyecatch").val(type);
+		} else if (loadedPage == "monthly") {
+			$("#monthly_eyecatch").val(type);
+		} else if (loadedPage == "archives") {
+			$("#archive_eyecatch").val(type);
+		}
 	};
 
 // Set
@@ -288,23 +302,31 @@ p.view span.notation {
 			$("div.layout a.multi").addClass("on");
 			$("div.eye-catch a").removeClass("on");
 			$("div.eye-catch a.eye-c").addClass("on");
-			$("#"+loadedPage+"_style").val('multi');
-			$("#"+loadedPage+"_eyecatch").val('eye-c');
 			if (loadedPage == "index") {
 				loadedIndexStyle = 'multi';
 				loadedIndexEyecatch = 'eye-c';
+				$("#index_style").val('multi set1');
+				$("#index_eyecatch").val('eye-c');
 			} else if (loadedPage == "individual") {
 				loadedEntryStyle = 'multi';
 				loadedEntryEyecatch = 'eye-c';
+				$("#entry_style").val('multi set1');
+				$("#entry_eyecatch").val('eye-c');
 			} else if (loadedPage == "category") {
 				loadedCategoryStyle = 'multi';
 				loadedCategoryEyecatch = 'eye-c';
+				$("#category_style").val('multi set1');
+				$("#category_eyecatch").val('eye-c');
 			} else if (loadedPage == "monthly") {
 				loadedMonthlyStyle = 'multi';
 				loadedMonthlyEyecatch = 'eye-c';
+				$("#monthly_style").val('multi set1');
+				$("#monthly_eyecatch").val('eye-c');
 			} else if (loadedPage == "archives") {
 				loadedArchiveStyle = 'multi';
 				loadedArchiveEyecatch = 'eye-c';
+				$("#archive_style").val('multi set1');
+				$("#archive_eyecatch").val('eye-c');
 			}
 		} else if (type == 'set2') {
 			$('#iframe').contents().find('body').addClass('multi2 eye-c set2');
@@ -312,23 +334,31 @@ p.view span.notation {
 			$("div.layout a.multi2").addClass("on");
 			$("div.eye-catch a").removeClass("on");
 			$("div.eye-catch a.eye-c").addClass("on");
-			$("#"+loadedPage+"_style").val('multi2');
-			$("#"+loadedPage+"_eyecatch").val('eye-c');
 			if (loadedPage == "index") {
 				loadedIndexStyle = 'multi2';
 				loadedIndexEyecatch = 'eye-c';
+				$("#index_style").val('multi2 set2');
+				$("#index_eyecatch").val('eye-c');
 			} else if (loadedPage == "individual") {
 				loadedEntryStyle = 'multi2';
 				loadedEntryEyecatch = 'eye-c';
+				$("#entry_style").val('multi2 set2');
+				$("#entry_eyecatch").val('eye-c');
 			} else if (loadedPage == "category") {
 				loadedCategoryStyle = 'multi2';
 				loadedCategoryEyecatch = 'eye-c';
+				$("#category_style").val('multi2 set2');
+				$("#category_eyecatch").val('eye-c');
 			} else if (loadedPage == "monthly") {
 				loadedMonthlyStyle = 'multi2';
 				loadedMonthlyEyecatch = 'eye-c';
+				$("#monthly_style").val('multi2 set2');
+				$("#monthly_eyecatch").val('eye-c');
 			} else if (loadedPage == "archives") {
 				loadedArchiveStyle = 'multi2';
 				loadedArchiveEyecatch = 'eye-c';
+				$("#archive_style").val('multi2 set2');
+				$("#archive_eyecatch").val('eye-c');
 			}
 		} else if (type == 'set3') {
 			$('#iframe').contents().find('body').addClass('double eye-u eye-h');
@@ -337,23 +367,31 @@ p.view span.notation {
 			$("div.eye-catch a").removeClass("on");
 			$("div.eye-catch a.eye-u").addClass("on");
 			$("div.eye-catch a.eye-h").addClass("on");
-			$("#"+loadedPage+"_style").val('double');
-			$("#"+loadedPage+"_eyecatch").val('eye-u eye-h');
 			if (loadedPage == "index") {
 				loadedIndexStyle = 'double';
 				loadedIndexEyecatch = 'eye-u eye-h';
+				$("#index_style").val('double');
+				$("#index_eyecatch").val('eye-u eye-h');
 			} else if (loadedPage == "individual") {
 				loadedEntryStyle = 'double';
 				loadedEntryEyecatch = 'eye-u eye-h';
+				$("#entry_style").val('double');
+				$("#entry_eyecatch").val('eye-u eye-h');
 			} else if (loadedPage == "category") {
 				loadedCategoryStyle = 'double';
 				loadedCategoryEyecatch = 'eye-u eye-h';
+				$("#category_style").val('double');
+				$("#category_eyecatch").val('eye-u eye-h');
 			} else if (loadedPage == "monthly") {
 				loadedMonthlyStyle = 'double';
 				loadedMonthlyEyecatch = 'eye-u eye-h';
+				$("#monthly_style").val('double');
+				$("#monthly_eyecatch").val('eye-u eye-h');
 			} else if (loadedPage == "archives") {
 				loadedArchiveStyle = 'double';
 				loadedArchiveEyecatch = 'eye-u eye-h';
+				$("#archive_style").val('double');
+				$("#arcgive_eyecatch").val('eye-u eye-h');
 			}
 		} else if (type == 'set4') {
 			$('#iframe').contents().find('body').addClass('double eye-u eye-hb');
@@ -362,23 +400,31 @@ p.view span.notation {
 			$("div.eye-catch a").removeClass("on");
 			$("div.eye-catch a.eye-u").addClass("on");
 			$("div.eye-catch a.eye-hb").addClass("on");
-			$("#"+loadedPage+"_style").val('double');
-			$("#"+loadedPage+"_eyecatch").val('eye-u eye-hb');
 			if (loadedPage == "index") {
 				loadedIndexStyle = 'double';
 				loadedIndexEyecatch = 'eye-u eye-hb';
+				$("#index_style").val('double');
+				$("#index_eyecatch").val('eye-u eye-hb');
 			} else if (loadedPage == "individual") {
 				loadedEntryStyle = 'double';
 				loadedEntryEyecatch = 'eye-u eye-hb';
+				$("#entry_style").val('double');
+				$("#entry_eyecatch").val('eye-u eye-hb');
 			} else if (loadedPage == "category") {
 				loadedCategoryStyle = 'double';
 				loadedCategoryEyecatch = 'eye-u eye-hb';
+				$("#category_style").val('double');
+				$("#category_eyecatch").val('eye-u eye-hb');
 			} else if (loadedPage == "monthly") {
 				loadedMonthlyStyle = 'double';
 				loadedMonthlyEyecatch = 'eye-u eye-hb';
+				$("#monthly_style").val('double');
+				$("#monthly_eyecatch").val('eye-u eye-hb');
 			} else if (loadedPage == "archives") {
 				loadedArchiveStyle = 'double';
 				loadedArchiveEyecatch = 'eye-u eye-hb';
+				$("#archive_style").val('double');
+				$("#arcgive_eyecatch").val('eye-u eye-hb');
 			}
 		}
 		$("div.set a").removeClass("on");
@@ -570,12 +616,13 @@ p.view span.notation {
   <ul>
    <li><a class="index on" accesskey="1" onclick="loadPage('index');">Index</a></li>
    <li><a class="category" accesskey="2" onclick="loadPage('category');">Category</a></li>
-   <li><a class="individual" accesskey="3" onclick="loadPage('individual');">Individual</a></li>
-   <li><a class="archives" accesskey="4" onclick="loadPage('archives');">Archive</a></li>
+   <li><a class="monthly" accesskey="3" onclick="loadPage('monthly');">Monthly</a></li>
+   <li><a class="individual" accesskey="4" onclick="loadPage('individual');">Individual</a></li>
+   <li><a class="archives" accesskey="5" onclick="loadPage('archives');">Archive</a></li>
   </ul>
 </div>
 
-<form enctype="multipart/form-data" method="post" action="<mt:var name="script_url">">
+<form enctype="multipart/form-data" method="post" action="<mt:var name="script_url">"">
   <input type="hidden" name="__mode" value="save_plugin_config" />
   <input type="hidden" name="blog_id" value="<mt:var name="blog_id">" />
   <input type="hidden" name="return_args" value="__mode=edit_themeparams&amp;blog_id=<mt:var name="blog_id">" />
@@ -591,7 +638,7 @@ p.view span.notation {
     <input type="hidden" name="entry_eyecatch" id="entry_eyecatch" value="<mt:var name="entry_eyecatch">" />
     <input type="hidden" name="category_eyecatch" id="category_eyecatch" value="<mt:var name="category_eyecatch">" />
     <input type="hidden" name="monthly_eyecatch" id="monthly_eyecatch" value="<mt:var name="monthly_eyecatch">" />
-    <input type="hidden" name="archive_eyecatch" id="index_eyecatch" value="<mt:var name="archive_eyecatch">" />
+    <input type="hidden" name="archive_eyecatch" id="archive_eyecatch" value="<mt:var name="archive_eyecatch">" />
     <input type="hidden" name="fixed_width" id="fixed_width" value="<mt:var name="fixed_width">" />
     <input type="hidden" name="navi_on_top" id="navi_on_top" value="<mt:var name="navi_on_top">" />
     <input type="hidden" name="hide_navi" id="hide_navi" value="<mt:var name="hide_navi">" />
@@ -666,6 +713,10 @@ function initialLoad() {
 		$("div.set a.set1").closest("li").remove();
 		$("div.set a.set2").closest("li").remove();
 		$("div.others").remove();
+	} else {
+		$("div.eye-catch a.eye-u").closest("li").remove();
+		$("div.set a.set3").closest("li").remove();
+		$("div.set a.set4").closest("li").remove();
 	}
 }
 
