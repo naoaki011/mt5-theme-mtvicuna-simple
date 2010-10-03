@@ -282,17 +282,26 @@ sub _asset_insert_param {
         my $leftalign_class = $plugin->get_config_value('leftalign_class',$scope);
         my $upload_html = $param->{ upload_html };
         my $wrap;
-        if ($cleanup_insert == '1') {
+            if ($cleanup_insert == '1' || $cleanup_insert == '') {
             if ($upload_html =~ / class=\"mt-image-left\"/) {
                 $wrap = '<p class="'.$leftalign_class.'">';
+                if ($cleanup_insert == '') {
+                    $wrap = '<p class="img_L">';
+                }
             }
             if ($upload_html =~ / class=\"mt-image-right\"/) {
                 $wrap = '<p class="'.$rightalign_class.'">';
+                if ($cleanup_insert == '') {
+                    $wrap = '<p class="img_R">';
+                }
             }
             if ($upload_html =~ / class=\"mt-image-center\"/) {
                 if ($centeralign_class) {
                     $wrap = '<p class="'.$centeralign_class.'">';
                 } else {
+                    $wrap = '<p>';
+                }
+                if ($cleanup_insert == '') {
                     $wrap = '<p>';
                 }
             }
