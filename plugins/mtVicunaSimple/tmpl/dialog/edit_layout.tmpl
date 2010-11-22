@@ -1,0 +1,741 @@
+<mt:setvarblock name="page_title"><__trans phrase="Edit Vicuna Layout"></mt:setvarblock>
+<mt:setvarblock name="html_head" append="1">
+<script type="text/javascript" src="<mt:var name="static_uri">jquery/jquery.js"></script>
+<script type="text/javascript" src="<mt:var name="static_uri">jquery/jquery.mt.js"></script>
+<script type="text/javascript" src="<mt:var name="static_uri">jqueryui/ui.datepicker.js"></script>
+</mt:setvarblock>
+<mt:include name="cms/include/header.tmpl">
+
+<p class="view">
+	<a class="view" onclick="showmenu();" title="Show/Hide Menu">Show / Hide SideMenu</a>
+	<span class="notation">Global Settings</span>
+</p>
+
+<style type="text/css">
+#content-header {
+	margin-bottom:0;
+}
+.main-screen #container {
+max-width:1400px;
+}
+.main-screen #content {
+width: 100%;
+}
+div.class div {
+	width:12em;
+	float: left;
+	margin: 0.2em 0.5em;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;	
+}
+div.class div.width,
+div.class div.others,
+div.class div.cloud {
+	background-color: #eef;
+}
+div.debug-tool,
+div.pages {
+	left:3px;
+	text-align:left;
+	top:3px;
+	clear: both;
+}
+div.debug-tool ul,
+div.pages ul {
+	margin: 7px 5px 10px 30px;
+	padding: 0;
+	font-size: 12px;
+	color: #066;
+}
+div.pages ul {
+	float: left;
+}
+div.debug-tool ul li {
+	list-style-type:circle;
+}
+div.pages ul li {
+	float: left;
+	width:8em;
+	margin-right: 1em;
+}
+div.debug-tool ul li a,
+div.pages ul li a {
+	padding: 0.1em 0.5em;
+	display: block;
+	color: #111;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+div.debug-tool ul li:hover,
+div.pages ul li:hover {
+	color: #0FF;
+}
+div.debug-tool ul li a:hover,
+div.pages ul li a:hover {
+	color: #fff;
+	background-color: #111;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;	
+}
+div.debug-tool li a.on,
+div.pages li a.on {
+	color: #06abeb;
+	text-align: center;
+	cursor: text;
+	font-weight: bold;
+	background-color: #00424c;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;	
+}
+
+div.debug-tool h2,
+div.pages h2 {
+	margin: 5px 0 0 5px;
+	font-size: 10px;
+	color: #ced924;
+	text-transform: uppercase;
+	padding: 0.5em 0 0.5em 2em;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	outline: none;
+	background-color: #222;
+}
+
+div.debug-tool h3 {
+	margin: 5px 0 0 13px;
+	padding: 0;
+	color: #8cb2c9;
+	font-size: 10px;
+	text-transform: uppercase;
+	border: none;
+	outline: none;
+	background: none;
+}
+
+p.view {
+	margin: 0;
+	padding: 5px;
+	clear: both;
+	color: #fff;
+	font-size: 10px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+p.view a {
+	color: #fff;
+	background-color: #9C0;
+	padding: 0.1em 0.5em;
+	cursor: pointer;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+
+p.view a:hover {
+	background-color: #9F0;
+}
+p.view span.notation {
+	color: #222;
+	background-color: #eef;
+	padding: 0.1em 0.5em;
+	float: right;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+.actions-bar {
+	margin: 0.5em 0 1em 0;
+	float: right;
+}
+
+</style>
+
+<script type="text/javascript">
+//<![CDATA[
+
+	$("#menu").css("display","none");
+
+	var layoutClass ="single double double-l multi multi2 multi2-l set1 set2";
+	var eyeCatchClass ="eye-h eye-hb eye-m eye-c eye-u set1 set2";
+	var widthClass ="f800 f850 f900 f950 f1000 none";
+	var otherClass ="al gt gh";
+	var loadedPage ="index";
+	var loadedIndexStyle ="<mt:var name="index_style">";
+	var loadedEntryStyle ="<mt:var name="entry_style">";
+	var loadedCategoryStyle ="<mt:var name="category_style">";
+	var loadedMonthlyStyle ="<mt:var name="monthly_style">";
+	var loadedArchiveStyle ="<mt:var name="archive_style">";
+	var loadedIndexEyecatch ="<mt:var name="index_eyecatch">";
+	var loadedEntryEyecatch ="<mt:var name="entry_eyecatch">";
+	var loadedCategoryEyecatch ="<mt:var name="category_eyecatch">";
+	var loadedMonthlyEyecatch ="<mt:var name="monthly_eyecatch">";
+	var loadedArchiveEyecatch ="<mt:var name="archive_eyecatch">";
+	var loadedWidth ="<mt:if name="fixed_width" ne="none"><mt:var name="fixed_width"></mt:if>";
+	var loadedOthers ="<mt:if name="hide_navi">gh<mt:elseif name="navi_on_top">gt<mt:elseif name="left_align">al</mt:if>";
+	var loadedCloud ="<mt:if name="cloud_style" ne="none"><mt:var name="cloud_style"></mt:if>";
+	var vicuna_skin_layout ="<mt:var name="vicuna_skin_layout">";
+	if (vicuna_skin_layout == "flat") {
+		var skinType = "recent";
+	} else if (vicuna_skin_layout == "galaxy") {
+		var skinType = "recent";
+	} else if (vicuna_skin_layout == "mono") {
+		var skinType = "recent";
+	} else if (vicuna_skin_layout == "vega") {
+		var skinType = "recent";
+	} else if (vicuna_skin_layout == "future") {
+		var skinType = "future";
+	} else if (vicuna_skin_layout == "bazooka") {
+		var skinType = "design";
+	} else if (vicuna_skin_layout == "warship") {
+		var skinType = "design";
+	}
+
+// Layout
+
+	function setLayout(type) {
+		$("div.layout a").removeClass("on");
+		if (type == 'default'){
+			if (loadedPage == 'individual') {
+				$('#iframe').contents().find('body').removeClass(layoutClass).addClass('single');
+				$("div.layout a.single").addClass("on");
+				$("#entry_style").val('single');
+				loadedEntryStyle ='single';
+			} else if (loadedPage == 'archive') {
+				$('#iframe').contents().find('body').removeClass(layoutClass).addClass('single');
+				$("div.layout a.single").addClass("on");
+				$("#archive_style").val('single');
+				loadedArchiveStyle = 'single';
+			} else {
+				$('#iframe').contents().find('body').removeClass(layoutClass).addClass('double');
+				$("div.layout a.double").addClass("on");
+				$("#"+loadedPage+"_style").val('double');
+				if (loadedPage == "index") {
+					loadedIndexStyle = 'double';
+				} else if (loadedPage == "category") {
+					loadedCategoryStyle = 'double';
+				} else if (loadedPage == "monthly") {
+					loadedMonthlyStyle = 'double';
+				}
+			}
+		} else {
+			$('#iframe').contents().find('body').removeClass(layoutClass).addClass(type);
+			$("div.layout a."+type).addClass("on");
+			if (loadedPage == "index") {
+				loadedIndexStyle = type;
+				$("#index_style").val(type);
+			} else if (loadedPage == "individual") {
+				loadedEntryStyle = type;
+				$("#entry_style").val(type);
+			} else if (loadedPage == "category") {
+				loadedCategoryStyle = type;
+				$("#category_style").val(type);
+			} else if (loadedPage == "monthly") {
+				loadedMonthlyStyle = type;
+				$("#monthly_style").val(type);
+			} else if (loadedPage == "archives") {
+				loadedArchiveStyle = type;
+				$("#archive_style").val(type);
+			}
+		}
+		$("div.set a").removeClass("on");
+	};
+
+// Eye Catch
+
+	function setEye(type) {
+		$('#iframe').contents().find('body').removeClass(eyeCatchClass);
+		if (type != 'e-clear') {
+			$('#iframe').contents().find('body').addClass(type);
+			if (loadedPage == "index") {
+				loadedIndexEyecatch = type;
+			} else if (loadedPage == "individual") {
+				loadedEntryEyecatch = type;
+			} else if (loadedPage == "category") {
+				loadedCategoryEyecatch = type;
+			} else if (loadedPage == "monthly") {
+				loadedMonthlyEyecatch = type;
+			} else if (loadedPage == "archives") {
+				loadedArchiveEyecatch = type;
+			}
+		} else {
+			if (loadedPage == "index") {
+				loadedIndexEyecatch = '';
+			} else if (loadedPage == "individual") {
+				loadedEntryEyecatch = '';
+			} else if (loadedPage == "category") {
+				loadedCategoryEyecatch = '';
+			} else if (loadedPage == "monthly") {
+				loadedMonthlyEyecatch = '';
+			} else if (loadedPage == "archives") {
+				loadedArchiveEyecatch = '';
+			}
+		}
+		$("div.eye-catch a").removeClass("on");
+		$("div.eye-catch a."+type).addClass("on");
+		$("div.set a").removeClass("on");
+		if (loadedPage == "index") {
+			$("#index_eyecatch").val(type);
+		} else if (loadedPage == "individual") {
+			$("#entry_eyecatch").val(type);
+		} else if (loadedPage == "category") {
+			$("#category_eyecatch").val(type);
+		} else if (loadedPage == "monthly") {
+			$("#monthly_eyecatch").val(type);
+		} else if (loadedPage == "archives") {
+			$("#archive_eyecatch").val(type);
+		}
+	};
+
+// Set
+
+	function setSet(type) {
+		$('#iframe').contents().find('body').removeClass(layoutClass).removeClass(eyeCatchClass);
+		if (type == 'set1'){
+			$('#iframe').contents().find('body').addClass('multi eye-c set1');
+			$("div.layout a").removeClass("on");
+			$("div.layout a.multi").addClass("on");
+			$("div.eye-catch a").removeClass("on");
+			$("div.eye-catch a.eye-c").addClass("on");
+			if (loadedPage == "index") {
+				loadedIndexStyle = 'multi';
+				loadedIndexEyecatch = 'eye-c';
+				$("#index_style").val('multi set1');
+				$("#index_eyecatch").val('eye-c');
+			} else if (loadedPage == "individual") {
+				loadedEntryStyle = 'multi';
+				loadedEntryEyecatch = 'eye-c';
+				$("#entry_style").val('multi set1');
+				$("#entry_eyecatch").val('eye-c');
+			} else if (loadedPage == "category") {
+				loadedCategoryStyle = 'multi';
+				loadedCategoryEyecatch = 'eye-c';
+				$("#category_style").val('multi set1');
+				$("#category_eyecatch").val('eye-c');
+			} else if (loadedPage == "monthly") {
+				loadedMonthlyStyle = 'multi';
+				loadedMonthlyEyecatch = 'eye-c';
+				$("#monthly_style").val('multi set1');
+				$("#monthly_eyecatch").val('eye-c');
+			} else if (loadedPage == "archives") {
+				loadedArchiveStyle = 'multi';
+				loadedArchiveEyecatch = 'eye-c';
+				$("#archive_style").val('multi set1');
+				$("#archive_eyecatch").val('eye-c');
+			}
+		} else if (type == 'set2') {
+			$('#iframe').contents().find('body').addClass('multi2 eye-c set2');
+			$("div.layout a").removeClass("on");
+			$("div.layout a.multi2").addClass("on");
+			$("div.eye-catch a").removeClass("on");
+			$("div.eye-catch a.eye-c").addClass("on");
+			if (loadedPage == "index") {
+				loadedIndexStyle = 'multi2';
+				loadedIndexEyecatch = 'eye-c';
+				$("#index_style").val('multi2 set2');
+				$("#index_eyecatch").val('eye-c');
+			} else if (loadedPage == "individual") {
+				loadedEntryStyle = 'multi2';
+				loadedEntryEyecatch = 'eye-c';
+				$("#entry_style").val('multi2 set2');
+				$("#entry_eyecatch").val('eye-c');
+			} else if (loadedPage == "category") {
+				loadedCategoryStyle = 'multi2';
+				loadedCategoryEyecatch = 'eye-c';
+				$("#category_style").val('multi2 set2');
+				$("#category_eyecatch").val('eye-c');
+			} else if (loadedPage == "monthly") {
+				loadedMonthlyStyle = 'multi2';
+				loadedMonthlyEyecatch = 'eye-c';
+				$("#monthly_style").val('multi2 set2');
+				$("#monthly_eyecatch").val('eye-c');
+			} else if (loadedPage == "archives") {
+				loadedArchiveStyle = 'multi2';
+				loadedArchiveEyecatch = 'eye-c';
+				$("#archive_style").val('multi2 set2');
+				$("#archive_eyecatch").val('eye-c');
+			}
+		} else if (type == 'set3') {
+			$('#iframe').contents().find('body').addClass('double eye-u eye-h');
+			$("div.layout a").removeClass("on");
+			$("div.layout a.double").addClass("on");
+			$("div.eye-catch a").removeClass("on");
+			$("div.eye-catch a.eye-u").addClass("on");
+			$("div.eye-catch a.eye-h").addClass("on");
+			if (loadedPage == "index") {
+				loadedIndexStyle = 'double';
+				loadedIndexEyecatch = 'eye-u eye-h';
+				$("#index_style").val('double');
+				$("#index_eyecatch").val('eye-u eye-h');
+			} else if (loadedPage == "individual") {
+				loadedEntryStyle = 'double';
+				loadedEntryEyecatch = 'eye-u eye-h';
+				$("#entry_style").val('double');
+				$("#entry_eyecatch").val('eye-u eye-h');
+			} else if (loadedPage == "category") {
+				loadedCategoryStyle = 'double';
+				loadedCategoryEyecatch = 'eye-u eye-h';
+				$("#category_style").val('double');
+				$("#category_eyecatch").val('eye-u eye-h');
+			} else if (loadedPage == "monthly") {
+				loadedMonthlyStyle = 'double';
+				loadedMonthlyEyecatch = 'eye-u eye-h';
+				$("#monthly_style").val('double');
+				$("#monthly_eyecatch").val('eye-u eye-h');
+			} else if (loadedPage == "archives") {
+				loadedArchiveStyle = 'double';
+				loadedArchiveEyecatch = 'eye-u eye-h';
+				$("#archive_style").val('double');
+				$("#arcgive_eyecatch").val('eye-u eye-h');
+			}
+		} else if (type == 'set4') {
+			$('#iframe').contents().find('body').addClass('double eye-u eye-hb');
+			$("div.layout a").removeClass("on");
+			$("div.layout a.double").addClass("on");
+			$("div.eye-catch a").removeClass("on");
+			$("div.eye-catch a.eye-u").addClass("on");
+			$("div.eye-catch a.eye-hb").addClass("on");
+			if (loadedPage == "index") {
+				loadedIndexStyle = 'double';
+				loadedIndexEyecatch = 'eye-u eye-hb';
+				$("#index_style").val('double');
+				$("#index_eyecatch").val('eye-u eye-hb');
+			} else if (loadedPage == "individual") {
+				loadedEntryStyle = 'double';
+				loadedEntryEyecatch = 'eye-u eye-hb';
+				$("#entry_style").val('double');
+				$("#entry_eyecatch").val('eye-u eye-hb');
+			} else if (loadedPage == "category") {
+				loadedCategoryStyle = 'double';
+				loadedCategoryEyecatch = 'eye-u eye-hb';
+				$("#category_style").val('double');
+				$("#category_eyecatch").val('eye-u eye-hb');
+			} else if (loadedPage == "monthly") {
+				loadedMonthlyStyle = 'double';
+				loadedMonthlyEyecatch = 'eye-u eye-hb';
+				$("#monthly_style").val('double');
+				$("#monthly_eyecatch").val('eye-u eye-hb');
+			} else if (loadedPage == "archives") {
+				loadedArchiveStyle = 'double';
+				loadedArchiveEyecatch = 'eye-u eye-hb';
+				$("#archive_style").val('double');
+				$("#arcgive_eyecatch").val('eye-u eye-hb');
+			}
+		}
+		$("div.set a").removeClass("on");
+		$("div.set a."+type).addClass("on");
+	};
+
+// Width
+
+	function setWidth(type) {
+		$('#iframe').contents().find('body').removeClass(widthClass);
+		$("div.width a").removeClass("on");
+		if (type != 'w-clear') {
+			$('#iframe').contents().find('body').addClass(type);
+			$("div.width a."+type).addClass("on");
+			loadedWidth = type;
+			$("#fixed_width").val(type);
+		} else {
+			$("#fixed_width").val('none');
+			loadedWidth = '';
+		}
+	};
+
+// Others
+
+	function setOthers(type) {
+		$('#iframe').contents().find('body').removeClass(otherClass).addClass(type);
+		$("div.others a").removeClass("on");
+		if (type != 'o-clear') {
+			$("div.others a."+type).addClass("on");
+			loadedOthers = type;
+		} else {
+			loadedOthers = '';
+		}
+		if (type == 'gt') {
+			$("#navi_on_top").val('1');$("#hide_navi").val('0');$("#left_align").val('0');
+		} else if (type == 'gh') {
+			$("#navi_on_top").val('0');$("#hide_navi").val('1');$("#left_align").val('0');
+		} else if (type == 'al') {
+			$("#navi_on_top").val('0');$("#hide_navi").val('0');$("#left_align").val('1');
+		} else if (type == 'o-clear') {
+			$("#navi_on_top").val('0');$("#hide_navi").val('0');$("#left_align").val('0');
+		}
+	};
+
+// Tag Cloud
+
+	function setCloud(type) {
+		$("div.cloud a").removeClass("on");
+		$('#iframe').contents().find('#tagstyle').remove();
+		if (type !='none') {
+			if ($.browser.msie) {} else {
+				$('#iframe').contents().find('head').append('<link rel="stylesheet" type="text/css" href="<mt:var name="blog_url">styles.css" />');
+			}
+			$('#iframe').contents().find('head').append('<link rel="stylesheet" type="text/css" id="tagstyle" href="<mt:var name="blog_url">themes/vicuna-tagcloud/tagCloud'+type+'.css" />');
+			$("div.cloud a.style"+type).addClass("on");
+			loadedCloud = type;
+		} else {
+			$("div.cloud a.none").addClass("on");
+			loadedCloud = '';
+		}
+		$("#cloud_style").val(type);
+	};
+
+// Load Page
+
+	function loadPage(page) {
+		$('#iframe').attr('src' ,'<mt:var name="static_uri">support/theme_static/mtVicunaSimple/preview/'+page+'.html');
+		loadedPage = page;
+		$("div.pages a").removeClass("on");
+		$("div.layout a").removeClass("on");
+		$("div.eye-catch a").removeClass("on");
+		if (page == "index") {
+			var layout = loadedIndexStyle;
+			var eyecatch = loadedIndexEyecatch;
+		} else if (page == "individual") {
+			var layout = loadedEntryStyle;
+			var eyecatch = loadedEntryEyecatch;
+		} else if (page == "category") {
+			var layout = loadedCategoryStyle;
+			var eyecatch = loadedCategoryEyecatch;
+		} else if (page == "monthly") {
+			var layout = loadedMonthlyStyle;
+			var eyecatch = loadedMonthlyEyecatch;
+		} else if (page == "archives") {
+			var layout = loadedArchiveStyle;
+			var eyecatch = loadedArchiveEyecatch;
+		}
+		$('#iframe').contents().find('body').removeClass(layoutClass).addClass(layout);
+		$('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(eyecatch);
+		$("div.pages a."+page).addClass("on");
+		$("div.layout a."+layout).addClass("on");
+		$("div.eye-catch a."+eyecatch).addClass("on");
+	};
+
+// Menu On/Off
+	function showmenu(){
+		$("#menu").toggle("slow");
+		$(".debug-tool").toggle("slow");
+		$("form .actions-bar").toggle("slow");
+    };
+//]]>
+</script>
+
+<div class="debug-tool">
+  <div class="class">
+   <h2>Layout Debug mode</h2>
+   <div class="layout">
+    <h3>Layout</h3>
+    <ul>
+     <li><a class="single" onclick="setLayout('single');">single</a></li>
+     <li><a class="double" onclick="setLayout('double');">double</a></li>
+     <li><a class="double-l" onclick="setLayout('double-l');">double-l</a></li>
+     <li><a class="multi" onclick="setLayout('multi');">multi</a></li>
+     <li><a class="multi2" onclick="setLayout('multi2');">multi2</a></li>
+     <li><a class="multi2-l" onclick="setLayout('multi2-l');">multi2-l</a></li>
+     <li><a class="default" onclick="setLayout('default');">default</a></li>
+    </ul>
+   </div>
+   <div class="eye-catch">
+    <h3>Eye Catch</h3>
+    <ul>
+     <li><a class="eye-h" onclick="setEye('eye-h');">eye-h</a></li>
+     <li><a class="eye-hb" onclick="setEye('eye-hb');">eye-hb</a></li>
+     <li><a class="eye-m" onclick="setEye('eye-m');">eye-m</a></li>
+     <li><a class="eye-c" onclick="setEye('eye-c');">eye-c</a></li>
+     <li><a class="eye-u" onclick="setEye('eye-u');">eye-u</a></li>
+     <li><a class="e-clear" onclick="setEye('e-clear');">none</a></li>
+    </ul>
+   </div>
+   <div class="set">
+    <h3>Set</h3>
+    <ul>
+     <li><a class="set1" onclick="setSet('set1');">set1</a></li>
+     <li><a class="set2" onclick="setSet('set2');">set2</a></li>
+     <li><a class="set3" onclick="setSet('set3');">set3</a></li>
+     <li><a class="set4" onclick="setSet('set4');">set4</a></li>
+    </ul>
+   </div>
+   <div class="width">
+    <h3>Width</h3>
+    <ul>
+     <li><a class="f800<mt:if name="fixed_width" eq="f800"> on</mt:if>" onclick="setWidth('f800');">f800</a></li>
+     <li><a class="f850<mt:if name="fixed_width" eq="f850"> on</mt:if>" onclick="setWidth('f850');">f850</a></li>
+     <li><a class="f900<mt:if name="fixed_width" eq="f900"> on</mt:if>" onclick="setWidth('f900');">f900</a></li>
+     <li><a class="f950<mt:if name="fixed_width" eq="f950"> on</mt:if>" onclick="setWidth('f950');">f950</a></li>
+     <li><a class="f1000<mt:if name="fixed_width" eq="f1000"> on</mt:if>" onclick="setWidth('f1000');">f1000</a></li>
+     <li><a class="w-clear<mt:if name="fixed_width" eq="none"> on</mt:if>" onclick="setWidth('w-clear');">none</a></li>
+    </ul>
+   </div>
+   <div class="others">
+    <h3>Others</h3>
+    <ul>
+     <li><a class="gt<mt:if name="navi_on_top"> on</mt:if>" onclick="setOthers('gt');">Navi on Top</a></li>
+     <li><a class="gh<mt:if name="hide_navi"> on</mt:if>" onclick="setOthers('gh');">hide Navi</a></li>
+     <li><a class="al<mt:if name="align_left"> on</mt:if>" onclick="setOthers('al');">align Left</a></li>
+     <li><a class="o-clear" onclick="setOthers('o-clear');">Clear</a></li>
+    </ul>
+   </div>
+   <div class="cloud">
+    <h3>TagCloud Style</h3>
+    <ul>
+     <li><a class="none<mt:if name="cloud_style" eq="none"> on</mt:if>" onclick="setCloud('none');">Skin Default</a></li>
+     <li><a class="style01<mt:if name="cloud_style" eq="01"> on</mt:if>" onclick="setCloud('01');">Style01</a></li>
+     <li><a class="style02<mt:if name="cloud_style" eq="02"> on</mt:if>" onclick="setCloud('02');">Style02</a></li>
+     <li><a class="style03<mt:if name="cloud_style" eq="03"> on</mt:if>" onclick="setCloud('03');">Style03</a></li>
+     <li><a class="style04<mt:if name="cloud_style" eq="04"> on</mt:if>" onclick="setCloud('04');">Style04</a></li>
+     <li><a class="style05<mt:if name="cloud_style" eq="05"> on</mt:if>" onclick="setCloud('05');">Style05</a></li>
+     <li><a class="style06<mt:if name="cloud_style" eq="06"> on</mt:if>" onclick="setCloud('06');">Style06</a></li>
+    </ul>
+   </div>
+   <div class="cloud">
+    <ul>
+     <li><a class="style07<mt:if name="cloud_style" eq="07"> on</mt:if>" onclick="setCloud('07');">Style07</a></li>
+     <li><a class="style08<mt:if name="cloud_style" eq="08"> on</mt:if>" onclick="setCloud('08');">Style08</a></li>
+     <li><a class="style09<mt:if name="cloud_style" eq="09"> on</mt:if>" onclick="setCloud('09');">Style09</a></li>
+     <li><a class="style10<mt:if name="cloud_style" eq="10"> on</mt:if>" onclick="setCloud('10');">Style10</a></li>
+     <li><a class="style11<mt:if name="cloud_style" eq="11"> on</mt:if>" onclick="setCloud('11');">Style11</a></li>
+     <li><a class="style12<mt:if name="cloud_style" eq="12"> on</mt:if>" onclick="setCloud('12');">Style12</a></li>
+     <li><a class="style13<mt:if name="cloud_style" eq="13"> on</mt:if>" onclick="setCloud('13');">Style13</a></li>
+    </ul>
+   </div>
+
+  </div>
+
+</div>
+
+<div class="pages">
+  <h2>Page Pattern</h2>
+  <ul>
+   <li><a class="index on" accesskey="1" onclick="loadPage('index');">Index</a></li>
+   <li><a class="category" accesskey="2" onclick="loadPage('category');">Category</a></li>
+   <li><a class="monthly" accesskey="3" onclick="loadPage('monthly');">Monthly</a></li>
+   <li><a class="individual" accesskey="4" onclick="loadPage('individual');">Individual</a></li>
+   <li><a class="archives" accesskey="5" onclick="loadPage('archives');">Archive</a></li>
+  </ul>
+</div>
+
+<form enctype="multipart/form-data" method="post" action="<mt:var name="script_url">"">
+  <input type="hidden" name="__mode" value="save_plugin_config" />
+  <input type="hidden" name="blog_id" value="<mt:var name="blog_id">" />
+  <input type="hidden" name="return_args" value="__mode=edit_themeparams&amp;blog_id=<mt:var name="blog_id">" />
+  <input type="hidden" name="plugin_sig" value="mtVicunaSimple" />
+  <input type="hidden" name="magic_token" value="<mt:var name="magic_token">" />
+
+    <input type="hidden" name="index_style" id="index_style" value="<mt:var name="index_style">" />
+    <input type="hidden" name="entry_style" id="entry_style" value="<mt:var name="entry_style">" />
+    <input type="hidden" name="category_style" id="category_style" value="<mt:var name="category_style">" />
+    <input type="hidden" name="monthly_style" id="monthly_style" value="<mt:var name="monthly_style">" />
+    <input type="hidden" name="archive_style" id="archive_style" value="<mt:var name="archive_style">" />
+    <input type="hidden" name="index_eyecatch" id="index_eyecatch" value="<mt:var name="index_eyecatch">" />
+    <input type="hidden" name="entry_eyecatch" id="entry_eyecatch" value="<mt:var name="entry_eyecatch">" />
+    <input type="hidden" name="category_eyecatch" id="category_eyecatch" value="<mt:var name="category_eyecatch">" />
+    <input type="hidden" name="monthly_eyecatch" id="monthly_eyecatch" value="<mt:var name="monthly_eyecatch">" />
+    <input type="hidden" name="archive_eyecatch" id="archive_eyecatch" value="<mt:var name="archive_eyecatch">" />
+    <input type="hidden" name="fixed_width" id="fixed_width" value="<mt:var name="fixed_width">" />
+    <input type="hidden" name="navi_on_top" id="navi_on_top" value="<mt:var name="navi_on_top">" />
+    <input type="hidden" name="hide_navi" id="hide_navi" value="<mt:var name="hide_navi">" />
+    <input type="hidden" name="left_align" id="left_align" value="<mt:var name="left_align">" />
+    <input type="hidden" name="cloud_style" id="cloud_style" value="<mt:var name="cloud_style">" />
+    <input type="hidden" name="use_slimbox" id="use_slimbox" value="1" />
+    <div class="actions-bar">
+        <div class="actions-bar-inner pkg actions">
+            <button
+                type="submit"
+                title="<__trans phrase="Save">"
+                class="primary-button action"
+                ><__trans phrase="Save"></button>
+        </div>
+    </div>
+</form>
+
+<iframe id="iframe" src="<mt:var name="static_uri">support/theme_static/mtVicunaSimple/preview/index.html" height="1200" width="100%"></iframe>
+
+<script type="text/javascript">
+//<![CDATA[
+function initialLoad() {
+	if (loadedPage == "index") {
+		$('#iframe').contents().find('body').removeClass(layoutClass).addClass(loadedIndexStyle);
+		$('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(loadedIndexEyecatch);
+	} else if (loadedPage == "individual") {
+		$('#iframe').contents().find('body').removeClass(layoutClass).addClass(loadedEntryStyle);
+		$('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(loadedEntryEyecatch);
+	} else if (loadedPage == "category") {
+		$('#iframe').contents().find('body').removeClass(layoutClass).addClass(loadedCategoryStyle);
+		$('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(loadedCategoryEyecatch);
+	} else if (loadedPage == "monthly") {
+		$('#iframe').contents().find('body').removeClass(layoutClass).addClass(loadedMonthlyStyle);
+		$('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(loadedMonthlyEyecatch);
+	} else if (loadedPage == "archives") {
+		$('#iframe').contents().find('body').removeClass(layoutClass).addClass(loadedArchiveStyle);
+		$('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(loadedArchiveEyecatch);
+	}
+	$('#iframe').contents().find('body').addClass(loadedWidth);
+	if (loadedOthers) {
+		$('#iframe').contents().find('body').addClass(loadedOthers);
+	}
+	if (loadedCloud) {
+		$('#iframe').contents().find('head').append('<link rel="stylesheet" type="text/css" id="tagstyle" href="<mt:var name="blog_url">themes/vicuna-tagcloud/tagCloud'+loadedCloud+'.css" />');
+	}
+	if (loadedPage == "index") {
+		$('div.layout a.'+loadedIndexStyle).addClass("on");
+		$('div.eye-catch a.'+loadedIndexEyecatch).addClass("on");
+	} else if (loadedPage == "individual") {
+		$('div.layout a.'+loadedEntryStyle).addClass("on");
+		$('div.eye-catch a.'+loadedEntryEyecatch).addClass("on");
+	} else if (loadedPage == "category") {
+		$('div.layout a.'+loadedCategoryStyle).addClass("on");
+		$('div.eye-catch a.'+loadedCategoryEyecatch).addClass("on");
+	} else if (loadedPage == "monthly") {
+		$('div.layout a.'+loadedMonthlyStyle).addClass("on");
+		$('div.eye-catch a.'+loadedMonthlyEyecatch).addClass("on");
+	} else if (loadedPage == "archives") {
+		$('div.layout a.'+loadedArchiveStyle).addClass("on");
+		$('div.eye-catch a.'+loadedArchiveEyecatch).addClass("on");
+	}
+	if (skinType == "recent") {
+		$("div.eye-catch a.eye-u").closest("li").remove();
+		$("div.set a.set3").closest("li").remove();
+		$("div.set a.set4").closest("li").remove();
+	} else if (skinType == "future") {
+		$("div.layout a.double-l").closest("li").remove();
+		$("div.layout a.multi").closest("li").remove();
+		$("div.layout a.multi2").closest("li").remove();
+		$("div.layout a.multi2-l").closest("li").remove();
+		$("div.eye-catch a.eye-m").closest("li").remove();
+		$("div.set a.set1").closest("li").remove();
+		$("div.set a.set2").closest("li").remove();
+		$("div.others").remove();
+	} else {
+		$("div.eye-catch a.eye-u").closest("li").remove();
+		$("div.set a.set3").closest("li").remove();
+		$("div.set a.set4").closest("li").remove();
+	}
+}
+
+
+var e_ifr = document.getElementById( "iframe" );
+if ($.browser.msie) {
+	e_ifr.onreadystatechange = function(){
+		if ( window.event.srcElement.readyState == "complete" ) {
+			$('#iframe').contents().find('head').append('<link rel="stylesheet" type="text/css" href="<mt:var name="blog_url">styles.css" />');
+			initialLoad();
+		}
+	}
+} else {
+	e_ifr.onload  = function() {
+		$('#iframe').contents().find('link[rel=stylesheet]').attr('href' ,'<mt:var name="blog_url">styles.css');
+		initialLoad();
+	}
+}
+//]]>
+</script>
+
+<mt:include name="cms/include/footer.tmpl">

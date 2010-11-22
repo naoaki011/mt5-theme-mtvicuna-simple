@@ -1,0 +1,293 @@
+<MTSetVars>
+  tempName=system_search
+<MTIfStraightSearch>
+  page_title=<__trans phrase="Results matching &ldquo;[_1]&rdquo;" params="<$MTSearchString$>">
+<MTElse>
+  page_title=<__trans phrase="Search Results">
+</MTIfStraightSearch>
+<MTIfTagSearch>
+  page_title=<__trans phrase="Results tagged &ldquo;[_1]&rdquo;" params="<$MTSearchString$>">
+</MTIfTagSearch>
+<MTNoSearch>
+  page_title=<__trans phrase="Search Results">
+</MTNoSearch>
+  search_type=<MTIfStraightSearch>search<MTElse>tag</MTIfStraightSearch>
+  style=<$MTVicunaEntryStyle$>
+  eyecatch=<MTIf tag="VicunaEntryEyecatch" ne="none"><$MTVicunaEntryEyecatch$></MTIf>
+  navi_ontop=<MTIfVicunaNavionTop>1<MTElse>0</MTIfVicunaNavionTop>
+  left_align=<MTIfVicunaLeftAlign>1<MTElse>0</MTIfVicunaLeftAlign>
+  fixid_width=<$MTVicunaFixedWidth$>
+  website_id=<MTBlogParentWebsite><$MTWebsiteID$></MTBlogParentWebsite>
+  blog_id=<$MTBlogID$>
+</MTSetVars>
+<MTIf name="page_layout" like="bazooka|warship"><MTSetVar name="legacy_style" value="1" /></MTIf>
+<MTIf name="page_layout" like="bazooka|warship|future"><MTSetVar name="design_layout" value="1" /></MTIf>
+<MTIf name="page_layout" like="layout-wt">
+	<MTSetvar name="page_layout" value="single" />
+<MTElse>
+	<MTSetvarBlock name="page_layout"><$MTVar name="style"$></MTSetVarBlock>
+</MTIf>
+<MTIf name="design_layout">
+	<MTIf name="style" like="double|multi">
+		<MTSetvar name="page_layout" value="double" />
+	<MTElse>
+		<MTSetvar name="page_layout" value="single" />
+	</MTIf>
+</MTIf>
+<MTIf name="legacy_style">
+	<MTIf name="eyecatch" like="eye-h">
+		<MTSetvar name="eyecatch" value="eye-t" />
+	<MTElseIf eq="eye-c">
+		<MTSetvar name="eyecatch" value="eye-d" />
+	<MTElseIf eq="eye-m">
+		<MTSetvar name="eyecatch" value="eye-s" />
+	<MTElseIf eq="none">
+		<MTSetvar name="eyecatch" value="" />
+	</MTIf>
+</MTIf>
+<MTSetVarTemplate name="normalPager">
+                <ul class="content-nav">
+			<MTIfPreviousResults>
+                    <li class="previousPager"><a href="<$MTPreviousLink encode_html="1"$>" rel="prev" onclick="return swapContent(-1);"><__trans phrase="Previous"></a></li>
+			</MTIfPreviousResults>
+			<MTPagerBlock>
+				<MTIf name="__first__">
+					<MTIfCurrentPage><MTElse>
+                    <li class="firstPager"><a href="<$MTPagerLink encode_html="1"$>"><$MTVar name="__value__"$></a></li>
+					</MTIfCurrentPage>
+				</MTIf>
+				<MTUnless name="__value__" eq="1">
+					<MTIf name="curr_page" op="-" value="$__value__" eq="6">
+                    <li class="voidPager">&hellip;</li>
+					</MTIf>
+				</MTUnless>
+				<MTIfCurrentPage>
+                    <li class="currentPager"><$MTVar name="__value__"$></li>
+				<MTElse>
+					<MTIf name="__value__" op="-" value="$curr_page" lt="6">
+						<MTUnless name="__last__">
+							<MTIf name="curr_page" op="-" value="$__value__" lt="6">
+								<MTUnless name="__first__">
+                    <li><a href="<$MTPagerLink encode_html="1"$>"><$MTVar name="__value__"$></a></li>
+								</MTUnless>
+							</MTIf>
+						</MTUnless>
+					</MTIf>
+				</MTIfCurrentPage>
+				<MTUnless name="__value__" eq="$total_page">
+					<MTIf name="__value__" op="-" value="$curr_page" eq="6">
+                    <li class="voidPager">&hellip;</li>
+					</MTIf>
+				</MTUnless>
+				<MTIf name="__last__">
+					<MTIfCurrentPage><MTElse>
+                    <li class="lastPager"><a href="<$MTPagerLink encode_html="1"$>"><$MTVar name="__value__"$></a></li>
+					</MTIfCurrentPage>
+				</MTIf>
+			</MTPagerBlock>
+			<MTIfMoreResults>
+                    <li class="nextPager"><a href="<$MTNextLink encode_html="1"$>" rel="next" onclick="return swapContent();"><__trans phrase="Next"></a></li>
+			</MTIfMoreResults>
+                </ul>
+</MTSetVarTemplate>
+<MTSetVarTemplate name="googlePager">
+                <ul class="content-nav">
+			<MTIfPreviousResults>
+                    <li class="previousPager"><a href="<$MTPreviousLink encode_html="1"$>" rel="prev" onclick="return swapContent(-1);"><__trans phrase="Previous"></a></li>
+			</MTIfPreviousResults>
+			<MTPagerBlock>
+				<MTIfCurrentPage>
+                    <li class="currentPager"><$MTVar name="__value__"$></li>
+				<MTElse>
+					<MTIf name="__value__" op="-" value="$curr_page" lt="10">
+						<MTIf name="curr_page" op="-" value="$__value__" lt="10">
+                    <li><a href="<$MTPagerLink encode_html="1"$>"><$MTVar name="__value__"$></a></li>
+						</MTIf>
+					</MTIf>
+				</MTIfCurrentPage>
+			</MTPagerBlock>
+			<MTIfMoreResults>
+                    <li class="nextPager"><a href="<$MTNextLink encode_html="1"$>" rel="next" onclick="return swapContent();"><__trans phrase="Next"></a></li>
+			</MTIfMoreResults>
+                </ul>
+</MTSetVarTemplate>
+<?xml version="1.0" encoding="<$MTPublishCharset$>" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="<$MTDefaultLanguage$>" xml:lang="<$MTDefaultLanguage$>">
+<head profile="http://purl.org/net/ns/metaprof">
+      <MTInclude module="<__trans phrase="HTML Head">">
+      <link rel="alternate" type="application/atom+xml" title="<$MTBlogName encode_html="1"$>: <__trans phrase="Search Results">" href="<$MTCGIPath$><$MTSearchScript$>?<$MTGetVar name="search_type"$>=<$MTSearchString encode_url="1"$>&amp;Template=feed&amp;IncludeBlogs=<$MTSearchIncludeBlogs$>" />
+      <title><$MTVar name="page_title" escape="html"$> - <MTBlogName  escape="html"$></title>
+  <script type="text/javascript">
+    /* <![CDATA[ */
+    var user = <$MTUserSessionState$>;
+    /* ]]> */
+  </script>
+  <script type="text/javascript">
+    /* <![CDATA[ */
+<MTIfMoreResults>
+    function getResults(page) {
+      page = parseInt(page);
+      if (timer) window.clearTimeout(timer);
+      var xh = mtGetXmlHttp();
+      if (!xh) return false;
+      var res = results[page];
+      if (!res) return;
+      var url = res['next_url'];
+      if (!url) return;
+
+      xh.open('GET', url + '&format=js', true);
+      xh.onreadystatechange = function() {
+        if ( xh.readyState == 4 ) {
+          if ( xh.status && ( xh.status != 200 ) ) {
+            // error - ignore
+          } else {
+            try {
+              var page_results = eval("(" + xh.responseText + ")");
+              if ( page_results['error'] == null )
+                results[page + 1] = page_results['result'];
+            } catch (e) {
+            }
+          }
+        }
+      };
+      xh.send(null);
+    }
+    function swapContent(direction) {
+      if ( direction == undefined ) direction = 1;
+      var page_span = document.getElementById('current-page');
+      if (!page_span) return true;
+      var next_page = direction + parseInt(page_span.innerHTML);
+      var res = results[next_page];
+      if (!res) return true;
+      var content = res['content'];
+      if (!content) return true;
+      var div = document.getElementById('search-results');
+      if (!div) return true;
+      div.innerHTML = content;
+      timer = window.setTimeout("getResults(" + next_page + ")", 1*1000);
+      window.scroll(0, 0);
+      return false;
+    }
+<MTElse>
+	<MTIfPreviousResults>
+    function swapContent(direction) {
+      return true;
+    }
+	</MTIfPreviousResults>
+</MTIfMoreResults>
+    /* ]]> */
+  </script>
+</head>
+<body class="individual system <$MTVar name="page_layout"$><MTIf name="eyecatch"> <$MTVar name="eyecatch"$></MTIf><MTIf name="navi_ontop"> gt</MTIf><MTIf name="left_align"> al</MTIf><MTIf name="fixid_width"> <$MTVar name="fixid_width"$></MTIf>">
+    <$MTInclude module="<__trans phrase="Banner Header">"$>
+    <div id="content">
+        <div id="main">
+            <$MTInclude module="<__trans_section component="mtVicunaSimple"><__trans phrase="Topic Path"></__trans_section>"$>
+            <h1><$MTVar name="page_title" escape="html"$></h1>
+            <div class="entry">
+                <ul class="info">
+                    <li>Search: <em><$MTSearchString escape="html"$></em></li>
+                    <li><em><span class="count"><$MTSearchResultCount$></span></em> Hits</li>
+                </ul>
+	<MTIgnore><!--
+    Below is the block to show search results.
+    This makes an independent block to support
+    Ajax-based background retrieval of the next search results.
+	--></MTIgnore>
+<MTSetVarTemplate id="search_results" name="search_results">  
+	<MTSearchResults>
+		<MTSearchResultsHeader>
+			<MTIgnore><!-- Used with the ajax search capability of the new search class --></MTIgnore>
+			<$MTCurrentPage setvar="curr_page"$><$MTTotalPages setvar="total_page"$>
+<$MTVar name="googlePager" setvar="blockPager"$>
+<MTIgnore><$MTVar name="blockPager"$></MTIgnore>
+                <div id="search-results">
+                    <span id="current-page" class="hidden"><$MTCurrentPage$></span>
+                    <dl class="headline autopagerize_page_element">
+		</MTSearchResultsHeader>
+                        <dt><a href="<$MTEntryPermalink$>"><$MTEntryTitle$></a><span class="date"> - Posted date: <$MTEntryDate></span></dt>
+                        <dd>
+                            <ul>
+                                <li class="textBody"><$MTEntryExcerpt remove_html="1" strip_linefeeds="1" trim="1"$></li>
+		<MTIfNonEmpty tag="EntryAuthorDisplayName">
+                                <li class="author">Posted by: <span class="name"><$MTEntryAuthorDisplayName$></span></li>
+		</MTIfNonEmpty>
+		<MTIf tag="EntryCategory">
+                                <li class="category">Category: <MTEntryCategories glue=" | "><a href="<$MTCategoryArchiveLink$>" title="<$MTCategoryLabel escape="html"$> Index"><$MTCategoryLabel escape="html"$></a></MTEntryCategories></li>
+		</MTIf>
+		<MTEntryIfTagged>
+                                <li class="tag">Tag: <MTEntryTags glue=", "><a href="<$MTTagSearchLink$>" rel="nofollow"><$MTTagName escape="html"$></a></MTEntryTags></li>
+		</MTEntryIfTagged>
+                            </ul>
+                        </dd>
+		<MTSearchResultsFooter>
+                    </dl>
+                </div>
+<$MTVar name="blockPager"$>
+                <div class="autopagerize_insert_before"></div>
+		</MTSearchResultsFooter>
+	</MTSearchResults>
+</MTSetVarTemplate>
+
+<MTIgnore><!-- Display search results constructed in the block above --></MTIgnore>
+                    <$MTVar name="search_results"$>
+<MTIgnore><!-- Display no results message --></MTIgnore>
+<MTNoSearchResults>
+                <div class="section entry">
+	<MTIfStraightSearch>
+                    <h2><__trans phrase="Results matching &ldquo;[_1]&rdquo;" params="<$MTSearchString escape="html"$>"></h2>
+	</MTIfStraightSearch>
+	<MTIfTagSearch>
+                    <h2><__trans phrase="Results tagged &ldquo;[_1]&rdquo;" params="<$MTSearchString escape="html"$>"></h2>
+	</MTIfTagSearch>
+                    <p><__trans phrase="No results found for &ldquo;[_1]&rdquo;." params="<$MTSearchString escape="html"$>"></p>
+                </div>
+</MTNoSearchResults>
+
+<MTIgnore><!-- Display instructions for searching if search script was accessed without a query --></MTIgnore>
+<MTNoSearch>
+                <div class="section entry">
+                    <h2><__trans phrase="Instructions"></h2>
+                    <div class="textBody">
+                        <p><__trans_section component="mtVicunaSimple"><__trans phrase="You did not enter anything to search for. Please try again"></__trans_section></p>
+                    </div>
+                    <p><__trans phrase="By default, this search engine looks for all words in any order. To search for an exact phrase, enclose the phrase in quotes:"></p>
+                    <blockquote>
+                        <p><code>"<__trans phrase="movable type">"</code></p>
+                    </blockquote>
+                        <p><__trans phrase="The search engine also supports AND, OR, and NOT keywords to specify boolean expressions:"></p>
+                    <blockquote>
+                        <p><code><__trans phrase="personal OR publishing"></code></p>
+                        <p><code><__trans phrase="publishing NOT personal"></code></p>
+                    </blockquote>
+                </div>
+</MTNoSearch>
+
+<MTIgnore><!-- Used with the ajax search capability of the new search class --></MTIgnore>
+<MTIfMoreResults>
+  <script type="text/javascript">
+    <!--
+    var div = document.getElementById('search-results');
+    var results = {
+      '<$MTCurrentPage$>': {
+        'content': div.innerHTML,
+        'next_url': '<$MTNextLink$>'
+      }
+    };
+    var timer = window.setTimeout("getResults(" + <$MTCurrentPage$> + ")", 1*1000);
+    //-->
+  </script>
+</MTIfMoreResults>
+            </div>
+<MTIf tag="Link" template="archive_index">
+            <p class="archives"><a href="<$MTLink template="archive_index"$>">Index of all entries</a></p>
+</MTIf>
+            <$MTInclude module="<__trans_section component="mtVicunaSimple"><__trans phrase="Topic Path"></__trans_section>"$>
+        </div>
+        <$MTInclude module="<__trans phrase="Sidebar">"$>
+        <p class="return"><a href="#header">Return to page top</a></p>
+    </div>
+    <$MTInclude module="<__trans phrase="Banner Footer">"$>
+</body>
+</html>

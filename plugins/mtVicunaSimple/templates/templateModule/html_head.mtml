@@ -1,0 +1,45 @@
+    <meta http-equiv="Content-Type" content="text/html; charset=<$MTPublishCharset$>" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="generator" content="<$MTProductName version="1"$>" />
+    <meta name="author" content="<$MTBlogName escape="html"$>" />
+    <link rel="stylesheet" href="<$mt:Link template="styles"$>" type="text/css" />
+<MTIf tag="VicunaTagcloudStyle">
+    <link rel="stylesheet" href="<$MTBlogURL$>themes/vicuna-tagcloud/<$MTVicunaTagcloudStyle$>" type="text/css" />
+</MTIf>
+<MTIgnore>
+    <link rel="stylesheet" href="<$mt:BlogURL$>themes/jquery-mtcomment/jquery.mtcomment.css" type="text/css" />
+</MTIgnore>
+    <link rel="alternate" type="application/atom+xml" title="Recent Entries" href="<$mt:Link template="feed_recent"$>" />
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="<$MTLink template="rsd"$>" />
+    <link rel="start" href="<$MTBlogURL$>" title="Home" />
+<MTIf tag="Link" template="archive_index">
+    <link rel="contents" href="<$MTLink template="archive_index"$>" title="<$MTBlogName encode_html="1"$> Archives" />
+</MTIf>
+    <script type="text/javascript" src="<$MTLink template="javascript"$>"></script>
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript">google.load("jquery", "1.4");</script>
+<MTIgnore>
+    <script type="text/javascript" src="<$MTLink template="mt_jquery_script"$>"></script>
+    <script type="text/javascript" src="<$mt:BlogURL$>themes/jquery-mtgreet/jquery.form.js"></script>
+    <script type="text/javascript" src="<$mt:BlogURL$>themes/jquery-mtgreet/jquery.mtauth.js"></script>
+    <script type="text/javascript" src="<$mt:BlogURL$>themes/jquery-mtgreet/jquery.mtgreeting.js"></script>
+    <script type="text/javascript" src="<$mt:BlogURL$>themes/jquery-mtcomment/jquery.mtcomment.js"></script>
+</MTIgnore>
+<MTIfVicunaUseSlimbox><MTVicunaLightboxScript setvar="lb_script" />
+<MTIf name="lb_script" eq="slimbox">
+    <script type="text/javascript" src="<$MTBlogURL$>themes/slimbox-2.03/js/slimbox2.js"></script>
+    <link rel="stylesheet" href="<$MTBlogURL$>themes/slimbox-2.03/css/slimbox2.css" type="text/css" media="screen" />
+<MTElseIf name="lb_script" eq="fancybox">
+    <script type="text/javascript" src="<$MTBlogURL$>themes/jquery.fancybox/fancybox/jquery.fancybox-1.3.1.pack.js"></script>
+    <script type="text/javascript" src="<$MTBlogURL$>themes/jquery.fancybox/fancybox/jquery.easing-1.3.pack.js"></script>
+    <script type="text/javascript" src="<$MTBlogURL$>themes/jquery.fancybox/fancybox/jquery.mousewheel-3.0.2.pack.js"></script>
+    <link rel="stylesheet" href="<$MTBlogURL$>themes/jquery.fancybox/fancybox/jquery.fancybox-1.3.1.css" type="text/css" media="screen" />
+<MTElseIf name="lb_script" eq="ceebox">
+    <link rel="stylesheet" href="<$MTBlogURL$>themes/CeeBox-v2.1.5/css/ceebox.css" type="text/css" media="screen">
+    <script type="text/javascript" src="<$MTBlogURL$>themes/CeeBox-v2.1.5/js/jquery.ceebox.js"></script>
+    <script type="text/javascript">google.load("swfobject", "2.2");</script>
+</MTIf>
+</MTIfVicunaUseSlimbox>
+    <script type="text/javascript" src="<$MTLink template="user_jquery"$>"></script>
+<$MTCCLicenseRDF$>

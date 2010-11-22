@@ -1,0 +1,109 @@
+mt.Vicuna Simple Theme: mt.Vicuna Simple テーマ
+Vicuna CMS Plugin for a Movable Type 5 Theme. mt.Vicuna Simple Theme Plugin is Optimized for Beginners.: <a href="http://vicuna.jp/">VICUNA CMS</a>のMovable Type 5 用テーマ・プラグインです。mt.Vicuna Simpleテーマは初心者向けに最適されています。
+A MT5 Theme Plugin for Vicuna CMS.: VICUNA CMSのMT5用テーマ・プラグインです。
+A MT5 Theme Plugin for Vicuna CMS. This Theme Build for MT Begginers such as Graphical Layout Editing screen.: VICUNA CMSのMT5用テーマ・プラグインです。このテーマはグラフィカルなレイアウト変更画面などにより、MT初心者向けに作成されています。
+mt.Vicuna skin: mt.Vicunaスキン
+Styles that are compatible with the mt.Vicuna Theme.: mt.Vicunaテーマに適用するスキンです
+mt.Vicuna Legacy skin: mt.Vicunaレガシー・スキン
+Legacy Vicuna Styles covert to Recent version of the mt.Vicuna Theme.: Vicunaの旧バージョン用スキンを、新しいmt.Vicunaテーマで利用可能にした物です。
+mt.Vicuna HashiM Stylelib: HashiM スタイルライブラリー for mt.Vicuna
+This is style library only for the mtVicuna theme.: HashiMさんによる、mt.Vicunaテーマ専用スタイルライブラリです。
+mt.Vicuna Recent skin: mt.Vicuna現行スキン
+Recent Vicuna Styles of the mt.Vicuna Theme.: mt.Vicunaテーマ用のデフォルトスキンです。外部のリポジトリより適用されます。
+
+Index Column Layout: インデックス・カラム
+Entry Column Layout: ブログ記事・カラム
+Monthly Listing Column Layout: 月別ブログ記事リスト・カラム
+Category Listing Column Layout: カテゴリ別ブログ記事リスト・カラム
+Archive Column Layout: アーカイブ・カラム
+Default: デフォルト
+Single column: シングルカラム
+Double column - Menu on right: 2カラム
+Double column - Menu on left: 2カラム・左メニュー
+Multi column - Wing menu: 3カラム
+Multi column - Double menu: 3カラム・右メニュー
+Multi column - Double menu on left: 3カラム・左メニュー
+
+Eye Catch Image: アイキャッチ画像
+Index Eye Catch Image: インデックス・アイキャッチ画像
+Entry Eye Catch Image: ブログ記事・アイキャッチ画像
+Category Eye Catch Image: 月別ブログ記事リスト・アイキャッチ画像
+Monthly Eye Catch Image: カテゴリ別ブログ記事リスト・アイキャッチ画像
+Archive Eye Catch Image: アーカイブ・アイキャッチ画像
+Header area: ヘッダー・エリア
+Header area (Banner type): ヘッダー（バナータイプ）
+Contents area: コンテンツ・エリア
+Main area: メイン・エリア
+Special layout 1: Specialレイアウト1
+Special layout 2: Specialレイアウト2
+
+Navigation on top: グローバルナビゲーションをページ最上部に配置
+Left align: 全体を左寄せにする
+Fixid width: 固定幅
+TagCloud Style: タグクラウドのスタイル
+Use Slimbox: Slimboxを使用する
+Use Lightbox Effect: Lightbox効果を使用する
+
+Related Entries: 関連エントリー
+Global Navigation: グローバルナビゲーション
+Headline: ヘッドライン
+Next Entry Link Detailed: 前後の記事へのリンク(タイトル付き)
+Next Entry Link Simple: 前後の記事へのリンク(シンプル)
+Topic Path: パンくずリスト
+Calender: カレンダー
+Recent Trackbacks: 最近のトラックバック
+Links: リンク集
+About This Page: このページについて
+Powered By: Powered By
+Recent Entry Assets: 最近のブログ記事アイテム
+Blog Listing: ブログ一覧
+
+Primary Sidebar: 最初のサイドバー
+Secondary Sidebar: 2番目のサイドバー
+Home Page Widgets: ホームページウィジェット
+Archive Widgets: アーカイブウィジェット
+
+You can use some <abbr title="Hyper Text Markup Language">HTML</abbr> tags for decorating.: スタイル指定用の一部の <abbr title="Hyper Text Markup Language">HTML</abbr>タグが使用できます。
+You cannot use <abbr title="Hyper Text Markup Language">HTML</abbr> tags.: <abbr title="Hyper Text Markup Language">HTML</abbr>タグは使用できません。
+Extended: 続きを読む
+Comments on <$MTEntryTitle encode_html="1"$>: <$MTEntryTitle encode_html="1"$> へのコメント
+Trackbacks to <$MTEntryTitle encode_html="1"$>: <$MTEntryTitle encode_html="1"$> へのトラックバック
+a newer entry: 1つ新しい記事
+an older entry: 1つ古い記事
+<strong>OpenID</strong> accepted here: <strong>OpenID</strong>に対応しています
+You did not enter anything to search for. Please try again: 検索キーワードが入力されていません。
+Your search - <em><$MTSearchString$></em> -- did not match any documents.: <em><$MTSearchString$></em> というキーワードを含む記事は見つかりませんでした。
+Make sure all words are spelled correctly.: キーワードに誤字や脱字がありませんか ?
+Try different keywords.: キーワードの意味はそのままで、表現や言い回しを変えてみてください。
+Try more general keywords.: 専門的なキーワードだったり、長い文字列のキーワードだったりした場合は、より一般的で短いキーワードにしてください。
+Try decreasing the number of keywords.: キーワードを複数指定している場合は、キーワードの数を減らしてみてください。
+Character Case: 大文字・小文字を区別する
+Regex Search: 正規表現を使用する
+Body text: 本文内検索
+Comments: コメント
+Both: 両方
+This page is an archive of entries in the [_1] category of Blog [_2] from [_3].: このページには、[_3]以降に書かれた「[_2]」のブログ記事のうち、[_1]カテゴリに属しているものが含まれています。
+This page is an archive of recent entries in the [_1] category of Blog [_2].: このページには、過去に書かれた「[_2]」のブログ記事のうち、[_1]カテゴリに属しているものが含まれています。
+This page is an archive of entries from [_2] listed in Blog [_1] from newest to oldest.: このページには、[_2]に書かれた「[_1]」のブログ記事が新しい順に公開されています。
+This page contains a single entry by [_1] published on [_2].: このページは、[_1]が[_2]に書いた記事です。
+
+Hatena Bookmark Anywhere: どこでもはてなブックマーク
+Max Number of Bookmarks.: 表示する件数
+Use Default Style of Script.: trueでデフォルトスタイル falseを設定するとCSSでスタイルの指定が可能
+Display only commented bookmarks.: trueにすると、コメントの書いてないブクマを表示しない。指定しない場合は、表示件数を超えた場合のみコメントを表示しない
+TargetURL: 表示するURL 未指定の場合、現在のページ
+HatenaBokkmark Comments: はてブコメント
+
+Edit Vicuna Layout: Vicunaのレイアウト変更
+Hide Navigation: グローバルナビゲーションを表示しない
+CleanUp Asset Insert: アイテム挿入をクリーンアップする
+No CleanUp: クリーンアップしない
+Add Class for Wrap Paragraph tag: pタグで囲み、クラスを追加する
+Add Class for Image tag: imgタグにクラスを追加する
+Alignment Class: 位置揃えクラス
+Lightbox Script: Lightboxスクリプト
+Lightbox Selector: Lightboxセレクター
+RightAlign: 右揃え
+CenterALign: 中央揃え
+LeftAlign: 左揃え
+Use: 使用する

@@ -1,0 +1,26 @@
+                <dt><__trans phrase="Syndication"></dt>
+                <dd class="feeds">
+                    <ul class="feed">
+<MTIf tag="Link" template="rss">
+                        <li class="rss"><a href="<$MTLink template="rss"$>">RSS</a></li>
+</MTIf>
+<MTIf tag="Link" template="rss2">
+                        <li class="rss"><a href="<$MTLink template="rss2"$>">RSS 2.0</a></li>
+</MTIf>
+<MTIf tag="Link" template="wxr_rss2">
+                        <li class="rss"><a href="<$MTLink template="wxr_rss2"$>">RSS 2.0</a></li>
+</MTIf>
+<MTIf tag="Link" template="atom">
+                        <li class="atom"><a href="<$MTLink template="atom"$>">ATOM</a></li>
+</MTIf>
+<MTIf tag="Link" template="feed_recent">
+                        <li class="atom"><a href="<$MTLink template="feed_recent"$>"><__trans phrase="Subscribe to this blog's feed"></a></li>
+</MTIf>
+<MTIf name="search_results">
+	<MTIf tag="SearchString">
+                        <li class="atom"><a href="<$mt:CGIPath$><$mt:SearchScript$>?<mt:IfTagSearch>tag<mt:else>search</mt:IfTagSearch>=<$mt:SearchString encode_url="1"$>&amp;Template=feed&amp;IncludeBlogs=<$mt:SearchIncludeBlogs$>&amp;limit=<$mt:SearchMaxResults$>" title="<mt:IfTagSearch><__trans phrase="Subscribe to a feed of all future entries tagged &ldquo;[_1]&ldquo;" params="<$mt:SearchString$>"><mt:Else><__trans phrase="Subscribe to a feed of all future entries matching &ldquo;[_1]&ldquo;" params="<$mt:SearchString$>"></mt:IfTagSearch>"><mt:IfTagSearch><__trans phrase="Feed of results tagged &ldquo;[_1]&ldquo;" params="<$mt:SearchString$>"><mt:Else><__trans phrase="Feed of results matching &ldquo;[_1]&ldquo;" params="<$mt:SearchString$>"></mt:IfTagSearch></a></li>
+	</MTIf>
+</MTIf>
+                    </ul>
+                </dd>
+                

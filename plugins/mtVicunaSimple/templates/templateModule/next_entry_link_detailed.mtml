@@ -1,0 +1,23 @@
+<MTIf name="datebased_archive">
+	<MTIf tag="ArchiveCount" gt="1">
+                <ul class="flip" id="flip2">
+		<MTArchiveNext>
+                    <li class="newer">Newer: <a href="<$MTArchiveLink$>" title="<__trans_section component="mtVicunaSimple"><__trans phrase="a newer archive"></__trans_section>" rel="next"><$MTArchiveTitle escape="html"$></a></li>
+		</MTArchiveNext>
+		<MTArchivePrevious>
+                    <li class="older">Older: <a href="<$MTArchiveLink$>" title="<__trans_section component="mtVicunaSimple"><__trans phrase="an older archive"></__trans_section>"><$MTArchiveTitle escape="html"$></a></li>
+		</MTArchivePrevious>
+                </ul>
+	</MTIf>
+<MTElseIf name="entry-archive">
+	<MTIf tag="BlogEntryCount" gt="1">
+                <ul class="flip id="flip2">
+		<MTEntryNext>
+                    <li class="newer">Newer: <a href="<$MTEntryPermalink$>" title="<__trans_section component="mtVicunaSimple"><__trans phrase="a newer entry"></__trans_section>" rel="next"><$MTEntryTitle escape="html"$></a></li>
+		</MTEntryNext>
+		<MTEntryPrevious>
+                    <li class="older">Older: <a href="<$MTEntryPermalink$>" title="<__trans_section component="mtVicunaSimple"><__trans phrase="an older entry"></__trans_section>"><$MTEntryTitle escape="html"$></a></li>
+		</MTEntryPrevious>
+                </ul>
+	</MTIf>
+</MTIf>
