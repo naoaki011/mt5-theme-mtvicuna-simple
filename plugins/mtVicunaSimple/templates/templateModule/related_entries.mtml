@@ -29,17 +29,19 @@
 		</MTEntries>
 	<MTElse>
 		<MTSetVarBlock name="ecat">NOT (<MTCategories glue=" OR "><$MTCategoryLabel$></MTCategories>)</MTSetVarBlock>
-		<MTEntries lastn="5" categories="$ecat">
-			<MTIf name="__first__">
+		<MTUnless name="ecat" eq="NOT ()">
+			<MTEntries lastn="5" categories="$ecat">
+				<MTIf name="__first__">
                 <div class="relatedEntries">
                     <h2><__trans phrase="Related Entries"></h2>
                     <ul>
-			</MTIf>
+				</MTIf>
                         <li<MTIf name="__odd__"> class="odd"</MTIf>><a href="<$MTEntryPermalink$>"><$MTEntryTitle escaper="html"$></a></li>
-			<MTIf name="__last__">
+				<MTIf name="__last__">
     </ul>
                 </div>
-			</MTIf>
-		</MTEntries>
+				</MTIf>
+			</MTEntries>
+		</MTUnless>
 	</MTIf>
 </MTEntryIfTagged>
