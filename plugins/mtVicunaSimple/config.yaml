@@ -353,9 +353,6 @@ settings:
   archive_eyecatch:
     default: eye-h
     scope: blog
-#  custom_set:
-#    default: ''
-#    scope: blog
   navi_on_top:
     default: 0
     scope: blog
@@ -428,8 +425,6 @@ tags:
     VicunaFixedWidth:       $mtVicunaSimple::mtVicunaSimple::Plugin::tag_fixed_width
     VicunaTagcloudStyle:    $mtVicunaSimple::mtVicunaSimple::Plugin::tag_cloud_style
     VicunaLightboxScript:   $mtVicunaSimple::mtVicunaSimple::Plugin::tag_lightbox_script
-#    VicunaLightboxSelector: $mtVicunaSimple::mtVicunaSimple::Plugin::tag_lightbox_selector
-#    VicunaBlogSkinLayout:   $mtVicunaSimple::mtVicunaSimple::Plugin::tag_blog_skin_layout
     VicunaVersion:          $mtVicunaSimple::mtVicunaSimple::Plugin::tag_version
   block:
     IfVicunaNavionTop?:     $mtVicunaSimple::mtVicunaSimple::Plugin::if_nav_on_top

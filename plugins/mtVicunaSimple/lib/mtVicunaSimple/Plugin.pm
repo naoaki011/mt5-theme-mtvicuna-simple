@@ -1,7 +1,7 @@
 package mtVicunaSimple::Plugin;
 
 use strict;
-use MT 4;
+use MT 5;
 use MT::Util qw( encode_html );
 
 sub tag_version {
@@ -68,14 +68,6 @@ sub tag_archive_style {
     my $style = $plugin->get_config_value('archive_style',$scope) || 'single';
     return $style;
 }
-
-#sub tag_eyecatch {
-#    my ( $ctx, $args ) = @_;
-#    my $plugin = MT->component("mtVicunaSimple");
-#    my $scope = "blog:".$ctx->stash('blog_id');
-#    my $style = $plugin->get_config_value('eyecatch_style',$scope) || 'eye-h';
-#    return $style;
-#}
 
 sub tag_index_eyecatch {
     my ( $ctx, $args ) = @_;
@@ -350,7 +342,6 @@ sub _edit_themeparams {
     my $monthly_eyecatch  = $plugin->get_config_value('monthly_eyecatch',$scope);
     my $archive_eyecatch  = $plugin->get_config_value('archive_eyecatch',$scope);
     my $vicuna_skin_layout  = tag_blog_skin_layout();
-#    my $custom_set        = $plugin->get_config_value('custom_set',$scope);
     my $fixed_width       = $plugin->get_config_value('fixed_width',$scope);
     my $cloud_style       = $plugin->get_config_value('cloud_style',$scope);
     my $navi_on_top       = $plugin->get_config_value('navi_on_top',$scope);
@@ -368,7 +359,6 @@ sub _edit_themeparams {
         monthly_eyecatch  => $monthly_eyecatch,
         archive_eyecatch  => $archive_eyecatch,
         vicuna_skin_layout  => $vicuna_skin_layout,
-#        custom_set        => $custom_set,
         fixed_width       => $fixed_width,
         cloud_style       => $cloud_style,
         navi_on_top       => $navi_on_top,
