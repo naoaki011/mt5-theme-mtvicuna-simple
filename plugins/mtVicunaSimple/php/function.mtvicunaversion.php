@@ -1,7 +1,6 @@
 <?php
 	function smarty_function_mtvicunaversion($args, &$ctx) {
-		$blog_id = $ctx->stash('blog_id');
-		# TODO FIX THIS HARDCODE
-		return '2.41';
+		$version = '2.41';
+		return $version;
 	}
 ?>

@@ -114,7 +114,7 @@ sub tag_fixed_width {
     my $plugin = MT->component("mtVicunaSimple");
     my $scope = "blog:".$ctx->stash('blog_id');
     my $width = $plugin->get_config_value('fixed_width',$scope) || 'none';
-    if ($width == 'none') {
+    if ($width eq 'none') {
         return '';
     } else {
         return $width;
@@ -126,7 +126,7 @@ sub tag_cloud_style {
     my $plugin = MT->component("mtVicunaSimple");
     my $scope = "blog:".$ctx->stash('blog_id');
     my $style = $plugin->get_config_value('cloud_style',$scope) || 'none';
-    if ($style == 'none') {
+    if ($style eq 'none') {
         return '';
     } else {
         return 'tagCloud'.$style.'.css';
