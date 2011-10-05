@@ -201,7 +201,7 @@ sub _asset_options_image {
     my $plugin = MT->component("mtVicunaSimple");
     my $scope = "blog:".$blog_id;
     my $slimbox = $plugin->get_config_value('use_slimbox',$scope);
-    if ($slimbox != '') {
+    if ($slimbox ne '') {
         use MT::Blog;
         my $blog = MT::Blog->load($blog_id) or die;
         my $themeid = $blog->theme_id;
