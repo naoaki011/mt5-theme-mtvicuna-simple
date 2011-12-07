@@ -1,9 +1,4 @@
 <mt:setvarblock name="page_title"><__trans phrase="Edit Vicuna Layout"></mt:setvarblock>
-<mt:setvarblock name="html_head" append="1">
-<script type="text/javascript" src="<mt:var name="static_uri">jquery/jquery.js"></script>
-<script type="text/javascript" src="<mt:var name="static_uri">jquery/jquery.mt.js"></script>
-<script type="text/javascript" src="<mt:var name="static_uri">jqueryui/ui.datepicker.js"></script>
-</mt:setvarblock>
 <mt:include name="cms/include/header.tmpl">
 
 <p class="view">
@@ -156,7 +151,7 @@ p.view span.notation {
 <script type="text/javascript">
 //<![CDATA[
 
-//	$("#menu").css("display","none");
+//	jQuery("#menu").css("display","none");
 
 	var layoutClass ="single double double-l multi multi2 multi2-l set1 set2";
 	var eyeCatchClass ="eye-h eye-hb eye-m eye-c eye-u set1 set2";
@@ -196,22 +191,22 @@ p.view span.notation {
 // Layout
 
 	function setLayout(type) {
-		$("div.layout a").removeClass("on");
+		jQuery("div.layout a").removeClass("on");
 		if (type == 'default'){
 			if (loadedPage == 'individual') {
-				$('#iframe').contents().find('body').removeClass(layoutClass).addClass('single');
-				$("div.layout a.single").addClass("on");
-				$("#entry_style").val('single');
+				jQuery('#iframe').contents().find('body').removeClass(layoutClass).addClass('single');
+				jQuery("div.layout a.single").addClass("on");
+				jQuery("#entry_style").val('single');
 				loadedEntryStyle ='single';
 			} else if (loadedPage == 'archive') {
-				$('#iframe').contents().find('body').removeClass(layoutClass).addClass('single');
-				$("div.layout a.single").addClass("on");
-				$("#archive_style").val('single');
+				jQuery('#iframe').contents().find('body').removeClass(layoutClass).addClass('single');
+				jQuery("div.layout a.single").addClass("on");
+				jQuery("#archive_style").val('single');
 				loadedArchiveStyle = 'single';
 			} else {
-				$('#iframe').contents().find('body').removeClass(layoutClass).addClass('double');
-				$("div.layout a.double").addClass("on");
-				$("#"+loadedPage+"_style").val('double');
+				jQuery('#iframe').contents().find('body').removeClass(layoutClass).addClass('double');
+				jQuery("div.layout a.double").addClass("on");
+				jQuery("#"+loadedPage+"_style").val('double');
 				if (loadedPage == "index") {
 					loadedIndexStyle = 'double';
 				} else if (loadedPage == "category") {
@@ -221,34 +216,34 @@ p.view span.notation {
 				}
 			}
 		} else {
-			$('#iframe').contents().find('body').removeClass(layoutClass).addClass(type);
-			$("div.layout a."+type).addClass("on");
+			jQuery('#iframe').contents().find('body').removeClass(layoutClass).addClass(type);
+			jQuery("div.layout a."+type).addClass("on");
 			if (loadedPage == "index") {
 				loadedIndexStyle = type;
-				$("#index_style").val(type);
+				jQuery("#index_style").val(type);
 			} else if (loadedPage == "individual") {
 				loadedEntryStyle = type;
-				$("#entry_style").val(type);
+				jQuery("#entry_style").val(type);
 			} else if (loadedPage == "category") {
 				loadedCategoryStyle = type;
-				$("#category_style").val(type);
+				jQuery("#category_style").val(type);
 			} else if (loadedPage == "monthly") {
 				loadedMonthlyStyle = type;
-				$("#monthly_style").val(type);
+				jQuery("#monthly_style").val(type);
 			} else if (loadedPage == "archives") {
 				loadedArchiveStyle = type;
-				$("#archive_style").val(type);
+				jQuery("#archive_style").val(type);
 			}
 		}
-		$("div.set a").removeClass("on");
+		jQuery("div.set a").removeClass("on");
 	};
 
 // Eye Catch
 
 	function setEye(type) {
-		$('#iframe').contents().find('body').removeClass(eyeCatchClass);
+		jQuery('#iframe').contents().find('body').removeClass(eyeCatchClass);
 		if (type != 'e-clear') {
-			$('#iframe').contents().find('body').addClass(type);
+			jQuery('#iframe').contents().find('body').addClass(type);
 			if (loadedPage == "index") {
 				loadedIndexEyecatch = type;
 			} else if (loadedPage == "individual") {
@@ -273,173 +268,173 @@ p.view span.notation {
 				loadedArchiveEyecatch = '';
 			}
 		}
-		$("div.eye-catch a").removeClass("on");
-		$("div.eye-catch a."+type).addClass("on");
-		$("div.set a").removeClass("on");
+		jQuery("div.eye-catch a").removeClass("on");
+		jQuery("div.eye-catch a."+type).addClass("on");
+		jQuery("div.set a").removeClass("on");
 		if (loadedPage == "index") {
-			$("#index_eyecatch").val(type);
+			jQuery("#index_eyecatch").val(type);
 		} else if (loadedPage == "individual") {
-			$("#entry_eyecatch").val(type);
+			jQuery("#entry_eyecatch").val(type);
 		} else if (loadedPage == "category") {
-			$("#category_eyecatch").val(type);
+			jQuery("#category_eyecatch").val(type);
 		} else if (loadedPage == "monthly") {
-			$("#monthly_eyecatch").val(type);
+			jQuery("#monthly_eyecatch").val(type);
 		} else if (loadedPage == "archives") {
-			$("#archive_eyecatch").val(type);
+			jQuery("#archive_eyecatch").val(type);
 		}
 	};
 
 // Set
 
 	function setSet(type) {
-		$('#iframe').contents().find('body').removeClass(layoutClass).removeClass(eyeCatchClass);
+		jQuery('#iframe').contents().find('body').removeClass(layoutClass).removeClass(eyeCatchClass);
 		if (type == 'set1'){
-			$('#iframe').contents().find('body').addClass('multi eye-c set1');
-			$("div.layout a").removeClass("on");
-			$("div.layout a.multi").addClass("on");
-			$("div.eye-catch a").removeClass("on");
-			$("div.eye-catch a.eye-c").addClass("on");
+			jQuery('#iframe').contents().find('body').addClass('multi eye-c set1');
+			jQuery("div.layout a").removeClass("on");
+			jQuery("div.layout a.multi").addClass("on");
+			jQuery("div.eye-catch a").removeClass("on");
+			jQuery("div.eye-catch a.eye-c").addClass("on");
 			if (loadedPage == "index") {
 				loadedIndexStyle = 'multi';
 				loadedIndexEyecatch = 'eye-c';
-				$("#index_style").val('multi set1');
-				$("#index_eyecatch").val('eye-c');
+				jQuery("#index_style").val('multi set1');
+				jQuery("#index_eyecatch").val('eye-c');
 			} else if (loadedPage == "individual") {
 				loadedEntryStyle = 'multi';
 				loadedEntryEyecatch = 'eye-c';
-				$("#entry_style").val('multi set1');
-				$("#entry_eyecatch").val('eye-c');
+				jQuery("#entry_style").val('multi set1');
+				jQuery("#entry_eyecatch").val('eye-c');
 			} else if (loadedPage == "category") {
 				loadedCategoryStyle = 'multi';
 				loadedCategoryEyecatch = 'eye-c';
-				$("#category_style").val('multi set1');
-				$("#category_eyecatch").val('eye-c');
+				jQuery("#category_style").val('multi set1');
+				jQuery("#category_eyecatch").val('eye-c');
 			} else if (loadedPage == "monthly") {
 				loadedMonthlyStyle = 'multi';
 				loadedMonthlyEyecatch = 'eye-c';
-				$("#monthly_style").val('multi set1');
-				$("#monthly_eyecatch").val('eye-c');
+				jQuery("#monthly_style").val('multi set1');
+				jQuery("#monthly_eyecatch").val('eye-c');
 			} else if (loadedPage == "archives") {
 				loadedArchiveStyle = 'multi';
 				loadedArchiveEyecatch = 'eye-c';
-				$("#archive_style").val('multi set1');
-				$("#archive_eyecatch").val('eye-c');
+				jQuery("#archive_style").val('multi set1');
+				jQuery("#archive_eyecatch").val('eye-c');
 			}
 		} else if (type == 'set2') {
-			$('#iframe').contents().find('body').addClass('multi2 eye-c set2');
-			$("div.layout a").removeClass("on");
-			$("div.layout a.multi2").addClass("on");
-			$("div.eye-catch a").removeClass("on");
-			$("div.eye-catch a.eye-c").addClass("on");
+			jQuery('#iframe').contents().find('body').addClass('multi2 eye-c set2');
+			jQuery("div.layout a").removeClass("on");
+			jQuery("div.layout a.multi2").addClass("on");
+			jQuery("div.eye-catch a").removeClass("on");
+			jQuery("div.eye-catch a.eye-c").addClass("on");
 			if (loadedPage == "index") {
 				loadedIndexStyle = 'multi2';
 				loadedIndexEyecatch = 'eye-c';
-				$("#index_style").val('multi2 set2');
-				$("#index_eyecatch").val('eye-c');
+				jQuery("#index_style").val('multi2 set2');
+				jQuery("#index_eyecatch").val('eye-c');
 			} else if (loadedPage == "individual") {
 				loadedEntryStyle = 'multi2';
 				loadedEntryEyecatch = 'eye-c';
-				$("#entry_style").val('multi2 set2');
-				$("#entry_eyecatch").val('eye-c');
+				jQuery("#entry_style").val('multi2 set2');
+				jQuery("#entry_eyecatch").val('eye-c');
 			} else if (loadedPage == "category") {
 				loadedCategoryStyle = 'multi2';
 				loadedCategoryEyecatch = 'eye-c';
-				$("#category_style").val('multi2 set2');
-				$("#category_eyecatch").val('eye-c');
+				jQuery("#category_style").val('multi2 set2');
+				jQuery("#category_eyecatch").val('eye-c');
 			} else if (loadedPage == "monthly") {
 				loadedMonthlyStyle = 'multi2';
 				loadedMonthlyEyecatch = 'eye-c';
-				$("#monthly_style").val('multi2 set2');
-				$("#monthly_eyecatch").val('eye-c');
+				jQuery("#monthly_style").val('multi2 set2');
+				jQuery("#monthly_eyecatch").val('eye-c');
 			} else if (loadedPage == "archives") {
 				loadedArchiveStyle = 'multi2';
 				loadedArchiveEyecatch = 'eye-c';
-				$("#archive_style").val('multi2 set2');
-				$("#archive_eyecatch").val('eye-c');
+				jQuery("#archive_style").val('multi2 set2');
+				jQuery("#archive_eyecatch").val('eye-c');
 			}
 		} else if (type == 'set3') {
-			$('#iframe').contents().find('body').addClass('double eye-u eye-h');
-			$("div.layout a").removeClass("on");
-			$("div.layout a.double").addClass("on");
-			$("div.eye-catch a").removeClass("on");
-			$("div.eye-catch a.eye-u").addClass("on");
-			$("div.eye-catch a.eye-h").addClass("on");
+			jQuery('#iframe').contents().find('body').addClass('double eye-u eye-h');
+			jQuery("div.layout a").removeClass("on");
+			jQuery("div.layout a.double").addClass("on");
+			jQuery("div.eye-catch a").removeClass("on");
+			jQuery("div.eye-catch a.eye-u").addClass("on");
+			jQuery("div.eye-catch a.eye-h").addClass("on");
 			if (loadedPage == "index") {
 				loadedIndexStyle = 'double';
 				loadedIndexEyecatch = 'eye-u eye-h';
-				$("#index_style").val('double');
-				$("#index_eyecatch").val('eye-u eye-h');
+				jQuery("#index_style").val('double');
+				jQuery("#index_eyecatch").val('eye-u eye-h');
 			} else if (loadedPage == "individual") {
 				loadedEntryStyle = 'double';
 				loadedEntryEyecatch = 'eye-u eye-h';
-				$("#entry_style").val('double');
-				$("#entry_eyecatch").val('eye-u eye-h');
+				jQuery("#entry_style").val('double');
+				jQuery("#entry_eyecatch").val('eye-u eye-h');
 			} else if (loadedPage == "category") {
 				loadedCategoryStyle = 'double';
 				loadedCategoryEyecatch = 'eye-u eye-h';
-				$("#category_style").val('double');
-				$("#category_eyecatch").val('eye-u eye-h');
+				jQuery("#category_style").val('double');
+				jQuery("#category_eyecatch").val('eye-u eye-h');
 			} else if (loadedPage == "monthly") {
 				loadedMonthlyStyle = 'double';
 				loadedMonthlyEyecatch = 'eye-u eye-h';
-				$("#monthly_style").val('double');
-				$("#monthly_eyecatch").val('eye-u eye-h');
+				jQuery("#monthly_style").val('double');
+				jQuery("#monthly_eyecatch").val('eye-u eye-h');
 			} else if (loadedPage == "archives") {
 				loadedArchiveStyle = 'double';
 				loadedArchiveEyecatch = 'eye-u eye-h';
-				$("#archive_style").val('double');
-				$("#arcgive_eyecatch").val('eye-u eye-h');
+				jQuery("#archive_style").val('double');
+				jQuery("#arcgive_eyecatch").val('eye-u eye-h');
 			}
 		} else if (type == 'set4') {
-			$('#iframe').contents().find('body').addClass('double eye-u eye-hb');
-			$("div.layout a").removeClass("on");
-			$("div.layout a.double").addClass("on");
-			$("div.eye-catch a").removeClass("on");
-			$("div.eye-catch a.eye-u").addClass("on");
-			$("div.eye-catch a.eye-hb").addClass("on");
+			jQuery('#iframe').contents().find('body').addClass('double eye-u eye-hb');
+			jQuery("div.layout a").removeClass("on");
+			jQuery("div.layout a.double").addClass("on");
+			jQuery("div.eye-catch a").removeClass("on");
+			jQuery("div.eye-catch a.eye-u").addClass("on");
+			jQuery("div.eye-catch a.eye-hb").addClass("on");
 			if (loadedPage == "index") {
 				loadedIndexStyle = 'double';
 				loadedIndexEyecatch = 'eye-u eye-hb';
-				$("#index_style").val('double');
-				$("#index_eyecatch").val('eye-u eye-hb');
+				jQuery("#index_style").val('double');
+				jQuery("#index_eyecatch").val('eye-u eye-hb');
 			} else if (loadedPage == "individual") {
 				loadedEntryStyle = 'double';
 				loadedEntryEyecatch = 'eye-u eye-hb';
-				$("#entry_style").val('double');
-				$("#entry_eyecatch").val('eye-u eye-hb');
+				jQuery("#entry_style").val('double');
+				jQuery("#entry_eyecatch").val('eye-u eye-hb');
 			} else if (loadedPage == "category") {
 				loadedCategoryStyle = 'double';
 				loadedCategoryEyecatch = 'eye-u eye-hb';
-				$("#category_style").val('double');
-				$("#category_eyecatch").val('eye-u eye-hb');
+				jQuery("#category_style").val('double');
+				jQuery("#category_eyecatch").val('eye-u eye-hb');
 			} else if (loadedPage == "monthly") {
 				loadedMonthlyStyle = 'double';
 				loadedMonthlyEyecatch = 'eye-u eye-hb';
-				$("#monthly_style").val('double');
-				$("#monthly_eyecatch").val('eye-u eye-hb');
+				jQuery("#monthly_style").val('double');
+				jQuery("#monthly_eyecatch").val('eye-u eye-hb');
 			} else if (loadedPage == "archives") {
 				loadedArchiveStyle = 'double';
 				loadedArchiveEyecatch = 'eye-u eye-hb';
-				$("#archive_style").val('double');
-				$("#arcgive_eyecatch").val('eye-u eye-hb');
+				jQuery("#archive_style").val('double');
+				jQuery("#arcgive_eyecatch").val('eye-u eye-hb');
 			}
 		}
-		$("div.set a").removeClass("on");
-		$("div.set a."+type).addClass("on");
+		jQuery("div.set a").removeClass("on");
+		jQuery("div.set a."+type).addClass("on");
 	};
 
 // Width
 
 	function setWidth(type) {
-		$('#iframe').contents().find('body').removeClass(widthClass);
-		$("div.width a").removeClass("on");
+		jQuery('#iframe').contents().find('body').removeClass(widthClass);
+		jQuery("div.width a").removeClass("on");
 		if (type != 'w-clear') {
-			$('#iframe').contents().find('body').addClass(type);
-			$("div.width a."+type).addClass("on");
+			jQuery('#iframe').contents().find('body').addClass(type);
+			jQuery("div.width a."+type).addClass("on");
 			loadedWidth = type;
-			$("#fixed_width").val(type);
+			jQuery("#fixed_width").val(type);
 		} else {
-			$("#fixed_width").val('none');
+			jQuery("#fixed_width").val('none');
 			loadedWidth = '';
 		}
 	};
@@ -447,52 +442,52 @@ p.view span.notation {
 // Others
 
 	function setOthers(type) {
-		$('#iframe').contents().find('body').removeClass(otherClass).addClass(type);
-		$("div.others a").removeClass("on");
+		jQuery('#iframe').contents().find('body').removeClass(otherClass).addClass(type);
+		jQuery("div.others a").removeClass("on");
 		if (type != 'o-clear') {
-			$("div.others a."+type).addClass("on");
+			jQuery("div.others a."+type).addClass("on");
 			loadedOthers = type;
 		} else {
 			loadedOthers = '';
 		}
 		if (type == 'gt') {
-			$("#navi_on_top").val('1');$("#hide_navi").val('0');$("#left_align").val('0');
+			jQuery("#navi_on_top").val('1');jQuery("#hide_navi").val('0');jQuery("#left_align").val('0');
 		} else if (type == 'gh') {
-			$("#navi_on_top").val('0');$("#hide_navi").val('1');$("#left_align").val('0');
+			jQuery("#navi_on_top").val('0');jQuery("#hide_navi").val('1');jQuery("#left_align").val('0');
 		} else if (type == 'al') {
-			$("#navi_on_top").val('0');$("#hide_navi").val('0');$("#left_align").val('1');
+			jQuery("#navi_on_top").val('0');jQuery("#hide_navi").val('0');jQuery("#left_align").val('1');
 		} else if (type == 'o-clear') {
-			$("#navi_on_top").val('0');$("#hide_navi").val('0');$("#left_align").val('0');
+			jQuery("#navi_on_top").val('0');jQuery("#hide_navi").val('0');jQuery("#left_align").val('0');
 		}
 	};
 
 // Tag Cloud
 
 	function setCloud(type) {
-		$("div.cloud a").removeClass("on");
-		$('#iframe').contents().find('#tagstyle').remove();
+		jQuery("div.cloud a").removeClass("on");
+		jQuery('#iframe').contents().find('#tagstyle').remove();
 		if (type !='none') {
 			if ($.browser.msie) {} else {
-				$('#iframe').contents().find('head').append('<link rel="stylesheet" type="text/css" href="<mt:var name="blog_url">styles.css" />');
+				jQuery('#iframe').contents().find('head').append('<link rel="stylesheet" type="text/css" href="<mt:var name="blog_url">styles.css" />');
 			}
-			$('#iframe').contents().find('head').append('<link rel="stylesheet" type="text/css" id="tagstyle" href="<mt:var name="blog_url">themes/vicuna-tagcloud/tagCloud'+type+'.css" />');
-			$("div.cloud a.style"+type).addClass("on");
+			jQuery('#iframe').contents().find('head').append('<link rel="stylesheet" type="text/css" id="tagstyle" href="<mt:var name="blog_url">themes/vicuna-tagcloud/tagCloud'+type+'.css" />');
+			jQuery("div.cloud a.style"+type).addClass("on");
 			loadedCloud = type;
 		} else {
-			$("div.cloud a.none").addClass("on");
+			jQuery("div.cloud a.none").addClass("on");
 			loadedCloud = '';
 		}
-		$("#cloud_style").val(type);
+		jQuery("#cloud_style").val(type);
 	};
 
 // Load Page
 
 	function loadPage(page) {
-		$('#iframe').attr('src' ,'<mt:var name="static_uri">support/theme_static/mtVicunaSimple/preview/'+page+'.html');
+		jQuery('#iframe').attr('src' ,'<mt:var name="static_uri">support/theme_static/mtVicunaSimple/preview/'+page+'.html');
 		loadedPage = page;
-		$("div.pages a").removeClass("on");
-		$("div.layout a").removeClass("on");
-		$("div.eye-catch a").removeClass("on");
+		jQuery("div.pages a").removeClass("on");
+		jQuery("div.layout a").removeClass("on");
+		jQuery("div.eye-catch a").removeClass("on");
 		if (page == "index") {
 			var layout = loadedIndexStyle;
 			var eyecatch = loadedIndexEyecatch;
@@ -509,18 +504,18 @@ p.view span.notation {
 			var layout = loadedArchiveStyle;
 			var eyecatch = loadedArchiveEyecatch;
 		}
-		$('#iframe').contents().find('body').removeClass(layoutClass).addClass(layout);
-		$('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(eyecatch);
-		$("div.pages a."+page).addClass("on");
-		$("div.layout a."+layout).addClass("on");
-		$("div.eye-catch a."+eyecatch).addClass("on");
+		jQuery('#iframe').contents().find('body').removeClass(layoutClass).addClass(layout);
+		jQuery('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(eyecatch);
+		jQuery("div.pages a."+page).addClass("on");
+		jQuery("div.layout a."+layout).addClass("on");
+		jQuery("div.eye-catch a."+eyecatch).addClass("on");
 	};
 
 // Menu On/Off
 	function showmenu(){
-//		$("#menu").toggle("slow");
-		$(".debug-tool").toggle("slow");
-		$("form .actions-bar").toggle("slow");
+//		jQuery("#menu").toggle("slow");
+		jQuery(".debug-tool").toggle("slow");
+		jQuery("form .actions-bar").toggle("slow");
     };
 //]]>
 </script>
@@ -580,7 +575,7 @@ p.view span.notation {
      <li><a class="o-clear" onclick="setOthers('o-clear');">Clear</a></li>
     </ul>
    </div>
-   <div class="cloud">
+   <div class="cloud" style="display:none;">
     <h3>TagCloud Style</h3>
     <ul>
      <li><a class="none<mt:if name="cloud_style" eq="none"> on</mt:if>" onclick="setCloud('none');">Skin Default</a></li>
@@ -592,7 +587,7 @@ p.view span.notation {
      <li><a class="style06<mt:if name="cloud_style" eq="06"> on</mt:if>" onclick="setCloud('06');">Style06</a></li>
     </ul>
    </div>
-   <div class="cloud">
+   <div class="cloud" style="display:none;">
     <ul>
      <li><a class="style07<mt:if name="cloud_style" eq="07"> on</mt:if>" onclick="setCloud('07');">Style07</a></li>
      <li><a class="style08<mt:if name="cloud_style" eq="08"> on</mt:if>" onclick="setCloud('08');">Style08</a></li>
@@ -645,9 +640,14 @@ p.view span.notation {
     <div class="actions-bar">
         <div class="actions-bar-inner pkg actions">
             <button
+                title="<__trans phrase="Initialize">"
+                class="cancel button primary-button action"
+                onclick="initialize();"
+                ><__trans phrase="Initialize"></button>
+            <button
                 type="submit"
                 title="<__trans phrase="Save">"
-                class="primary-button action"
+                class="primary button primary-button action"
                 ><__trans phrase="Save"></button>
         </div>
     </div>
@@ -659,61 +659,61 @@ p.view span.notation {
 //<![CDATA[
 function initialLoad() {
 	if (loadedPage == "index") {
-		$('#iframe').contents().find('body').removeClass(layoutClass).addClass(loadedIndexStyle);
-		$('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(loadedIndexEyecatch);
+		jQuery('#iframe').contents().find('body').removeClass(layoutClass).addClass(loadedIndexStyle);
+		jQuery('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(loadedIndexEyecatch);
 	} else if (loadedPage == "individual") {
-		$('#iframe').contents().find('body').removeClass(layoutClass).addClass(loadedEntryStyle);
-		$('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(loadedEntryEyecatch);
+		jQuery('#iframe').contents().find('body').removeClass(layoutClass).addClass(loadedEntryStyle);
+		jQuery('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(loadedEntryEyecatch);
 	} else if (loadedPage == "category") {
-		$('#iframe').contents().find('body').removeClass(layoutClass).addClass(loadedCategoryStyle);
-		$('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(loadedCategoryEyecatch);
+		jQuery('#iframe').contents().find('body').removeClass(layoutClass).addClass(loadedCategoryStyle);
+		jQuery('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(loadedCategoryEyecatch);
 	} else if (loadedPage == "monthly") {
-		$('#iframe').contents().find('body').removeClass(layoutClass).addClass(loadedMonthlyStyle);
-		$('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(loadedMonthlyEyecatch);
+		jQuery('#iframe').contents().find('body').removeClass(layoutClass).addClass(loadedMonthlyStyle);
+		jQuery('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(loadedMonthlyEyecatch);
 	} else if (loadedPage == "archives") {
-		$('#iframe').contents().find('body').removeClass(layoutClass).addClass(loadedArchiveStyle);
-		$('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(loadedArchiveEyecatch);
+		jQuery('#iframe').contents().find('body').removeClass(layoutClass).addClass(loadedArchiveStyle);
+		jQuery('#iframe').contents().find('body').removeClass(eyeCatchClass).addClass(loadedArchiveEyecatch);
 	}
-	$('#iframe').contents().find('body').addClass(loadedWidth);
+	jQuery('#iframe').contents().find('body').addClass(loadedWidth);
 	if (loadedOthers) {
-		$('#iframe').contents().find('body').addClass(loadedOthers);
+		jQuery('#iframe').contents().find('body').addClass(loadedOthers);
 	}
 	if (loadedCloud) {
-		$('#iframe').contents().find('head').append('<link rel="stylesheet" type="text/css" id="tagstyle" href="<mt:var name="blog_url">themes/vicuna-tagcloud/tagCloud'+loadedCloud+'.css" />');
+		jQuery('#iframe').contents().find('head').append('<link rel="stylesheet" type="text/css" id="tagstyle" href="<mt:var name="blog_url">themes/vicuna-tagcloud/tagCloud'+loadedCloud+'.css" />');
 	}
 	if (loadedPage == "index") {
-		$('div.layout a.'+loadedIndexStyle).addClass("on");
-		$('div.eye-catch a.'+loadedIndexEyecatch).addClass("on");
+		jQuery('div.layout a.'+loadedIndexStyle).addClass("on");
+		jQuery('div.eye-catch a.'+loadedIndexEyecatch).addClass("on");
 	} else if (loadedPage == "individual") {
-		$('div.layout a.'+loadedEntryStyle).addClass("on");
-		$('div.eye-catch a.'+loadedEntryEyecatch).addClass("on");
+		jQuery('div.layout a.'+loadedEntryStyle).addClass("on");
+		jQuery('div.eye-catch a.'+loadedEntryEyecatch).addClass("on");
 	} else if (loadedPage == "category") {
-		$('div.layout a.'+loadedCategoryStyle).addClass("on");
-		$('div.eye-catch a.'+loadedCategoryEyecatch).addClass("on");
+		jQuery('div.layout a.'+loadedCategoryStyle).addClass("on");
+		jQuery('div.eye-catch a.'+loadedCategoryEyecatch).addClass("on");
 	} else if (loadedPage == "monthly") {
-		$('div.layout a.'+loadedMonthlyStyle).addClass("on");
-		$('div.eye-catch a.'+loadedMonthlyEyecatch).addClass("on");
+		jQuery('div.layout a.'+loadedMonthlyStyle).addClass("on");
+		jQuery('div.eye-catch a.'+loadedMonthlyEyecatch).addClass("on");
 	} else if (loadedPage == "archives") {
-		$('div.layout a.'+loadedArchiveStyle).addClass("on");
-		$('div.eye-catch a.'+loadedArchiveEyecatch).addClass("on");
+		jQuery('div.layout a.'+loadedArchiveStyle).addClass("on");
+		jQuery('div.eye-catch a.'+loadedArchiveEyecatch).addClass("on");
 	}
 	if (skinType == "recent") {
-		$("div.eye-catch a.eye-u").closest("li").remove();
-		$("div.set a.set3").closest("li").remove();
-		$("div.set a.set4").closest("li").remove();
+		jQuery("div.eye-catch a.eye-u").closest("li").remove();
+		jQuery("div.set a.set3").closest("li").remove();
+		jQuery("div.set a.set4").closest("li").remove();
 	} else if (skinType == "future") {
-		$("div.layout a.double-l").closest("li").remove();
-		$("div.layout a.multi").closest("li").remove();
-		$("div.layout a.multi2").closest("li").remove();
-		$("div.layout a.multi2-l").closest("li").remove();
-		$("div.eye-catch a.eye-m").closest("li").remove();
-		$("div.set a.set1").closest("li").remove();
-		$("div.set a.set2").closest("li").remove();
-		$("div.others").remove();
+		jQuery("div.layout a.double-l").closest("li").remove();
+		jQuery("div.layout a.multi").closest("li").remove();
+		jQuery("div.layout a.multi2").closest("li").remove();
+		jQuery("div.layout a.multi2-l").closest("li").remove();
+		jQuery("div.eye-catch a.eye-m").closest("li").remove();
+		jQuery("div.set a.set1").closest("li").remove();
+		jQuery("div.set a.set2").closest("li").remove();
+		jQuery("div.others").remove();
 	} else {
-		$("div.eye-catch a.eye-u").closest("li").remove();
-		$("div.set a.set3").closest("li").remove();
-		$("div.set a.set4").closest("li").remove();
+		jQuery("div.eye-catch a.eye-u").closest("li").remove();
+		jQuery("div.set a.set3").closest("li").remove();
+		jQuery("div.set a.set4").closest("li").remove();
 	}
 }
 
@@ -722,13 +722,13 @@ var e_ifr = document.getElementById( "iframe" );
 if ($.browser.msie) {
 	e_ifr.onreadystatechange = function(){
 		if ( window.event.srcElement.readyState == "complete" ) {
-			$('#iframe').contents().find('head').append('<link rel="stylesheet" type="text/css" href="<mt:var name="blog_url">styles.css" />');
+			jQuery('#iframe').contents().find('head').append('<link rel="stylesheet" type="text/css" href="<mt:var name="blog_url">styles.css" />');
 			initialLoad();
 		}
 	}
 } else {
 	e_ifr.onload  = function() {
-		$('#iframe').contents().find('link[rel=stylesheet]').attr('href' ,'<mt:var name="blog_url">styles.css');
+		jQuery('#iframe').contents().find('link[rel=stylesheet]').attr('href' ,'<mt:var name="blog_url">styles.css');
 		initialLoad();
 	}
 }
