@@ -104,12 +104,12 @@ $(document).ready(function(){
                     <li class="tags"><MTEntryTags glue=", "><a href="javascript:void(0)" onclick="location.href='<$MTTagSearchLink encode_js="1"$>';return false;" rel="tag" title="<$MTTagName escape="html"$> tag Search"><$MTTagName escape="html"$></a></MTEntryTags></li>
 </MTEntryIfTagged>
                 </ul>
-<MTIf tag="EntryBody" strip_linefeeds="1" trim="1">
+<MTIf tag="EntryBody" strip_linefeeds="1" trim="1"><MTSetVar name="hasBody" value="1" /></MTIf><MTIf name="hasBody">
                 <div class="textBody">
 <$MTEntryBody$>
                 </div>
 </MTIf>
-<MTIf tag="EntryMore" strip_linefeeds="1" trim="1">
+<MTIf tag="EntryMore" strip_linefeeds="1" trim="1"><MTSetVar name="hasExtend" value="1" /></MTIf><MTIf name="hasExtend">
                 <div class="textBody" id="extended">
 <$MTEntryMore$>
                 </div>

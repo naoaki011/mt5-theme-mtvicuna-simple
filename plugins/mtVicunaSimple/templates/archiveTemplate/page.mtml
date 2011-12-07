@@ -100,12 +100,12 @@ $(document).ready(function(){
                     <li class="tags"><MTPageTags glue=", "><a href="javascript:void(0)" onclick="location.href='<$MTTagSearchLink encode_js="1"$>';return false;" rel="tag" title="<$MTTagName escape="html"$> tag Search"><$MTTagName escape="html"$></a></MTPageTags></li>
 </MTPageIfTagged>
                 </ul>
-<MTIf tag="PageBody" strip_linefeeds="1" trim="1">
+<MTIf tag="PageBody" strip_linefeeds="1" trim="1"><MTSetVar name="hasBody" value="1" /></MTIf><MTIf name="hasBody">
                 <div class="textBody">
 <$MTPageBody$>
                 </div>
 </MTIf>
-<MTIf tag="PageMore" strip_linefeeds="1" trim="1">
+<MTIf tag="PageMore" strip_linefeeds="1" trim="1"><MTSetVar name="hasExtend" value="1" /></MTIf><MTIf name="hasExtend">
                 <div class="textBody" id="extended">
 <$MTPageMore$>
                 </div>
