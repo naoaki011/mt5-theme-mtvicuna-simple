@@ -337,6 +337,7 @@ p.topicPath span.current {
 div.entry {
 	margin: 1em 30px;
 	padding: 1px 0;
+	overflow: hidden;
 	_height: 1px; /* for IE6 */
 	*min-height: 1px; /* for IE7 */
 }
