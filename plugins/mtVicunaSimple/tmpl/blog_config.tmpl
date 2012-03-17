@@ -284,7 +284,13 @@
   label="<__trans phrase="Use Lightbox Effect">"
   hint="<__trans phrase="Hint">"
   >
-    <input type="checkbox" name="use_slimbox" id="use_slimbox" value="1"<mt:if name="use_slimbox"> checked="checked"</mt:if> />
+    <input type="checkbox" name="use_slimbox" id="use_slimbox_on" value="1"<mt:unless name="use_slimbox" eq="0"> checked="checked"</mt:unless>
+        onclick="if(this.checked){
+			document.getElementById('use_slimbox_off').checked=false;
+		}else{
+			document.getElementById('use_slimbox_off').checked=true;
+		}" />
+    <input type="checkbox" name="use_slimbox" id="use_slimbox_off" value="0"<mt:if name="use_slimbox" eq="0"> checked="checked"</mt:if> style="display:none;" />
 </mtapp:setting>
 <mtapp:setting
   id="lightbox_script"

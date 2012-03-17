@@ -4,206 +4,17 @@ use strict;
 use MT 5;
 use MT::Util qw( encode_html );
 
-sub tag_version {
-    require MT::Theme;
-    my $theme = MT::Theme->load('mtVicunaSimple');
-    my $theme_version = $theme->version;
-    return $theme_version;
-}
-
-sub tag_blog_skin_layout {
-    my $app = MT->instance;
-    my $blog = $app->blog;
-    my $page_layout = $blog->page_layout;
-    return $page_layout;
-}
-
-sub _if_vicuna {
-    my $app = MT->instance;
-    my $blog = $app->blog;
-    my $themeid = $blog->theme_id;
-    if ($themeid eq 'mtVicunaSimple') {
-        return 1;
-    } else {
-        return 0;
-    }
-}
-
-sub tag_index_style {
-    my ( $ctx, $args ) = @_;
-    my $plugin = MT->component("mtVicunaSimple");
-    my $scope = "blog:".$ctx->stash('blog_id');
-    my $style = $plugin->get_config_value('index_style',$scope) || 'double';
-    return $style;
-}
-
-sub tag_entry_style {
-    my ( $ctx, $args ) = @_;
-    my $plugin = MT->component("mtVicunaSimple");
-    my $scope = "blog:".$ctx->stash('blog_id');
-    my $style = $plugin->get_config_value('entry_style',$scope) || 'single';
-    return $style;
-}
-
-sub tag_monthly_style {
-    my ( $ctx, $args ) = @_;
-    my $plugin = MT->component("mtVicunaSimple");
-    my $scope = "blog:".$ctx->stash('blog_id');
-    my $style = $plugin->get_config_value('monthly_style',$scope) || 'double';
-    return $style;
-}
-
-sub tag_category_style {
-    my ( $ctx, $args ) = @_;
-    my $plugin = MT->component("mtVicunaSimple");
-    my $scope = "blog:".$ctx->stash('blog_id');
-    my $style = $plugin->get_config_value('category_style',$scope) || 'double';
-    return $style;
-}
-
-sub tag_archive_style {
-    my ( $ctx, $args ) = @_;
-    my $plugin = MT->component("mtVicunaSimple");
-    my $scope = "blog:".$ctx->stash('blog_id');
-    my $style = $plugin->get_config_value('archive_style',$scope) || 'single';
-    return $style;
-}
-
-sub tag_index_eyecatch {
-    my ( $ctx, $args ) = @_;
-    my $plugin = MT->component("mtVicunaSimple");
-    my $scope = "blog:".$ctx->stash('blog_id');
-    my $style = $plugin->get_config_value('index_eyecatch',$scope) || 'eye-h';
-    return $style;
-}
-
-sub tag_entry_eyecatch {
-    my ( $ctx, $args ) = @_;
-    my $plugin = MT->component("mtVicunaSimple");
-    my $scope = "blog:".$ctx->stash('blog_id');
-    my $style = $plugin->get_config_value('entry_eyecatch',$scope) || 'eye-h';
-    return $style;
-}
-
-sub tag_category_eyecatch {
-    my ( $ctx, $args ) = @_;
-    my $plugin = MT->component("mtVicunaSimple");
-    my $scope = "blog:".$ctx->stash('blog_id');
-    my $style = $plugin->get_config_value('category_eyecatch',$scope) || 'eye-h';
-    return $style;
-}
-
-sub tag_monthly_eyecatch {
-    my ( $ctx, $args ) = @_;
-    my $plugin = MT->component("mtVicunaSimple");
-    my $scope = "blog:".$ctx->stash('blog_id');
-    my $style = $plugin->get_config_value('monthly_eyecatch',$scope) || 'eye-h';
-    return $style;
-}
-
-sub tag_archive_eyecatch {
-    my ( $ctx, $args ) = @_;
-    my $plugin = MT->component("mtVicunaSimple");
-    my $scope = "blog:".$ctx->stash('blog_id');
-    my $style = $plugin->get_config_value('archive_eyecatch',$scope) || 'eye-h';
-    return $style;
-}
-
-sub tag_fixed_width {
-    my ( $ctx, $args ) = @_;
-    my $plugin = MT->component("mtVicunaSimple");
-    my $scope = "blog:".$ctx->stash('blog_id');
-    my $width = $plugin->get_config_value('fixed_width',$scope) || 'none';
-    if ($width eq 'none') {
-        return '';
-    } else {
-        return $width;
-    }
-}
-
-sub tag_cloud_style {
-    my ( $ctx, $args ) = @_;
-    my $plugin = MT->component("mtVicunaSimple");
-    my $scope = "blog:".$ctx->stash('blog_id');
-    my $style = $plugin->get_config_value('cloud_style',$scope) || 'none';
-    if ($style eq 'none') {
-        return '';
-    } else {
-        return 'tagCloud'.$style.'.css';
-    }
-}
-
-sub if_nav_on_top {
-    my ( $ctx, $args, $cond ) = @_;
-    my $plugin = MT->component("mtVicunaSimple");
-    my $scope = "blog:".$ctx->stash('blog_id');
-    my $ontop = $plugin->get_config_value('navi_on_top',$scope) || 0;
-    return $ontop;
-}
-
-sub if_hide_nav {
-    my ( $ctx, $args, $cond ) = @_;
-    my $plugin = MT->component("mtVicunaSimple");
-    my $scope = "blog:".$ctx->stash('blog_id');
-    my $ontop = $plugin->get_config_value('hide_navi',$scope) || 0;
-    return $ontop;
-}
-
-sub if_left_align {
-    my ( $ctx, $args, $cond ) = @_;
-    my $plugin = MT->component("mtVicunaSimple");
-    my $scope = "blog:".$ctx->stash('blog_id');
-    my $leftalign = $plugin->get_config_value('left_align',$scope) || 0;
-    return $leftalign;
-}
-
-sub if_use_slimbox {
-    my ( $ctx, $args, $cond ) = @_;
-    my $plugin = MT->component("mtVicunaSimple");
-    my $scope = "blog:".$ctx->stash('blog_id');
-    my $slimbox = $plugin->get_config_value('use_slimbox',$scope) || 1;
-    return $slimbox;
-}
-
-sub tag_lightbox_script {
-    my ( $ctx, $args ) = @_;
-    my $plugin = MT->component("mtVicunaSimple");
-    my $scope = "blog:".$ctx->stash('blog_id');
-    my $script = $plugin->get_config_value('lightbox_script',$scope) || 'slimbox';
-    return $script;
-}
-
-sub tag_lightbox_selector {
-    my ( $ctx, $args ) = @_;
-    my $plugin = MT->component("mtVicunaSimple");
-    my $scope = "blog:".$ctx->stash('blog_id');
-    my $selector = $plugin->get_config_value('lightbox_selector',$scope) || 'rel="lightbox"';
-    return $selector;
-}
-
-sub modifier_adjust_hn {
-    my ($text, $val) = @_;
-    if ( $val ) {
-        $text =~ s/(<\/?[hH])([2-5])([ >])/&_increment($1,$2,$3);/eg;
-    }
-    return $text;
-}
-
-sub _increment {
-    my ($htag,$leveln,$tail) = @_;
-    $leveln += 1;
-    return $htag.$leveln.$tail;
-}
-
 sub _asset_options_image {
     my ( $cb, $app, $param, $tmpl ) = @_;
-    my $blog_id = $app->param('blog_id');
+    my $blog = $app->blog
+      or return;
+    my $blog_id = $app->param('blog_id')
+      or return;
+    return unless ($blog_id == $blog->id);
     my $plugin = MT->component("mtVicunaSimple");
     my $scope = "blog:".$blog_id;
     my $slimbox = $plugin->get_config_value('use_slimbox',$scope);
     if ($slimbox ne '') {
-        use MT::Blog;
-        my $blog = MT::Blog->load($blog_id) or die;
         my $themeid = $blog->theme_id;
         if ($themeid eq 'mtVicunaSimple') {
             my $asset_id = $param->{asset_id} or return;
@@ -264,9 +75,15 @@ HTML
 
 sub _asset_insert_param {
     my ( $cb, $app, $param, $tmpl ) = @_;
-    my $blog_id = $app->param('blog_id');
+    my $blog = $app->blog
+      or return;
+    my $blog_id = $app->param('blog_id')
+      or return;
+    return unless ($blog_id == $blog->id);
     my $plugin = MT->component("mtVicunaSimple");
     my $scope = "blog:".$blog_id;
+    return unless ($blog->theme_id eq 'mtVicunaSimple')
+
     my $cleanup_insert = $plugin->get_config_value('cleanup_insert',$scope);
     if ($cleanup_insert) {
         my $rightalign_class = $plugin->get_config_value('rightalign_class',$scope);
@@ -326,44 +143,31 @@ sub _asset_insert_param {
     }
 }
 
-sub _edit_themeparams {
-    my $app = shift;
-    my $blog_id = $app->param('blog_id');
-    my $plugin = MT->component("mtVicunaSimple");
-    my $scope = "blog:".$blog_id;
-    my $index_style       = $plugin->get_config_value('index_style',$scope);
-    my $entry_style       = $plugin->get_config_value('entry_style',$scope);
-    my $monthly_style     = $plugin->get_config_value('monthly_style',$scope);
-    my $category_style    = $plugin->get_config_value('category_style',$scope);
-    my $archive_style     = $plugin->get_config_value('archive_style',$scope);
-    my $index_eyecatch    = $plugin->get_config_value('index_eyecatch',$scope);
-    my $entry_eyecatch    = $plugin->get_config_value('entry_eyecatch',$scope);
-    my $category_eyecatch = $plugin->get_config_value('category_eyecatch',$scope);
-    my $monthly_eyecatch  = $plugin->get_config_value('monthly_eyecatch',$scope);
-    my $archive_eyecatch  = $plugin->get_config_value('archive_eyecatch',$scope);
-    my $vicuna_skin_layout  = tag_blog_skin_layout();
-    my $fixed_width       = $plugin->get_config_value('fixed_width',$scope);
-    my $cloud_style       = $plugin->get_config_value('cloud_style',$scope);
-    my $navi_on_top       = $plugin->get_config_value('navi_on_top',$scope);
-    my $hide_navi         = $plugin->get_config_value('hide_navi',$scope);
-    my $left_align        = $plugin->get_config_value('left_align',$scope);
-    $app->load_tmpl( 'dialog/edit_layout.tmpl', {
-        index_style       => $index_style,
-        entry_style       => $entry_style,
-        monthly_style     => $monthly_style,
-        category_style    => $category_style,
-        archive_style     => $archive_style,
-        index_eyecatch    => $index_eyecatch,
-        entry_eyecatch    => $entry_eyecatch,
-        category_eyecatch => $category_eyecatch,
-        monthly_eyecatch  => $monthly_eyecatch,
-        archive_eyecatch  => $archive_eyecatch,
-        vicuna_skin_layout  => $vicuna_skin_layout,
-        fixed_width       => $fixed_width,
-        cloud_style       => $cloud_style,
-        navi_on_top       => $navi_on_top,
-        hide_navi         => $hide_navi,
-        left_align        => $left_align } );
+sub _blog_template_set_change {
+    my ($cb, $param) = @_;
+    my $blog = $param->{blog}
+      or return;
+    return 1
+      if (($blog->theme_id ne 'mtVicunaSimple') || '');
+    $blog->page_layout('double');
+    $blog->save;
+}
+
+sub _post_apply_theme {
+    my ($cb, $theme, $blog) = @_;
+    my $app = MT->instance();
+    return if $app->mode eq 'refresh_all_templates';
+    return if $app->mode eq 'apply_theme';
+    my $user = $app->user;
+}
+
+sub _post_save_blog {
+    my ($cb, $app, $obj, $original) = @_;
+    my $blog = $app->blog;
+    if ($blog->id ne $obj->id) { # is new
+        $blog = $obj;
+    }
+    return 1;
 }
 
 sub doLog {
