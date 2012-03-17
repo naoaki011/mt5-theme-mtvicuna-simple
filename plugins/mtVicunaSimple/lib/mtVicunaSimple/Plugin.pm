@@ -82,7 +82,7 @@ sub _asset_insert_param {
     return unless ($blog_id == $blog->id);
     my $plugin = MT->component("mtVicunaSimple");
     my $scope = "blog:".$blog_id;
-    return unless ($blog->theme_id eq 'mtVicunaSimple')
+    return unless ($blog->theme_id eq 'mtVicunaSimple');
 
     my $cleanup_insert = $plugin->get_config_value('cleanup_insert',$scope);
     if ($cleanup_insert) {
@@ -145,12 +145,8 @@ sub _asset_insert_param {
 
 sub _blog_template_set_change {
     my ($cb, $param) = @_;
-    my $blog = $param->{blog}
-      or return;
-    return 1
-      if (($blog->theme_id ne 'mtVicunaSimple') || '');
-    $blog->page_layout('double');
-    $blog->save;
+#    my $blog = $param->{blog}
+#      or return;
 }
 
 sub _post_apply_theme {
@@ -158,16 +154,18 @@ sub _post_apply_theme {
     my $app = MT->instance();
     return if $app->mode eq 'refresh_all_templates';
     return if $app->mode eq 'apply_theme';
-    my $user = $app->user;
+    return if ($theme->id ne 'mtVicunaSimple');
+    $blog->page_layout('vega');
+    $blog->save;
 }
 
 sub _post_save_blog {
     my ($cb, $app, $obj, $original) = @_;
-    my $blog = $app->blog;
-    if ($blog->id ne $obj->id) { # is new
-        $blog = $obj;
-    }
-    return 1;
+#    my $blog = $app->blog;
+#    if ($blog->id ne $obj->id) { # is new
+#        $blog = $obj;
+#    }
+#    return 1;
 }
 
 sub doLog {

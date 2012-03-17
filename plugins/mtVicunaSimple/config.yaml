@@ -433,11 +433,11 @@ tags:
   modifier:
     adjust_hn:              $mtVicunaSimple::mtVicunaSimple::Tags::modifier_adjust_hn
 callbacks:
-  blog_template_set_change:           $mtVicunaSimple::mtVicunaSimple::Plugin::blog_template_set_change
-  #post_apply_theme:                   $mtVicunaSimple::mtVicunaSimple::Plugin::_post_apply_theme
+  #blog_template_set_change:           $mtVicunaSimple::mtVicunaSimple::Plugin::blog_template_set_change
+  post_apply_theme:                   $mtVicunaSimple::mtVicunaSimple::Plugin::_post_apply_theme
   #cms_post_save.blog:                 $mtVicunaSimple::mtVicunaSimple::Plugin::_post_save_blog
-  template_param.asset_options_image: $mtVicunaSimple::mtVicunaSimple::Plugin::_asset_options_image
-  template_param.asset_insert:        $mtVicunaSimple::mtVicunaSimple::Plugin::_asset_insert_param
+  #template_param.asset_options_image: $mtVicunaSimple::mtVicunaSimple::Plugin::_asset_options_image
+  #template_param.asset_insert:        $mtVicunaSimple::mtVicunaSimple::Plugin::_asset_insert_param
 applications:
   cms:
     menus:
@@ -447,12 +447,6 @@ applications:
         mode: edit_themeparams
         view:
           - blog
-        condition: >
-          sub {
-            my $app = MT->instance;
-            my $blog = $app->blog or return 0;
-            return 1 if ($blog->theme_id eq 'mtVicunaSimple');
-            return 0;
-          }
+        condition: $mtVicunaSimple::mtVicunaSimple::Util::_if_vicuna
     methods:
       edit_themeparams: $mtVicunaSimple::mtVicunaSimple::Util::_edit_themeparams
