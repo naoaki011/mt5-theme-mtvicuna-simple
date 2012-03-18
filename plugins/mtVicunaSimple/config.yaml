@@ -320,7 +320,7 @@ themes:
                 label: Monthly Archives
                 filename: widget/monthly_archives_list.mtml
 
-blog_config_template: tmpl/blog_config.tmpl
+blog_config_template: tmpl/blog_config_vicuna.tmpl
 settings:
   index_style:
     default: double
@@ -436,8 +436,13 @@ callbacks:
   #blog_template_set_change:           $mtVicunaSimple::mtVicunaSimple::Plugin::blog_template_set_change
   post_apply_theme:                   $mtVicunaSimple::mtVicunaSimple::Plugin::_post_apply_theme
   #cms_post_save.blog:                 $mtVicunaSimple::mtVicunaSimple::Plugin::_post_save_blog
-  #template_param.asset_options_image: $mtVicunaSimple::mtVicunaSimple::Plugin::_asset_options_image
-  #template_param.asset_insert:        $mtVicunaSimple::mtVicunaSimple::Plugin::_asset_insert_param
+  template_param.asset_options_image:
+    code: $mtVicunaSimple::mtVicunaSimple::Plugin::_asset_options_image
+    priority: 5
+  template_param.asset_insert:
+    code: $mtVicunaSimple::mtVicunaSimple::Plugin::_asset_insert_param
+    priority: 5
+  MT::App::CMS::template_source.blog_config_vicuna: $mtVicunaSimple::mtVicunaSimple::Plugin::_source_blog_config
 applications:
   cms:
     menus:

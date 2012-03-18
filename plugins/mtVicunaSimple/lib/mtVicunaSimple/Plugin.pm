@@ -8,68 +8,71 @@ sub _asset_options_image {
     my ( $cb, $app, $param, $tmpl ) = @_;
     my $blog = $app->blog
       or return;
+    return unless ($blog->theme_id eq 'mtVicunaSimple');
     my $blog_id = $app->param('blog_id')
       or return;
     return unless ($blog_id == $blog->id);
     my $plugin = MT->component("mtVicunaSimple");
     my $scope = "blog:".$blog_id;
-    my $slimbox = $plugin->get_config_value('use_slimbox',$scope);
-    if ($slimbox ne '') {
-        my $themeid = $blog->theme_id;
-        if ($themeid eq 'mtVicunaSimple') {
-            my $asset_id = $param->{asset_id} or return;
-            my $asset = MT::Asset->load( $asset_id ) or return;
+    my $slimbox = ($plugin->get_config_value('use_slimbox',$scope) == '0') ? 0 :1;
+    if ($slimbox) {
+        my $asset_id = $param->{asset_id} or return;
+        my $asset = MT::Asset->load( $asset_id ) or return;
 
-            my $insert_options = '';
-            my $lb_select1 = $plugin->get_config_value('lb_select1',$scope);
-            my $lightbox_selector1 = MT::Util::encode_html($plugin->get_config_value('lightbox_selector1',$scope),1);
-            if (($lb_select1) && ($lightbox_selector1)) {
-                $insert_options .= '<option value="' . $lightbox_selector1 . '">' . $lightbox_selector1 . '</option>' . "\n";
-            }
-            my $lb_select2 = $plugin->get_config_value('lb_select2',$scope);
-            my $lightbox_selector2 = MT::Util::encode_html($plugin->get_config_value('lightbox_selector2',$scope),1);
-            if (($lb_select2) && ($lightbox_selector2)) {
-                $insert_options .= '<option value="' . $lightbox_selector2 . '">' . $lightbox_selector2 . '</option>' . "\n";
-            }
-            my $lb_select3 = $plugin->get_config_value('lb_select3',$scope);
-            my $lightbox_selector3 = MT::Util::encode_html($plugin->get_config_value('lightbox_selector3',$scope),1);
-            if (($lb_select3) && ($lightbox_selector3)) {
-                $insert_options .= '<option value="' . $lightbox_selector3 . '">' . $lightbox_selector3 . '</option>' . "\n";
-            }
-            my $lb_select4 = $plugin->get_config_value('lb_select4',$scope);
-            my $lightbox_selector4 = MT::Util::encode_html($plugin->get_config_value('lightbox_selector4',$scope),1);
-            if (($lb_select4) && ($lightbox_selector4)) {
-                $insert_options .= '<option value="' . $lightbox_selector4 . '">' . $lightbox_selector4 . '</option>' . "\n";
-            }
-            if ($insert_options eq '') {
-                $insert_options .= '<option value="rel=&quot;lightbox&quot;">rel=&quot;lightbox&quot;</option>' . "\n";
-            }
-
-            my $el = $tmpl->getElementById('image_alignment')
-                or return;
-            my $opt = $tmpl->createElement('app:setting', {
-                id => 'insert_lightbox',
-                label => MT->translate('Lightbox'),
-                label_class => 'no-header',
-                hint => '',
-                show_hint => 0,
-            });
-            $opt->innerHTML(<<HTML);
-            <input type="checkbox" id="insert_lightbox" name="insert_lightbox"
-                onclick="if(this.checked){document.getElementById('create_thumbnail').checked=true;
-                document.getElementById('thumb_width').focus();
-                }else{
-                document.getElementById('create_thumbnail').checked=false;}"
-                value="1"<mt:if name="make_thumb"> checked="checked" </mt:if> />
-            <label for="insert_lightbox"><__trans_section component="mtVicunaSimple"><__trans phrase='Use Lightbox Effect'></__trans_section></label>
-            <br />
-            <select id="insert_class" name="insert_class">
-                $insert_options
-            </select>
-HTML
-            $tmpl->insertBefore($opt, $el);
-            $tmpl->rescan();
+        my $insert_options = '';
+        my $lb_select1 = $plugin->get_config_value('lb_select1',$scope);
+        my $lightbox_selector1 = MT::Util::encode_html($plugin->get_config_value('lightbox_selector1',$scope),1);
+        if (($lb_select1) && ($lightbox_selector1)) {
+            $insert_options .= '<option value="' . $lightbox_selector1 . '">' . $lightbox_selector1 . '</option>' . "\n";
         }
+        my $lb_select2 = $plugin->get_config_value('lb_select2',$scope);
+        my $lightbox_selector2 = MT::Util::encode_html($plugin->get_config_value('lightbox_selector2',$scope),1);
+        if (($lb_select2) && ($lightbox_selector2)) {
+            $insert_options .= '<option value="' . $lightbox_selector2 . '">' . $lightbox_selector2 . '</option>' . "\n";
+        }
+        my $lb_select3 = $plugin->get_config_value('lb_select3',$scope);
+        my $lightbox_selector3 = MT::Util::encode_html($plugin->get_config_value('lightbox_selector3',$scope),1);
+        if (($lb_select3) && ($lightbox_selector3)) {
+            $insert_options .= '<option value="' . $lightbox_selector3 . '">' . $lightbox_selector3 . '</option>' . "\n";
+        }
+        my $lb_select4 = $plugin->get_config_value('lb_select4',$scope);
+        my $lightbox_selector4 = MT::Util::encode_html($plugin->get_config_value('lightbox_selector4',$scope),1);
+        if (($lb_select4) && ($lightbox_selector4)) {
+            $insert_options .= '<option value="' . $lightbox_selector4 . '">' . $lightbox_selector4 . '</option>' . "\n";
+        }
+        if ($insert_options eq '') {
+            $insert_options .= '<option value="rel=&quot;lightbox&quot;">rel=&quot;lightbox&quot;</option>' . "\n";
+        }
+
+        my $el = $tmpl->getElementById('image_alignment')
+            or return;
+        my $opt = $tmpl->createElement('app:setting', {
+            id => 'insert_lightbox',
+            label => MT->translate('Lightbox'),
+            label_class => 'no-header',
+            hint => '',
+            show_hint => 0,
+        });
+        $opt->innerHTML(<<HTML);
+        <input type="checkbox" id="insert_lightbox" name="insert_lightbox"
+            onclick="if(this.checked){
+                    jQuery('#create_thumbnail').attr('checked', true);
+                    if(jQuery('#without')){
+                        jQuery('#without').hide();
+                    }
+                }else{
+                    if(jQuery('#without')){
+                        jQuery('#without').show();
+                    }
+                }"
+            value="1"<mt:if name="make_thumb"> checked="checked" </mt:if> />
+        <label for="insert_lightbox"><__trans_section component="mtVicunaSimple"><__trans phrase='Use Lightbox Effect'></__trans_section></label>
+        <select id="insert_class" name="insert_class">
+            $insert_options
+        </select>
+HTML
+        $tmpl->insertBefore($opt, $el);
+        $tmpl->rescan();
     }
 }
 
@@ -77,21 +80,33 @@ sub _asset_insert_param {
     my ( $cb, $app, $param, $tmpl ) = @_;
     my $blog = $app->blog
       or return;
+    return unless ($blog->theme_id eq 'mtVicunaSimple');
     my $blog_id = $app->param('blog_id')
       or return;
     return unless ($blog_id == $blog->id);
     my $plugin = MT->component("mtVicunaSimple");
     my $scope = "blog:".$blog_id;
-    return unless ($blog->theme_id eq 'mtVicunaSimple');
-
-    my $cleanup_insert = $plugin->get_config_value('cleanup_insert',$scope);
+    my $upload_html = $param->{ upload_html };
+    my $assetylene = MT->component( 'Assetylene' );
+    unless ($assetylene) {
+        my $insert_class = $app->param('insert_class');
+        if ( $app->param('insert_lightbox') ) {
+            $insert_class = '<a '.$insert_class;
+            $upload_html =~ s/<a/$insert_class/g;
+        }
+    }
+    else {
+        return;
+    }
+    my $cleanup_insert = ($plugin->get_config_value('cleanup_insert',$scope))
+                       ? $plugin->get_config_value('cleanup_insert',$scope)
+                       : ($plugin->get_config_value('cleanup_insert',$scope) == '0') ? 0 : 1;
     if ($cleanup_insert) {
         my $rightalign_class = $plugin->get_config_value('rightalign_class',$scope);
         my $centeralign_class = $plugin->get_config_value('centeralign_class',$scope);
         my $leftalign_class = $plugin->get_config_value('leftalign_class',$scope);
-        my $upload_html = $param->{ upload_html };
         my $wrap;
-            if ($cleanup_insert == '1' || $cleanup_insert == '') {
+        if ($cleanup_insert == '1') {
             if ($upload_html =~ / class=\"mt-image-left\"/) {
                 $wrap = '<p class="'.$leftalign_class.'">';
                 if ($cleanup_insert == '') {
@@ -114,11 +129,6 @@ sub _asset_insert_param {
                     $wrap = '<p>';
                 }
             }
-        }
-        my $insert_class = $app->param('insert_class');
-        if ( $app->param('insert_lightbox') ) {
-            $insert_class = '<a '.$insert_class;
-            $upload_html =~ s/<a/$insert_class/g;
         }
         if ($cleanup_insert == '2') {
             $upload_html =~ s/ class=\"mt-image-none\"//i;
@@ -167,6 +177,13 @@ sub _post_save_blog {
 #    }
 #    return 1;
 }
+
+sub _source_blog_config {
+    my ( $cb, $app, $tmpl ) = @_;
+    my $src = (MT->component( 'Assetylene' )) ? 'none;' : 'block;';
+    $$tmpl =~ s/\*cleanup_dispaly\*/$src/sg;
+}
+
 
 sub doLog {
     my ($msg) = @_; 
