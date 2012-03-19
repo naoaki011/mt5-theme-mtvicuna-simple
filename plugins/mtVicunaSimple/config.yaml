@@ -425,6 +425,7 @@ tags:
     VicunaTagcloudStyle:    $mtVicunaSimple::mtVicunaSimple::Tags::cloud_style
     VicunaLightboxScript:   $mtVicunaSimple::mtVicunaSimple::Tags::lightbox_script
     VicunaVersion:          $mtVicunaSimple::mtVicunaSimple::Tags::theme_version
+    EntryConvertBreaks:     $mtVicunaSimple::mtVicunaSimple::Tags::convert_breaks
   block:
     IfVicunaNavionTop?:     $mtVicunaSimple::mtVicunaSimple::Tags::if_nav_on_top
     IfVicunaHideNavi?:      $mtVicunaSimple::mtVicunaSimple::Tags::if_hide_nav
