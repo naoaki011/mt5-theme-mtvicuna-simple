@@ -24,6 +24,8 @@ themes:
     thumbnail_file: vicuna.png
     thumbnail_file_medium: vicuna-medium.png
     thumbnail_file_small: vicuna-small.png
+    optional_components:
+      StyleCatcher: 2.3
     elements:
       blog_static_files: 
         component: core
@@ -426,6 +428,10 @@ tags:
     VicunaLightboxScript:   $mtVicunaSimple::mtVicunaSimple::Tags::lightbox_script
     VicunaVersion:          $mtVicunaSimple::mtVicunaSimple::Tags::theme_version
     EntryConvertBreaks:     $mtVicunaSimple::mtVicunaSimple::Tags::convert_breaks
+    BlogLayout:             $mtVicunaSimple::mtVicunaSimple::Util::_blog_skin_layout
+    CurrentStyleRepository: $mtVicunaSimple::mtVicunaSimple::Util::_blog_current_repository
+    CurrentSelectStyle:     $mtVicunaSimple::mtVicunaSimple::Util::_blog_current_style
+    CurrentSelectLayout:    $mtVicunaSimple::mtVicunaSimple::Util::_blog_current_layout
   block:
     IfVicunaNavionTop?:     $mtVicunaSimple::mtVicunaSimple::Tags::if_nav_on_top
     IfVicunaHideNavi?:      $mtVicunaSimple::mtVicunaSimple::Tags::if_hide_nav

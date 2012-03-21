@@ -2,12 +2,55 @@ package mtVicunaSimple::Util;
 
 use strict;
 use MT 5;
+use MT::Theme;
+use Data::Dumper;
 
 sub _if_vicuna {
     my $app = MT->instance;
     my $blog = $app->blog or return 0;
-    return 1 if ($blog->theme_id eq 'mtVicunaSimple');
-    return 0;
+    return 0 if ($blog->theme_id ne 'mtVicunaSimple');
+    my $plugin = MT->component('StyleCatcher');
+    my $config = $plugin->get_config_hash();
+    my $theme = $config->{ "current_theme_" . $blog->id } || '';
+    (my $repository = $theme) =~ s/(repo-|)([^:]+):.*/$2/;
+    my @vicuna_repo = (
+        'mtvicuna_skin',
+        'mtvicuna_recent_skin',
+        'mtvicuna_legacy_skin',
+        'hashim_skin'
+    );
+    my $flag = 0;
+    foreach my $repo_name (@vicuna_repo) {
+        $flag = 1 if ($repository eq $repo_name);
+    }
+    if ($repository eq 'local') {
+        my $theme = $config->{ "current_theme_" . $blog->id } || '';
+        (my $style = $theme) =~ s/.*:(.*)/$1/ if $theme;
+        my @vicuna_style = (
+            'style-future',
+            'style-flat',
+            'style-galaxy',
+            'style-mono',
+            'style-vega',
+            'style-bazooka',
+            'style-warship',
+            'style-happydays',
+            'style-vegacrystal',
+            'style-altair',
+            'style-monocrystal',
+            'style-boomer',
+            'style-ninja',
+            'style-origin',
+            'style-leaves',
+            'style-doo',
+            'style-town',
+            'style-smartcanvas'
+        );
+        foreach my $style_name (@vicuna_style) {
+            $flag = 1 if ($style eq $style_name);
+        }
+    }
+    return $flag;
 }
 
 sub _edit_themeparams {
@@ -71,7 +114,8 @@ sub _edit_themeparams {
         cloud_style       => $cloud_style,
         navi_on_top       => $navi_on_top,
         hide_navi         => $hide_navi,
-        left_align        => $left_align
+        left_align        => $left_align,
+        theme_version     => MT::Theme->load('mtVicunaSimple')->{version}
     } );
 }
 
