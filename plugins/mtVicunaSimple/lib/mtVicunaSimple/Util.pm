@@ -123,15 +123,51 @@ sub _blog_skin_layout {
     my $app = MT->instance;
     my $blog = $app->blog
       or return '';
-    return $blog->page_layout;
+    return $blog->page_layout || '';
 }
 
+sub _blog_current_repository {
+    my ($ctx) = @_;
+    my $blog_id = $ctx->stash('blog_id')  or return '';
+    my $plugin = MT->component('StyleCatcher') or return '';
+    my $config = $plugin->get_config_hash();
+    my $theme = $config->{ "current_theme_" . $blog_id } || '';
+    (my $repository = $theme) =~ s/(repo-|)([^:]+):.*/$2/;
+    return $repository;
+}
+
+
+
+sub _blog_current_style {
+    my ($ctx) = @_;
+    my $blog_id = $ctx->stash('blog_id') or return '';
+    my $plugin = MT->component('StyleCatcher') or return '';
+    my $config = $plugin->get_config_hash();
+    my $curr_theme = $config->{ "current_theme_" . $blog_id } || '';
+    (my $style = $curr_theme) =~ s/.*:(.*)/$1/ if $curr_theme;
+    return $style;
+}
+
+
+sub _blog_current_layout {
+    my ($ctx) = @_;
+    my $blog_id = $ctx->stash('blog_id')  or return '';
+    my $plugin = MT->component('StyleCatcher')  or return '';
+    my $config = $plugin->get_config_hash();
+    my $curr_layout = $config->{ "current_layout_" . $blog_id } || '';
+    return $curr_layout;
+}
+
+
 sub doLog {
-    my ($msg) = @_; 
+    my ($msg, $class) = @_;
     return unless defined($msg);
+
     require MT::Log;
-    my $log = MT::Log->new;
-    $log->message($msg) ;
+    my $log = new MT::Log;
+    $log->message($msg);
+    $log->level(MT::Log::DEBUG());
+    $log->class($class) if $class;
     $log->save or die $log->errstr;
 }
 
